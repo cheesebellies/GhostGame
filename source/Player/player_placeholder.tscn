@@ -1,0 +1,55 @@
+[gd_scene load_steps=6 format=3 uid="uid://dv7wbheebeajf"]
+
+[ext_resource type="Script" uid="uid://b31wnef2aqc85" path="res://Player/player_placeholder.gd" id="1_qe0qx"]
+[ext_resource type="Texture2D" uid="uid://35sb48mnc528" path="res://Assets/Red-Dot-PNG-File.png" id="2_n1yss"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_hvfyp"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_l8h54"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_it674"]
+height = 2.02341
+
+[node name="PlayerPlaceholder" type="CharacterBody3D"]
+script = ExtResource("1_qe0qx")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -95.0
+offset_top = -94.0
+offset_right = 93.0
+offset_bottom = 95.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_n1yss")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Body" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.02616, 0)
+mesh = SubResource("CapsuleMesh_hvfyp")
+
+[node name="Facing" type="MeshInstance3D" parent="."]
+transform = Transform3D(1.02285e-07, 0, -0.06, 0, 0.06, 0, 0.78, 0, 7.86805e-09, 0, 2.115, 0.433)
+mesh = SubResource("BoxMesh_l8h54")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.026, 0)
+shape = SubResource("CapsuleShape3D_it674")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 1.53184, 0)
+current = true
