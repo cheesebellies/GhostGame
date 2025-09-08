@@ -22,7 +22,8 @@ func init():
 	
 	if port_found:
 		multiplayer.multiplayer_peer = enet_peer
-	return port_found
+		return chosen_port
+	return -1
 
 func _handle_peer_disconnected(id):
 	print("Peer disconnected: " + str(id))
@@ -32,5 +33,3 @@ func _handle_peer_connected(id):
 
 func _ready():
 	enet_peer = ENetMultiplayerPeer.new()
-	init()
-	print(multiplayer.is_server())

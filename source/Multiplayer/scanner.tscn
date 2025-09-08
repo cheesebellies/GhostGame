@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://vdkuwsqh7nba"]
+
+[ext_resource type="Script" uid="uid://bla2qwbcqrgek" path="res://Multiplayer/scanner.gd" id="1_tn1i4"]
+
+[node name="Scanner" type="Node"]
+script = ExtResource("1_tn1i4")
+
+[node name="Scan" type="Timer" parent="."]
+
+[node name="Broadcast" type="Timer" parent="."]
+
+[connection signal="timeout" from="Scan" to="." method="_scan"]
+[connection signal="timeout" from="Broadcast" to="." method="_broadcast"]
