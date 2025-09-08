@@ -1,0 +1,21 @@
+[gd_scene load_steps=2 format=3 uid="uid://blio0v0sfnjbc"]
+
+[ext_resource type="Script" uid="uid://dkv7ii3dqlw0j" path="res://Tests/mp_test.gd" id="1_2s34t"]
+
+[node name="MpTest" type="Node"]
+script = ExtResource("1_2s34t")
+
+[node name="Connect" type="Button" parent="."]
+offset_right = 8.0
+offset_bottom = 8.0
+text = "Connect to server"
+
+[node name="Host" type="Button" parent="."]
+offset_left = 4.0
+offset_top = 41.0
+offset_right = 102.0
+offset_bottom = 72.0
+text = "Host Server"
+
+[connection signal="pressed" from="Connect" to="." method="_on_connect_pressed"]
+[connection signal="pressed" from="Host" to="." method="_on_host_pressed"]
