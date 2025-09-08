@@ -14,6 +14,10 @@ config/name="GhostGame"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://Assets/icon.svg"
 
+[display]
+
+window/size/mode=3
+
 [input]
 
 move_forward={
