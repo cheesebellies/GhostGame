@@ -1,6 +1,7 @@
-[gd_scene load_steps=10 format=4 uid="uid://bh8ktxf8x1dig"]
+[gd_scene load_steps=11 format=4 uid="uid://bh8ktxf8x1dig"]
 
 [ext_resource type="Texture2D" uid="uid://bffdndn2yqadt" path="res://Assets/Box/Materials/uewlfg2va_1K_Basecolor.JPG" id="1_8mguv"]
+[ext_resource type="Script" uid="uid://dqo6i1ggenyln" path="res://Assets/Box/box_small.gd" id="1_85vbm"]
 [ext_resource type="Texture2D" uid="uid://d0ps2y2ku2qwu" path="res://Assets/Box/Materials/uewlfg2va_1K_AO.JPG" id="2_85vbm"]
 [ext_resource type="Texture2D" uid="uid://coi7gqfkfc0sj" path="res://Assets/Box/Materials/uewlfg2va_1K_Normal.JPG" id="3_1segu"]
 [ext_resource type="Texture2D" uid="uid://b8ta5p48jov55" path="res://Assets/Box/Materials/uewlfg2va_1K_Roughness.JPG" id="4_xi5r7"]
@@ -57,13 +58,19 @@ ao_texture = ExtResource("2_85vbm")
 [sub_resource type="BoxShape3D" id="BoxShape3D_yd4j2"]
 size = Vector3(0.0842285, 0.0849609, 0.0820923)
 
-[node name="Box" type="StaticBody3D"]
+[node name="Box" type="RigidBody3D"]
+collision_layer = 4
+continuous_cd = true
+linear_damp = 0.05
+angular_damp = 0.05
+script = ExtResource("1_85vbm")
 
 [node name="BoxSmall" type="MeshInstance3D" parent="."]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0, 0)
 mesh = SubResource("ArrayMesh_sxggv")
 skeleton = NodePath("")
 surface_material_override/0 = SubResource("StandardMaterial3D_rg2yd")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00231934, 0.000488281, -0.000335693)
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0.00231934, 0.000488281, -0.000335693)
 shape = SubResource("BoxShape3D_yd4j2")

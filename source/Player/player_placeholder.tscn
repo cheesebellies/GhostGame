@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://dv7wbheebeajf"]
 
 [ext_resource type="Script" uid="uid://b31wnef2aqc85" path="res://Player/player_placeholder.gd" id="1_qe0qx"]
-[ext_resource type="Texture2D" uid="uid://35sb48mnc528" path="res://Assets/Red-Dot-PNG-File.png" id="2_n1yss"]
+[ext_resource type="Texture2D" uid="uid://b0t47v7qbspho" path="res://Assets/crosshair001.png" id="2_n1yss"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_hvfyp"]
 
@@ -11,6 +11,7 @@
 height = 2.02341
 
 [node name="PlayerPlaceholder" type="CharacterBody3D"]
+collision_layer = 2
 script = ExtResource("1_qe0qx")
 
 [node name="Control" type="Control" parent="."]
@@ -53,3 +54,10 @@ shape = SubResource("CapsuleShape3D_it674")
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 1.53184, 0)
 current = true
+
+[node name="LookRay" type="RayCast3D" parent="Camera3D"]
+target_position = Vector3(0, 0, -3)
+collision_mask = 5
+collide_with_areas = true
+
+[node name="GrabPivot" type="Marker3D" parent="Camera3D"]
