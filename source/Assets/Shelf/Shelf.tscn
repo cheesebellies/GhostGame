@@ -303,6 +303,7 @@ shadow_mesh = SubResource("ArrayMesh_58kqx")
 size = Vector3(1.60858, 2.59045, 0.902466)
 
 [node name="wbslaikga" type="StaticBody3D"]
+collision_layer = 2
 
 [node name="wbslaikga_LOD0_TIER3_000" type="MeshInstance3D" parent="."]
 mesh = SubResource("ArrayMesh_xjndd")
