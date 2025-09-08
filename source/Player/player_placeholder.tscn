@@ -1,7 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://dv7wbheebeajf"]
+[gd_scene load_steps=8 format=3 uid="uid://dv7wbheebeajf"]
 
 [ext_resource type="Script" uid="uid://b31wnef2aqc85" path="res://Player/player_placeholder.gd" id="1_qe0qx"]
-[ext_resource type="Texture2D" uid="uid://b0t47v7qbspho" path="res://Assets/crosshair001.png" id="2_n1yss"]
+[ext_resource type="Texture2D" uid="uid://b0t47v7qbspho" path="res://Assets/UI/Crosshair/reticle_tex_none.png" id="2_ys2oj"]
+[ext_resource type="Texture2D" uid="uid://c8ts2eaka57e8" path="res://Assets/UI/Crosshair/reticle_tex_pickup.png" id="3_h5ri8"]
+[ext_resource type="Texture2D" uid="uid://bf1j04drl3f5b" path="res://Assets/UI/Crosshair/reticle_tex_drag.png" id="4_e3an6"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_hvfyp"]
 
@@ -13,6 +15,9 @@ height = 2.02341
 [node name="PlayerPlaceholder" type="CharacterBody3D"]
 collision_layer = 2
 script = ExtResource("1_qe0qx")
+reticle_tex_none = ExtResource("2_ys2oj")
+reticle_tex_pickup = ExtResource("3_h5ri8")
+reticle_tex_drag = ExtResource("4_e3an6")
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3
@@ -29,13 +34,13 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -95.0
-offset_top = -94.0
-offset_right = 93.0
-offset_bottom = 95.0
+offset_left = -50.0
+offset_top = -49.0
+offset_right = 48.0
+offset_bottom = 49.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("2_n1yss")
+texture = ExtResource("2_ys2oj")
 expand_mode = 1
 stretch_mode = 5
 

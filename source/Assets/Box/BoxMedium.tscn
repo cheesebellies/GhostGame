@@ -1,5 +1,6 @@
-[gd_scene load_steps=10 format=4 uid="uid://cdvehha130i0v"]
+[gd_scene load_steps=11 format=4 uid="uid://cdvehha130i0v"]
 
+[ext_resource type="Script" uid="uid://cow3txig40get" path="res://Assets/Box/box_medium.gd" id="1_2cftu"]
 [ext_resource type="Texture2D" uid="uid://bffdndn2yqadt" path="res://Assets/Box/Materials/uewlfg2va_1K_Basecolor.JPG" id="1_oth5j"]
 [ext_resource type="Texture2D" uid="uid://d0ps2y2ku2qwu" path="res://Assets/Box/Materials/uewlfg2va_1K_AO.JPG" id="2_2cftu"]
 [ext_resource type="Texture2D" uid="uid://coi7gqfkfc0sj" path="res://Assets/Box/Materials/uewlfg2va_1K_Normal.JPG" id="3_7f5ol"]
@@ -57,7 +58,10 @@ ao_texture = ExtResource("2_2cftu")
 [sub_resource type="BoxShape3D" id="BoxShape3D_fcr3i"]
 size = Vector3(0.179749, 0.106934, 0.147705)
 
-[node name="BoxMedium" type="StaticBody3D"]
+[node name="BoxMedium" type="RigidBody3D"]
+collision_layer = 4
+collision_mask = 5
+script = ExtResource("1_2cftu")
 
 [node name="uewlfg2va_LOD0_TIER3_000" type="MeshInstance3D" parent="."]
 mesh = SubResource("ArrayMesh_fcr3i")

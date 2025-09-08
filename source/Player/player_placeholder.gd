@@ -21,6 +21,16 @@ var is_crouching := false
 @onready var cam: Camera3D = $Camera3D
 @onready var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
 
+# --- Reticle setup ---
+enum ReticleState { NONE, PICKUP, DRAG }
+var reticle_state := ReticleState.NONE
+
+@export var reticle_tex_none: Texture2D
+@export var reticle_tex_pickup: Texture2D
+@export var reticle_tex_drag: Texture2D
+
+@onready var reticle: TextureRect = $Control/TextureRect	# <-- change if your path differs
+
 # --- Interact/drag references & state ---
 @onready var look_ray: RayCast3D = $Camera3D/LookRay
 var grab_anchor: AnimatableBody3D = null	# physics anchor the joint connects to
@@ -185,6 +195,34 @@ func _physics_process(delta: float) -> void:
 			var t := grab_anchor.global_transform
 			t.origin = target
 			grab_anchor.global_transform = t
+	# --- Reticle state update ---
+	var new_state := ReticleState.NONE
+
+	if dragging_body:
+		new_state = ReticleState.DRAG
+	else:
+		if look_ray.is_colliding():
+			var col := look_ray.get_collider()
+			# treat as "pickupable" if it’s a RigidBody3D or has an on_interact handler
+			if col is RigidBody3D:
+				new_state = ReticleState.PICKUP
+			else:
+				# climb parents to check for on_interact (e.g., pickup item scripts)
+				var n := col
+				while n and not n.has_method("on_interact"):
+					n = n.get_parent()
+				if n and n.has_method("on_interact"):
+					new_state = ReticleState.PICKUP
+
+	if new_state != reticle_state:
+		reticle_state = new_state
+		match reticle_state:
+			ReticleState.NONE:
+				reticle.texture = reticle_tex_none
+			ReticleState.PICKUP:
+				reticle.texture = reticle_tex_pickup
+			ReticleState.DRAG:
+				reticle.texture = reticle_tex_drag
 
 # ---------- Interact helpers ----------
 
@@ -247,6 +285,8 @@ func _try_start_drag() -> void:
 			dragging_body.linear_damp = 1.0
 			dragging_body.angular_damp = 1.0
 			dragging_body.freeze = false
+	reticle_state = ReticleState.DRAG
+	reticle.texture = reticle_tex_drag	
 
 func _release_drag(apply_throw: bool) -> void:
 	if not dragging_body:
@@ -280,6 +320,9 @@ func _release_drag(apply_throw: bool) -> void:
 	mouse_delta_accum = Vector2.ZERO
 	drag_est_lin_vel = Vector3.ZERO
 	drag_est_ang_vel = Vector3.ZERO
+	
+	reticle_state = ReticleState.NONE
+	reticle.texture = reticle_tex_none
 
 	
 

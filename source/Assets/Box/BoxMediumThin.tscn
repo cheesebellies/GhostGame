@@ -1,5 +1,6 @@
-[gd_scene load_steps=10 format=4 uid="uid://b71n4smwpw51y"]
+[gd_scene load_steps=11 format=4 uid="uid://b71n4smwpw51y"]
 
+[ext_resource type="Script" uid="uid://cgxxjg11c3jmv" path="res://Assets/Box/box_medium_thin.gd" id="1_he60n"]
 [ext_resource type="Texture2D" uid="uid://bffdndn2yqadt" path="res://Assets/Box/Materials/uewlfg2va_1K_Basecolor.JPG" id="1_hwyca"]
 [ext_resource type="Texture2D" uid="uid://d0ps2y2ku2qwu" path="res://Assets/Box/Materials/uewlfg2va_1K_AO.JPG" id="2_he60n"]
 [ext_resource type="Texture2D" uid="uid://coi7gqfkfc0sj" path="res://Assets/Box/Materials/uewlfg2va_1K_Normal.JPG" id="3_34k1d"]
@@ -57,7 +58,10 @@ ao_texture = ExtResource("2_he60n")
 [sub_resource type="BoxShape3D" id="BoxShape3D_qspb1"]
 size = Vector3(0.121353, 0.0898438, 0.104004)
 
-[node name="BoxMediumThin" type="StaticBody3D"]
+[node name="BoxMediumThin" type="RigidBody3D"]
+collision_layer = 4
+collision_mask = 5
+script = ExtResource("1_he60n")
 
 [node name="uewlfg2va_LOD0_TIER3_005" type="MeshInstance3D" parent="."]
 mesh = SubResource("ArrayMesh_qspb1")

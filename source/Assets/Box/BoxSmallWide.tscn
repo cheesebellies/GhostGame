@@ -1,6 +1,7 @@
-[gd_scene load_steps=10 format=4 uid="uid://b0wpn1vjgr5a6"]
+[gd_scene load_steps=11 format=4 uid="uid://b0wpn1vjgr5a6"]
 
 [ext_resource type="Texture2D" uid="uid://bffdndn2yqadt" path="res://Assets/Box/Materials/uewlfg2va_1K_Basecolor.JPG" id="1_ikx5r"]
+[ext_resource type="Script" uid="uid://co3k6urycd025" path="res://Assets/Box/box_small_wide.gd" id="1_kill7"]
 [ext_resource type="Texture2D" uid="uid://d0ps2y2ku2qwu" path="res://Assets/Box/Materials/uewlfg2va_1K_AO.JPG" id="2_kill7"]
 [ext_resource type="Texture2D" uid="uid://coi7gqfkfc0sj" path="res://Assets/Box/Materials/uewlfg2va_1K_Normal.JPG" id="3_1mjsp"]
 [ext_resource type="Texture2D" uid="uid://b8ta5p48jov55" path="res://Assets/Box/Materials/uewlfg2va_1K_Roughness.JPG" id="4_qru21"]
@@ -57,7 +58,10 @@ ao_texture = ExtResource("2_kill7")
 [sub_resource type="BoxShape3D" id="BoxShape3D_1ifyt"]
 size = Vector3(0.128601, 0.0856934, 0.106445)
 
-[node name="BoxSmallWide" type="StaticBody3D"]
+[node name="BoxSmallWide" type="RigidBody3D"]
+collision_layer = 4
+collision_mask = 5
+script = ExtResource("1_kill7")
 
 [node name="BoxSmallWide" type="MeshInstance3D" parent="."]
 mesh = SubResource("ArrayMesh_1ifyt")
