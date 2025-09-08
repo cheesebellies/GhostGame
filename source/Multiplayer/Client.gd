@@ -1,6 +1,5 @@
+class_name Client
 extends Node
-
-const MAX_CLIENTS = 4
 
 var enet_peer: ENetMultiplayerPeer
 
