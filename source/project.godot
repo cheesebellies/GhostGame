@@ -15,9 +15,9 @@ run/main_scene="uid://blio0v0sfnjbc"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://Assets/icon.svg"
 
-[display]
+[autoload]
 
-window/size/mode=3
+MultiplayerController="*res://Multiplayer/multiplayer_controller.gd"
 
 [input]
 
