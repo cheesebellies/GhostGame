@@ -1,0 +1,14 @@
+[gd_resource type="StandardMaterial3D" load_steps=5 format=3 uid="uid://dinllhcbw84u7"]
+
+[ext_resource type="Texture2D" uid="uid://d2epaq3hyos5f" path="res://Assets/2D/Surfaces/GarageDoor/tmnobhhya_1K_Basecolor.jpg" id="1_tgr6k"]
+[ext_resource type="Texture2D" uid="uid://4pq6qho4n2wn" path="res://Assets/2D/Surfaces/GarageDoor/tmnobhhya_1K_AO.jpg" id="2_k08ct"]
+[ext_resource type="Texture2D" uid="uid://xgmnjsiy1e7u" path="res://Assets/2D/Surfaces/GarageDoor/tmnobhhya_1K_Normal.jpg" id="3_66pwf"]
+[ext_resource type="Texture2D" uid="uid://lciocgefrfva" path="res://Assets/2D/Surfaces/GarageDoor/tmnobhhya_1K_Roughness.jpg" id="4_m3v5e"]
+
+[resource]
+albedo_texture = ExtResource("1_tgr6k")
+roughness_texture = ExtResource("4_m3v5e")
+normal_enabled = true
+normal_texture = ExtResource("3_66pwf")
+ao_enabled = true
+ao_texture = ExtResource("2_k08ct")
