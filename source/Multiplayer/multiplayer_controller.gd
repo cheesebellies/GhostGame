@@ -2,6 +2,8 @@ extends Node
 
 var client
 var server
+var create_server_ok = true
+var create_client_ok = true
 enum {MSG_INFO, MSG_ERROR, MSG_OK}
 
 const server_node = preload("res://Multiplayer/server.tscn")
@@ -21,36 +23,41 @@ func debug(msg, type: int):
 func _ready():
 	debug("Ready.", MSG_INFO)
 
-func stop_server(retries: int = 10, force: bool = false):
-	if not server:
+func stop_server():
+	if (not server) or (not create_server_ok):
 		debug("No server to close.", MSG_ERROR)
 		return 0
-	if retries <= 0:
-		retries = 1
 	debug("Closing server...", MSG_INFO)
-	for try in range(retries):
-		debug("Attempt " + str(try) + "...", MSG_INFO)
-		var res = server.close()
-		if res != 0:
-			debug("Attempt failed. (Code " + str(res) + ")", MSG_ERROR)
-		else:
-			if force:
-				server.free()
-			else:
-				server.queue_free()
-			server = null
-			debug("Server " + ("forcefully " if force else "") + "closed.", MSG_OK)
-			return 0
-	if not force:
-		debug("Failed to close server.", MSG_ERROR)
-	else:
+	create_server_ok = false
+	server.close()
+	var wdel = func helper():
 		server.free()
+		create_server_ok = true
 		server = null
-		debug("Server forcefully closed.", MSG_OK)
+	wdel.call_deferred()
+	debug("Server closed. Server Node will be deleted at the end of the next frame.", MSG_OK)
+
+func initialize_client(is_admin: bool, ip: String, port: int):
+	if not create_client_ok:
+		debug("Failed to create a new client, as the previous client is still being deleted.", MSG_ERROR)
+		return -1
+	if client:
+		debug("Failed to create a new client, as there is already a client in this session.", MSG_ERROR)
+		return -1
+	client = client_node.instantiate()
+	client.name = "Client"
+	client.admin = is_admin
+	client.ip = ip
+	client.port = port
+	res = client.init()
+	
 
 func initialize_server(port_target: int, port_max: int, max_clients: int):
+	if not create_server_ok:
+		debug("Failed to open a new server, as the previous server is still being closed.", MSG_ERROR)
+		return -1
 	if server:
-		debug("Failed to open a new server, as there is already an open server (port " + str(server.chosen_port) + ").", MSG_ERROR)
+		debug("Failed to open a new server, as there is already an open server in this session. (port " + str(server.chosen_port) + ").", MSG_ERROR)
 		return -1
 	server = server_node.instantiate()
 	server.name = "Server"
