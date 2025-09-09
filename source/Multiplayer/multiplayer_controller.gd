@@ -49,7 +49,7 @@ func initialize_client(is_admin: bool, ip: String, port: int):
 	client.admin = is_admin
 	client.ip = ip
 	client.port = port
-	res = client.init()
+	var res = client.init()
 	
 
 func initialize_server(port_target: int, port_max: int, max_clients: int):

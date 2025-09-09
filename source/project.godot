@@ -86,3 +86,9 @@ throw={
 3d_physics/layer_1="World Objects"
 3d_physics/layer_2="Player"
 3d_physics/layer_3="Props"
+
+[rendering]
+
+lights_and_shadows/directional_shadow/size=8192
+lights_and_shadows/directional_shadow/size.mobile=4096
+lights_and_shadows/directional_shadow/soft_shadow_filter_quality=4
