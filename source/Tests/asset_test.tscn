@@ -729,4 +729,3 @@ transform = Transform3D(1, 0, 0, 0, 1.43634, 0, 0, 0, 1, 1.99903, 6.26019, -12.0
 
 [node name="Ladder" parent="." instance=ExtResource("26_d0ef0")]
 transform = Transform3D(2.20202e-08, -3.99719e-08, -1.04403, -0.995652, -0.314119, -8.97342e-09, -0.314119, 0.995652, -4.4745e-08, 1.73853, -0.598579, 2.31487)
-collision_layer = 1
