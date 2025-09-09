@@ -1,4 +1,6 @@
-[gd_scene load_steps=0 format=3 uid="uid://kyjiw1vprwxj"]
+[gd_scene load_steps=2 format=3 uid="uid://kyjiw1vprwxj"]
+
+[ext_resource type="Script" uid="uid://r16aw0m1a85e" path="res://Menu/main_menu.gd" id="1_sla5p"]
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -7,3 +9,82 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_sla5p")
+
+[node name="Main" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -238.0
+offset_right = 238.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="Singleplayer" type="Button" parent="Main"]
+layout_mode = 2
+theme_override_constants/h_separation = 0
+theme_override_font_sizes/font_size = 40
+text = "Singleplayer"
+
+[node name="Multiplayer" type="Button" parent="Main"]
+layout_mode = 2
+theme_override_constants/h_separation = 0
+theme_override_font_sizes/font_size = 40
+text = "Multiplayer"
+
+[node name="Settings" type="Button" parent="Main"]
+layout_mode = 2
+theme_override_constants/h_separation = 0
+theme_override_font_sizes/font_size = 40
+text = "Settings"
+
+[node name="Exit" type="Button" parent="Main"]
+layout_mode = 2
+theme_override_constants/h_separation = 0
+theme_override_font_sizes/font_size = 40
+text = "Exit
+"
+
+[node name="MP" type="VBoxContainer" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -238.0
+offset_right = 238.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="Host" type="Button" parent="MP"]
+layout_mode = 2
+theme_override_constants/h_separation = 0
+theme_override_font_sizes/font_size = 40
+text = "Host"
+
+[node name="Join" type="Button" parent="MP"]
+layout_mode = 2
+theme_override_constants/h_separation = 0
+theme_override_font_sizes/font_size = 40
+text = "Join"
+
+[node name="Discover" type="Button" parent="MP"]
+layout_mode = 2
+theme_override_constants/h_separation = 0
+theme_override_font_sizes/font_size = 40
+text = "Discover"
+
+[connection signal="pressed" from="Main/Singleplayer" to="." method="_on_singleplayer_pressed"]
+[connection signal="pressed" from="Main/Multiplayer" to="." method="_on_multiplayer_pressed"]
+[connection signal="pressed" from="Main/Settings" to="." method="_on_settings_pressed"]
+[connection signal="pressed" from="Main/Exit" to="." method="_on_exit_pressed"]
+[connection signal="pressed" from="MP/Host" to="." method="_on_host_pressed"]
+[connection signal="pressed" from="MP/Join" to="." method="_on_join_pressed"]
+[connection signal="pressed" from="MP/Discover" to="." method="_on_discover_pressed"]

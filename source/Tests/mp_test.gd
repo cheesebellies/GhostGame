@@ -5,7 +5,7 @@ func _on_connect_pressed() -> void:
 	#client.name = "Client"
 	#add_child(client)
 	#client.init()
-	MultiplayerController.stop_server(10,true)
+	MultiplayerController.stop_server()
 	#var scanner = load("res://Multiplayer/scanner.tscn").instantiate()
 	#scanner.name = "Scanner"
 	#add_child(scanner)
