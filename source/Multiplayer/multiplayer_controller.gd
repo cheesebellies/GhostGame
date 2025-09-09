@@ -3,6 +3,7 @@ extends Node
 var client
 var server
 var create_server_ok = true
+var create_client_ok = true
 enum {MSG_INFO, MSG_ERROR, MSG_OK}
 
 const server_node = preload("res://Multiplayer/server.tscn")
@@ -36,9 +37,27 @@ func stop_server():
 	wdel.call_deferred()
 	debug("Server closed. Server Node will be deleted at the end of the next frame.", MSG_OK)
 
+func initialize_client(is_admin: bool, ip: String, port: int):
+	if not create_client_ok:
+		debug("Failed to create a new client, as the previous client is still being deleted.", MSG_ERROR)
+		return -1
+	if client:
+		debug("Failed to create a new client, as there is already a client in this session.", MSG_ERROR)
+		return -1
+	client = client_node.instantiate()
+	client.name = "Client"
+	client.admin = is_admin
+	client.ip = ip
+	client.port = port
+	res = client.init()
+	
+
 func initialize_server(port_target: int, port_max: int, max_clients: int):
-	if server and create_server_ok:
-		debug("Failed to open a new server, as there is already an open server (port " + str(server.chosen_port) + ").", MSG_ERROR)
+	if not create_server_ok:
+		debug("Failed to open a new server, as the previous server is still being closed.", MSG_ERROR)
+		return -1
+	if server:
+		debug("Failed to open a new server, as there is already an open server in this session. (port " + str(server.chosen_port) + ").", MSG_ERROR)
 		return -1
 	server = server_node.instantiate()
 	server.name = "Server"

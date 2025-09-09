@@ -28,9 +28,10 @@ func init():
 	return -1
 
 func close():
-	# Returns 0 for success and other ints for error
+	multiplayer.multiplayer_peer.close()
+	multiplayer.multiplayer_peer = null
 	print_debug("IMPLEMENT ME: closing server.")
-	return 9
+	return 0
 
 func _handle_peer_disconnected(id):
 	print("Peer disconnected: " + str(id))
