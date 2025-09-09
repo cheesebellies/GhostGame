@@ -1,9 +1,9 @@
 [gd_scene load_steps=8 format=3 uid="uid://dv7wbheebeajf"]
 
 [ext_resource type="Script" uid="uid://b31wnef2aqc85" path="res://Player/player_placeholder.gd" id="1_qe0qx"]
-[ext_resource type="Texture2D" uid="uid://b0t47v7qbspho" path="res://Assets/UI/Crosshair/reticle_tex_none.png" id="2_ys2oj"]
-[ext_resource type="Texture2D" uid="uid://c8ts2eaka57e8" path="res://Assets/UI/Crosshair/reticle_tex_pickup.png" id="3_h5ri8"]
-[ext_resource type="Texture2D" uid="uid://bf1j04drl3f5b" path="res://Assets/UI/Crosshair/reticle_tex_drag.png" id="4_e3an6"]
+[ext_resource type="Texture2D" uid="uid://b0t47v7qbspho" path="res://Assets/2D/UI/Crosshair/reticle_tex_none.png" id="2_ys2oj"]
+[ext_resource type="Texture2D" uid="uid://c8ts2eaka57e8" path="res://Assets/2D/UI/Crosshair/reticle_tex_pickup.png" id="3_h5ri8"]
+[ext_resource type="Texture2D" uid="uid://bf1j04drl3f5b" path="res://Assets/2D/UI/Crosshair/reticle_tex_drag.png" id="4_e3an6"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_hvfyp"]
 

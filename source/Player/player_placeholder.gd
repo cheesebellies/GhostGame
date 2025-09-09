@@ -6,8 +6,8 @@ extends CharacterBody3D
 @export var mouse_sens: float = 0.003
 @export var cam_stand_height: float = 1.6
 @export var cam_crouch_height: float = 1.1
-@export var accel: float = 10.0
-@export var decel: float = 20.0
+@export var accel: float = 100.0
+@export var decel: float = 200.0
 @export var air_control: float = 0.35
 
 var inventory := []						# optional: names/ids
