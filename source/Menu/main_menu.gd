@@ -22,3 +22,7 @@ func _on_join_pressed() -> void:
 
 func _on_discover_pressed() -> void:
 	pass # Replace with function body.
+
+
+func _on_create_pressed() -> void:
+	pass # Replace with function body.
