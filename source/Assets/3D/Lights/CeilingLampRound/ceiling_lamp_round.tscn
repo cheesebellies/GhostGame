@@ -1,9 +1,9 @@
 [gd_scene load_steps=9 format=4 uid="uid://biwbknul8ude8"]
 
-[ext_resource type="Texture2D" uid="uid://b2s0pn4d4q63k" path="res://Assets/3D/CeilingLamp/vgyide1aw_1K_Basecolor.JPG" id="1_hqjkp"]
-[ext_resource type="Texture2D" uid="uid://6v4jiy2bjvev" path="res://Assets/3D/CeilingLamp/vgyide1aw_1K_AO.JPG" id="2_i3alb"]
-[ext_resource type="Texture2D" uid="uid://d3wsmnv655oel" path="res://Assets/3D/CeilingLamp/vgyide1aw_1K_Normal.JPG" id="3_6t6ka"]
-[ext_resource type="Texture2D" uid="uid://dokuv88a72g1" path="res://Assets/3D/CeilingLamp/vgyide1aw_1K_Roughness.JPG" id="4_4yw82"]
+[ext_resource type="Texture2D" uid="uid://b2s0pn4d4q63k" path="res://Assets/3D/Lights/CeilingLampRound/vgyide1aw_1K_Basecolor.JPG" id="1_hqjkp"]
+[ext_resource type="Texture2D" uid="uid://6v4jiy2bjvev" path="res://Assets/3D/Lights/CeilingLampRound/vgyide1aw_1K_AO.JPG" id="2_i3alb"]
+[ext_resource type="Texture2D" uid="uid://d3wsmnv655oel" path="res://Assets/3D/Lights/CeilingLampRound/vgyide1aw_1K_Normal.JPG" id="3_6t6ka"]
+[ext_resource type="Texture2D" uid="uid://dokuv88a72g1" path="res://Assets/3D/Lights/CeilingLampRound/vgyide1aw_1K_Roughness.JPG" id="4_4yw82"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jmo1y"]
 resource_name = "MatID_1"
@@ -54,7 +54,7 @@ normal_texture = ExtResource("3_6t6ka")
 ao_enabled = true
 ao_texture = ExtResource("2_i3alb")
 
-[node name="CeilingLamp" type="StaticBody3D"]
+[node name="CeilingLampRound" type="StaticBody3D"]
 
 [node name="vgyide1aw_LOD0_TIER3_000" type="MeshInstance3D" parent="."]
 mesh = SubResource("ArrayMesh_5vqn3")

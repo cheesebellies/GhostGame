@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=4 uid="uid://ebgq42p4qedd"]
+[gd_scene load_steps=11 format=4 uid="uid://ebgq42p4qedd"]
 
 [ext_resource type="Texture2D" uid="uid://dunsvt46pq52l" path="res://Assets/3D/Ladder/vgyidbkaw_1K_Basecolor.JPG" id="1_um3xx"]
 [ext_resource type="Texture2D" uid="uid://bo6v83e57hvjb" path="res://Assets/3D/Ladder/vgyidbkaw_1K_AO.JPG" id="2_jcr1e"]
@@ -57,9 +57,16 @@ normal_texture = ExtResource("4_qyqrd")
 ao_enabled = true
 ao_texture = ExtResource("2_jcr1e")
 
-[node name="Ladder" type="Node3D"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_cw1mo"]
+size = Vector3(2.57776, 0.0887756, 0.339844)
+
+[node name="Ladder" type="StaticBody3D"]
 
 [node name="vgyidbkaw_LOD0_TIER3_000" type="MeshInstance3D" parent="."]
 mesh = SubResource("ArrayMesh_jej68")
 skeleton = NodePath("")
 surface_material_override/0 = SubResource("StandardMaterial3D_l2krk")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0022583, -0.00535583, 0)
+shape = SubResource("BoxShape3D_cw1mo")

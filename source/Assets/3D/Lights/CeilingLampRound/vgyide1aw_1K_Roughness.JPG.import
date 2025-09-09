@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dokuv88a72g1"
-path.s3tc="res://.godot/imported/vgyide1aw_1K_Roughness.JPG-0c42b4d9bd82dad4c724b29519306e44.s3tc.ctex"
+path.s3tc="res://.godot/imported/vgyide1aw_1K_Roughness.JPG-70b7660df5a22f8a1a00539378c720ea.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://Assets/3D/CeilingLamp/vgyide1aw_1K_Roughness.JPG"
-dest_files=["res://.godot/imported/vgyide1aw_1K_Roughness.JPG-0c42b4d9bd82dad4c724b29519306e44.s3tc.ctex"]
+source_file="res://Assets/3D/Lights/CeilingLampRound/vgyide1aw_1K_Roughness.JPG"
+dest_files=["res://.godot/imported/vgyide1aw_1K_Roughness.JPG-70b7660df5a22f8a1a00539378c720ea.s3tc.ctex"]
 
 [params]
 

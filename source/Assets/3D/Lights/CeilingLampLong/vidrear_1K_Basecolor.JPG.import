@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b2s0pn4d4q63k"
-path.s3tc="res://.godot/imported/vgyide1aw_1K_Basecolor.JPG-574d8961f5e8c847330bed4c8244a379.s3tc.ctex"
+uid="uid://bfsk7bbjdk2t5"
+path.s3tc="res://.godot/imported/vidrear_1K_Basecolor.JPG-57162f16b0d9250e612ddc1c5989c1db.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://Assets/3D/CeilingLamp/vgyide1aw_1K_Basecolor.JPG"
-dest_files=["res://.godot/imported/vgyide1aw_1K_Basecolor.JPG-574d8961f5e8c847330bed4c8244a379.s3tc.ctex"]
+source_file="res://Assets/3D/Lights/CeilingLampLong/vidrear_1K_Basecolor.JPG"
+dest_files=["res://.godot/imported/vidrear_1K_Basecolor.JPG-57162f16b0d9250e612ddc1c5989c1db.s3tc.ctex"]
 
 [params]
 

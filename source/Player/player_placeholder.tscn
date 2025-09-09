@@ -46,10 +46,12 @@ stretch_mode = 5
 
 [node name="Body" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.02616, 0)
+cast_shadow = 0
 mesh = SubResource("CapsuleMesh_hvfyp")
 
 [node name="Facing" type="MeshInstance3D" parent="."]
 transform = Transform3D(1.02285e-07, 0, -0.06, 0, 0.06, 0, 0.78, 0, 7.86805e-09, 0, 2.115, 0.433)
+cast_shadow = 0
 mesh = SubResource("BoxMesh_l8h54")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
@@ -63,7 +65,5 @@ current = true
 [node name="LookRay" type="RayCast3D" parent="Camera3D"]
 target_position = Vector3(0, 0, -3)
 collision_mask = 4
-hit_from_inside = true
-collide_with_areas = true
 
 [node name="GrabPivot" type="Marker3D" parent="Camera3D"]

@@ -4,12 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://70wmkk1kld12"
-path="res://.godot/imported/vgyide1aw.fbx-04438bd903cb97627b0431d13f35c27b.scn"
+path="res://.godot/imported/vgyide1aw.fbx-e950faf9f384584c9aa0d08799be956f.scn"
 
 [deps]
 
-source_file="res://Assets/3D/CeilingLamp/vgyide1aw.fbx"
-dest_files=["res://.godot/imported/vgyide1aw.fbx-04438bd903cb97627b0431d13f35c27b.scn"]
+source_file="res://Assets/3D/Lights/CeilingLampRound/vgyide1aw.fbx"
+dest_files=["res://.godot/imported/vgyide1aw.fbx-e950faf9f384584c9aa0d08799be956f.scn"]
 
 [params]
 
