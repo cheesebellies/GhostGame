@@ -34,4 +34,5 @@ func _handle_server_disconnected():
 	print("Server disconnected.")
 
 func _ready():
+	get_tree().set_multiplayer(MultiplayerAPI.create_default_interface(),self.get_path())
 	enet_peer = ENetMultiplayerPeer.new()
