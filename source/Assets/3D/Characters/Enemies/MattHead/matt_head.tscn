@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=3 uid="uid://clq4tqrhh2l2f"]
+
+[ext_resource type="PackedScene" uid="uid://bt2p706qj8yrj" path="res://Assets/3D/Characters/Enemies/MattHead/MattHead.glb" id="1_0qyp0"]
+
+[node name="MattHead" instance=ExtResource("1_0qyp0")]
