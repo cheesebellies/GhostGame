@@ -14,7 +14,7 @@ func _on_connect_pressed() -> void:
 	#print(res)
 
 func _on_host_pressed() -> void:
-	MultiplayerController.initialize_server(50000,50005,4)
+	MultiplayerController.initialize_server(4)
 	#if port != -1:
 		#var scanner = load("res://Multiplayer/scanner.tscn").instantiate()
 		#scanner.name = "Scanner"

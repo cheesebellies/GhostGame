@@ -1,6 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://kyjiw1vprwxj"]
+[gd_scene load_steps=5 format=3 uid="uid://kyjiw1vprwxj"]
 
 [ext_resource type="Script" uid="uid://r16aw0m1a85e" path="res://Menu/main_menu.gd" id="1_sla5p"]
+[ext_resource type="Texture2D" uid="uid://bvks12rb8swrl" path="res://Assets/2D/UI/Checkbox/checkbox.svg" id="2_dtkyu"]
+[ext_resource type="Texture2D" uid="uid://bxrfhagf5rac3" path="res://Assets/2D/UI/Checkbox/svgviewer-output.svg" id="3_ohgnh"]
 
 [sub_resource type="Theme" id="Theme_sla5p"]
 default_font_size = 40
@@ -15,6 +17,7 @@ grow_vertical = 2
 script = ExtResource("1_sla5p")
 
 [node name="Main" type="VBoxContainer" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 13
 anchor_left = 0.5
@@ -52,6 +55,64 @@ theme_override_font_sizes/font_size = 40
 text = "Exit
 "
 
+[node name="Settings" type="VBoxContainer" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -238.0
+offset_right = 238.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="Label2" type="Label" parent="Settings"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Port Range"
+horizontal_alignment = 1
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="Settings"]
+layout_mode = 2
+theme_override_constants/separation = 30
+
+[node name="Label" type="Label" parent="Settings/HBoxContainer2"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Min"
+
+[node name="MinPort" type="SpinBox" parent="Settings/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = SubResource("Theme_sla5p")
+max_value = 99999.0
+value = 50000.0
+rounded = true
+alignment = 1
+
+[node name="Label2" type="Label" parent="Settings/HBoxContainer2"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Max"
+
+[node name="MaxPort" type="SpinBox" parent="Settings/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = SubResource("Theme_sla5p")
+max_value = 99999.0
+value = 50100.0
+rounded = true
+alignment = 1
+
+[node name="SettingsReturn" type="Button" parent="Settings"]
+layout_mode = 2
+theme_override_constants/h_separation = 0
+theme_override_font_sizes/font_size = 40
+text = "Save and Return"
+
 [node name="MP" type="VBoxContainer" parent="."]
 visible = false
 layout_mode = 1
@@ -84,8 +145,13 @@ theme_override_constants/h_separation = 0
 theme_override_font_sizes/font_size = 40
 text = "Discover"
 
+[node name="MPReturn" type="Button" parent="MP"]
+layout_mode = 2
+theme_override_constants/h_separation = 0
+theme_override_font_sizes/font_size = 40
+text = "Return"
+
 [node name="Host" type="VBoxContainer" parent="."]
-visible = false
 layout_mode = 1
 anchors_preset = 13
 anchor_left = 0.5
@@ -97,50 +163,6 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 20
 alignment = 1
-
-[node name="Label" type="Label" parent="Host"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 40
-text = "Port Range"
-horizontal_alignment = 1
-
-[node name="HBoxContainer" type="HBoxContainer" parent="Host"]
-layout_mode = 2
-theme_override_constants/separation = 30
-
-[node name="Label" type="Label" parent="Host/HBoxContainer"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 40
-text = "Min:"
-
-[node name="Min" type="SpinBox" parent="Host/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme = SubResource("Theme_sla5p")
-max_value = 99999.0
-value = 50000.0
-rounded = true
-alignment = 1
-
-[node name="Label2" type="Label" parent="Host/HBoxContainer"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 40
-text = "Max:"
-
-[node name="Max" type="SpinBox" parent="Host/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme = SubResource("Theme_sla5p")
-max_value = 99999.0
-value = 50100.0
-rounded = true
-alignment = 1
-
-[node name="Control" type="Control" parent="Host"]
-layout_mode = 2
-
-[node name="Control2" type="Control" parent="Host"]
-layout_mode = 2
 
 [node name="Label2" type="Label" parent="Host"]
 layout_mode = 2
@@ -184,6 +206,34 @@ alignment = 1
 max_length = 16
 context_menu_enabled = false
 
+[node name="HBoxContainer4" type="HBoxContainer" parent="Host"]
+layout_mode = 2
+theme_override_constants/separation = 30
+
+[node name="Label" type="Label" parent="Host/HBoxContainer4"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Private"
+
+[node name="Private" type="CheckBox" parent="Host/HBoxContainer4"]
+layout_mode = 2
+theme_override_icons/checked = ExtResource("2_dtkyu")
+theme_override_icons/unchecked = ExtResource("3_ohgnh")
+icon_alignment = 1
+
+[node name="Label2" type="Label" parent="Host/HBoxContainer4"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Code"
+
+[node name="Code" type="SpinBox" parent="Host/HBoxContainer4"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = SubResource("Theme_sla5p")
+max_value = 999999.0
+rounded = true
+alignment = 1
+
 [node name="Control3" type="Control" parent="Host"]
 layout_mode = 2
 
@@ -196,11 +246,113 @@ theme_override_constants/h_separation = 0
 theme_override_font_sizes/font_size = 40
 text = "Create Server"
 
+[node name="HostReturn" type="Button" parent="Host"]
+layout_mode = 2
+theme_override_constants/h_separation = 0
+theme_override_font_sizes/font_size = 40
+text = "Return"
+
+[node name="Join" type="VBoxContainer" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -340.0
+offset_right = 340.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="Label2" type="Label" parent="Join"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Server Information"
+horizontal_alignment = 1
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="Join"]
+layout_mode = 2
+theme_override_constants/separation = 30
+
+[node name="Label" type="Label" parent="Join/HBoxContainer2"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "IP"
+
+[node name="IP" type="LineEdit" parent="Join/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = SubResource("Theme_sla5p")
+text = "172.31.177.217"
+alignment = 1
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="Join"]
+layout_mode = 2
+theme_override_constants/separation = 30
+
+[node name="Label" type="Label" parent="Join/HBoxContainer3"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Code"
+
+[node name="Code" type="SpinBox" parent="Join/HBoxContainer3"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = SubResource("Theme_sla5p")
+max_value = 999999.0
+rounded = true
+alignment = 1
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="Join/HBoxContainer3"]
+layout_mode = 2
+theme_override_constants/separation = 30
+
+[node name="Label" type="Label" parent="Join/HBoxContainer3/HBoxContainer3"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "IP"
+
+[node name="Port" type="SpinBox" parent="Join/HBoxContainer3/HBoxContainer3"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = SubResource("Theme_sla5p")
+max_value = 99999.0
+value = 50000.0
+rounded = true
+alignment = 1
+
+[node name="Control3" type="Control" parent="Join"]
+layout_mode = 2
+
+[node name="Control4" type="Control" parent="Join"]
+layout_mode = 2
+
+[node name="JoinGame" type="Button" parent="Join"]
+layout_mode = 2
+theme_override_constants/h_separation = 0
+theme_override_font_sizes/font_size = 40
+text = "Join Game"
+
+[node name="JoinReturn" type="Button" parent="Join"]
+layout_mode = 2
+theme_override_constants/h_separation = 0
+theme_override_font_sizes/font_size = 40
+text = "Return"
+
 [connection signal="pressed" from="Main/Singleplayer" to="." method="_on_singleplayer_pressed"]
 [connection signal="pressed" from="Main/Multiplayer" to="." method="_on_multiplayer_pressed"]
 [connection signal="pressed" from="Main/Settings" to="." method="_on_settings_pressed"]
 [connection signal="pressed" from="Main/Exit" to="." method="_on_exit_pressed"]
+[connection signal="value_changed" from="Settings/HBoxContainer2/MinPort" to="." method="_on_min_port_value_changed"]
+[connection signal="value_changed" from="Settings/HBoxContainer2/MaxPort" to="." method="_on_max_port_value_changed"]
+[connection signal="pressed" from="Settings/SettingsReturn" to="." method="_on_settings_return_pressed"]
 [connection signal="pressed" from="MP/Host" to="." method="_on_host_pressed"]
 [connection signal="pressed" from="MP/Join" to="." method="_on_join_pressed"]
 [connection signal="pressed" from="MP/Discover" to="." method="_on_discover_pressed"]
+[connection signal="pressed" from="MP/MPReturn" to="." method="_on_mp_return_pressed"]
 [connection signal="pressed" from="Host/Create" to="." method="_on_create_pressed"]
+[connection signal="pressed" from="Host/HostReturn" to="." method="_on_host_return_pressed"]
+[connection signal="pressed" from="Join/JoinGame" to="." method="_on_join_game_pressed"]
+[connection signal="pressed" from="Join/JoinReturn" to="." method="_on_join_return_pressed"]
