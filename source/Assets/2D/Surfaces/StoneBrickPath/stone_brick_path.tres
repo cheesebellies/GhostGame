@@ -1,14 +1,10 @@
-[gd_resource type="StandardMaterial3D" load_steps=5 format=3 uid="uid://dxbgdajb8tvsq"]
+[gd_resource type="StandardMaterial3D" load_steps=3 format=3 uid="uid://dxbgdajb8tvsq"]
 
 [ext_resource type="Texture2D" uid="uid://cuslmpuswqfra" path="res://Assets/2D/Surfaces/StoneBrickPath/Concrete_Pavement_xeohbekga_1K_BaseColor.jpg" id="1_asmq2"]
 [ext_resource type="Texture2D" uid="uid://bopritf13wtgv" path="res://Assets/2D/Surfaces/StoneBrickPath/Concrete_Pavement_xeohbekga_1K_AO.jpg" id="2_ngb7p"]
-[ext_resource type="Texture2D" uid="uid://dotetuwvptxp0" path="res://Assets/2D/Surfaces/StoneBrickPath/Concrete_Pavement_xeohbekga_1K_Normal.jpg" id="3_k2hm7"]
-[ext_resource type="Texture2D" uid="uid://u3g4ac34duvd" path="res://Assets/2D/Surfaces/StoneBrickPath/Concrete_Pavement_xeohbekga_1K_Roughness.jpg" id="4_wip8g"]
 
 [resource]
-albedo_texture = ExtResource("1_asmq2")
-roughness_texture = ExtResource("4_wip8g")
+roughness_texture = ExtResource("1_asmq2")
 normal_enabled = true
-normal_texture = ExtResource("3_k2hm7")
 ao_enabled = true
 ao_texture = ExtResource("2_ngb7p")

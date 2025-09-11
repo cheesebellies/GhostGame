@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://c20x6wmwj3i27"]
+[gd_scene load_steps=20 format=3 uid="uid://c20x6wmwj3i27"]
 
 [ext_resource type="Texture2D" uid="uid://ue2uqtpju6k2" path="res://Assets/2D/HDRI/qwantani_moonrise_puresky_2k.exr" id="1_uvytk"]
 [ext_resource type="PackedScene" uid="uid://dv7wbheebeajf" path="res://Player/player_placeholder.tscn" id="2_o5lh6"]
@@ -11,7 +11,6 @@
 [ext_resource type="PackedScene" uid="uid://clq4tqrhh2l2f" path="res://Assets/3D/Characters/Enemies/MattHead/matt_head.tscn" id="11_jfaxl"]
 [ext_resource type="PackedScene" uid="uid://bd2na7igxqvor" path="res://Assets/3D/Trim/trim.tscn" id="11_yw8v0"]
 [ext_resource type="PackedScene" uid="uid://n3cbr3gffq6n" path="res://Assets/3D/Tables/MainTable/main_table.tscn" id="12_5w1mf"]
-[ext_resource type="PackedScene" uid="uid://bl8rs05kkpi80" path="res://Assets/3D/Stairs/StairLong/stair_long.tscn" id="13_5w1mf"]
 [ext_resource type="PackedScene" uid="uid://day2k5h8kme2l" path="res://Assets/3D/Computers/Computer/old_computer_v_3.tscn" id="13_yw8v0"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_voknd"]
@@ -572,52 +571,52 @@ transform = Transform3D(5.76205e-08, 0, 1, 0, 1, 0, -1, 0, 5.76205e-08, -1.25715
 [node name="ChurchChairs" type="Node3D" parent="Furniture"]
 
 [node name="Left1" parent="Furniture/ChurchChairs" instance=ExtResource("4_voknd")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 3.4, 0, -1.927)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 2.20845, 0, -1.9198)
 
 [node name="Right1" parent="Furniture/ChurchChairs" instance=ExtResource("4_voknd")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 3.4, 0, 1.927)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 2.20845, 0, 1.9342)
 
 [node name="Left2" parent="Furniture/ChurchChairs" instance=ExtResource("4_voknd")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 5.3, 0, -1.927)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 4.10845, 0, -1.927)
 
 [node name="Right2" parent="Furniture/ChurchChairs" instance=ExtResource("4_voknd")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 5.3, 0, 1.927)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 4.10845, 0, 1.927)
 
 [node name="Left3" parent="Furniture/ChurchChairs" instance=ExtResource("4_voknd")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 7.2, 0, -1.927)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 6.00845, 0, -1.9198)
 
 [node name="Right3" parent="Furniture/ChurchChairs" instance=ExtResource("4_voknd")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 7.2, 0, 1.927)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 6.00845, 0, 1.927)
 
 [node name="Left4" parent="Furniture/ChurchChairs" instance=ExtResource("4_voknd")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 9.1, 0, -1.927)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 7.90845, 0, -1.9198)
 
 [node name="Right4" parent="Furniture/ChurchChairs" instance=ExtResource("4_voknd")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 9.1, 0, 1.92701)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 7.90845, 0, 1.93421)
 
 [node name="Right5" parent="Furniture/ChurchChairs" instance=ExtResource("4_voknd")]
-transform = Transform3D(-0.723003, 0, 0.690844, 0, 1, 0, -0.690844, 0, -0.723003, 10.4382, 0, 4.7435)
+transform = Transform3D(-0.723003, 0, 0.690844, 0, 1, 0, -0.690844, 0, -0.723003, 9.24668, 0, 4.7507)
 
 [node name="Right6" parent="Furniture/ChurchChairs" instance=ExtResource("4_voknd")]
-transform = Transform3D(-0.726719, 0, 0.686935, 0, 1, 0, -0.686935, 0, -0.726719, 8.538, 0, 4.743)
+transform = Transform3D(-0.726719, 0, 0.686935, 0, 1, 0, -0.686935, 0, -0.726719, 7.34645, 0, 4.7502)
 
 [node name="Right7" parent="Furniture/ChurchChairs" instance=ExtResource("4_voknd")]
-transform = Transform3D(-0.726719, 0, 0.686935, 0, 1, 0, -0.686935, 0, -0.726719, 6.47884, 0, 4.743)
+transform = Transform3D(-0.726719, 0, 0.686935, 0, 1, 0, -0.686935, 0, -0.726719, 5.28729, 0, 4.7502)
 
 [node name="Right8" parent="Furniture/ChurchChairs" instance=ExtResource("4_voknd")]
-transform = Transform3D(-0.726719, 0, 0.686935, 0, 1, 0, -0.686935, 0, -0.726719, 4.26052, 0, 4.743)
+transform = Transform3D(-0.726719, 0, 0.686935, 0, 1, 0, -0.686935, 0, -0.726719, 3.06897, 0, 4.7502)
 
 [node name="Right9" parent="Furniture/ChurchChairs" instance=ExtResource("4_voknd")]
-transform = Transform3D(0.690882, 0, 0.722967, 0, 1, 0, -0.722967, 0, 0.690882, 10.4382, 0, -4.743)
+transform = Transform3D(0.690882, 0, 0.722967, 0, 1, 0, -0.722967, 0, 0.690882, 9.24668, 0, -4.7358)
 
 [node name="Right10" parent="Furniture/ChurchChairs" instance=ExtResource("4_voknd")]
-transform = Transform3D(0.690882, 0, 0.722967, 0, 1, 0, -0.722967, 0, 0.690882, 8.538, 0, -4.743)
+transform = Transform3D(0.690882, 0, 0.722967, 0, 1, 0, -0.722967, 0, 0.690882, 7.34645, 0, -4.7358)
 
 [node name="Right11" parent="Furniture/ChurchChairs" instance=ExtResource("4_voknd")]
-transform = Transform3D(0.690882, 0, 0.722967, 0, 1, 0, -0.722967, 0, 0.690882, 6.47884, 0, -4.743)
+transform = Transform3D(0.690882, 0, 0.722967, 0, 1, 0, -0.722967, 0, 0.690882, 5.28729, 0, -4.7358)
 
 [node name="Right12" parent="Furniture/ChurchChairs" instance=ExtResource("4_voknd")]
-transform = Transform3D(0.690882, 0, 0.722967, 0, 1, 0, -0.722967, 0, 0.690882, 4.26052, 0, -4.743)
+transform = Transform3D(0.690882, 0, 0.722967, 0, 1, 0, -0.722967, 0, 0.690882, 3.06897, 0, -4.7358)
 
 [node name="Table" type="Node3D" parent="Furniture"]
 
@@ -633,6 +632,3 @@ transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 16.214
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.867271, -0.466508, 0.173817, 0, 0.349145, 0.937069, -0.497837, -0.812692, 0.302803, 0, 0, 0)
 light_energy = 4.345
-
-[node name="StairLong" parent="." instance=ExtResource("13_5w1mf")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.6793, 0.0105895, -5.9694)
