@@ -99,11 +99,11 @@ func close():
 	return 0
 
 func _handle_peer_disconnected(id):
-	MultiplayerController.update_scanner_players(len(multiplayer.get_peers()),max_clients)
+	MultiplayerController.update_scanner_players(len(multiplayer.get_peers()),max_clients, description)
 	print("Peer disconnected: " + str(id))
 
 func _handle_peer_connected(id):
-	MultiplayerController.update_scanner_players(len(multiplayer.get_peers()),max_clients)
+	MultiplayerController.update_scanner_players(len(multiplayer.get_peers()),max_clients, description)
 	client_info[id] = {'index': len(client_info), 'admin': len(client_info) == 0}
 	debug("Authentication successful for peer " + str(id) + " at " + multiplayer.multiplayer_peer.get_peer(id).get_remote_address() + ".", MSG_OK)
 
