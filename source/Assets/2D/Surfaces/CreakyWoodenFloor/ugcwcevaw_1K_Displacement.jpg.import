@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d15gfh8b176gn"
-path.s3tc="res://.godot/imported/ugclefmn_1K_Albedo.jpg-2e7a84ae71c438206eb8e1020edaed5c.s3tc.ctex"
+uid="uid://b2c7qi5ftjo3h"
+path.s3tc="res://.godot/imported/ugcwcevaw_1K_Displacement.jpg-6b6c616261ea9d74e97f257b224d5eda.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://Assets/2D/Surfaces/Walls/ugclefmn_1K_Albedo.jpg"
-dest_files=["res://.godot/imported/ugclefmn_1K_Albedo.jpg-2e7a84ae71c438206eb8e1020edaed5c.s3tc.ctex"]
+source_file="res://Assets/2D/Surfaces/CreakyWoodenFloor/ugcwcevaw_1K_Displacement.jpg"
+dest_files=["res://.godot/imported/ugcwcevaw_1K_Displacement.jpg-6b6c616261ea9d74e97f257b224d5eda.s3tc.ctex"]
 
 [params]
 

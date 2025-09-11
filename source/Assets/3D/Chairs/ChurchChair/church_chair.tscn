@@ -68,6 +68,7 @@ metadata/_edit_group_ = true
 
 [node name="udlufetqx_LOD0_TIER3_000" type="MeshInstance3D" parent="."]
 transform = Transform3D(1.18203, 0, 0, 0, 1.18203, 0, 0, 0, 1.18203, -2.07668e-05, -0.0776659, 0.00761662)
+cast_shadow = 2
 mesh = SubResource("ArrayMesh_6wwsc")
 skeleton = NodePath("")
 surface_material_override/0 = SubResource("StandardMaterial3D_pdsdq")

@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bub5ecfw4c3ne"
-path.s3tc="res://.godot/imported/ugclefmn_1K_Normal.jpg-3506424e130ab641785106c46de3d2d0.s3tc.ctex"
+uid="uid://d15gfh8b176gn"
+path.s3tc="res://.godot/imported/ugclefmn_1K_Albedo.jpg-93a4fd028c1f87eb6a22b9566e1b15a7.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://Assets/2D/Surfaces/Walls/ugclefmn_1K_Normal.jpg"
-dest_files=["res://.godot/imported/ugclefmn_1K_Normal.jpg-3506424e130ab641785106c46de3d2d0.s3tc.ctex"]
+source_file="res://Assets/2D/Surfaces/Walls/RedWithWoodBase/ugclefmn_1K_Albedo.jpg"
+dest_files=["res://.godot/imported/ugclefmn_1K_Albedo.jpg-93a4fd028c1f87eb6a22b9566e1b15a7.s3tc.ctex"]
 
 [params]
 
@@ -20,12 +20,12 @@ compress/mode=2
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1
-compress/normal_map=1
+compress/normal_map=0
 compress/channel_pack=0
 mipmaps/generate=true
 mipmaps/limit=-1
-roughness/mode=1
-roughness/src_normal="res://Assets/2D/Surfaces/Walls/ugclefmn_1K_Normal.jpg"
+roughness/mode=0
+roughness/src_normal=""
 process/fix_alpha_border=true
 process/premult_alpha=false
 process/normal_map_invert_y=false

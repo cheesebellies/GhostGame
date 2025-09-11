@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b86vfmqswuort"
-path.s3tc="res://.godot/imported/ugclefmn_1K_AO.jpg-efcc610af6eee3217a2acd3e75aacd2a.s3tc.ctex"
+uid="uid://bub5ecfw4c3ne"
+path.s3tc="res://.godot/imported/ugclefmn_1K_Normal.jpg-f8181d090acf39df84ac92b8ce00ad07.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://Assets/2D/Surfaces/Walls/ugclefmn_1K_AO.jpg"
-dest_files=["res://.godot/imported/ugclefmn_1K_AO.jpg-efcc610af6eee3217a2acd3e75aacd2a.s3tc.ctex"]
+source_file="res://Assets/2D/Surfaces/Walls/RedWithWoodBase/ugclefmn_1K_Normal.jpg"
+dest_files=["res://.godot/imported/ugclefmn_1K_Normal.jpg-f8181d090acf39df84ac92b8ce00ad07.s3tc.ctex"]
 
 [params]
 
@@ -20,11 +20,11 @@ compress/mode=2
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1
-compress/normal_map=0
+compress/normal_map=1
 compress/channel_pack=0
 mipmaps/generate=true
 mipmaps/limit=-1
-roughness/mode=8
+roughness/mode=1
 roughness/src_normal="res://Assets/2D/Surfaces/Walls/ugclefmn_1K_Normal.jpg"
 process/fix_alpha_border=true
 process/premult_alpha=false

@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://plnoexxhckr8"
-path.s3tc="res://.godot/imported/ugclefmn_1K_Roughness.jpg-0f9c8fe90ff74252b3bd40e1cd7625fe.s3tc.ctex"
+uid="uid://dr2ua1mtu3r4t"
+path.s3tc="res://.godot/imported/ugclefmn_1K_Bump.jpg-8630d2449b76068a33b16dd3d40de3f8.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://Assets/2D/Surfaces/Walls/ugclefmn_1K_Roughness.jpg"
-dest_files=["res://.godot/imported/ugclefmn_1K_Roughness.jpg-0f9c8fe90ff74252b3bd40e1cd7625fe.s3tc.ctex"]
+source_file="res://Assets/2D/Surfaces/Walls/RedWithWoodBase/ugclefmn_1K_Bump.jpg"
+dest_files=["res://.godot/imported/ugclefmn_1K_Bump.jpg-8630d2449b76068a33b16dd3d40de3f8.s3tc.ctex"]
 
 [params]
 
