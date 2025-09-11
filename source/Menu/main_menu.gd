@@ -1,5 +1,34 @@
 extends Control
 
+const gra = Color('#d4d4d4')
+const whi = Color('#ffffff')
+
+var servers = {}
+
+func _handle_detected_servers(servers):
+	for server in servers:
+		_add_server_to_list(server[0],server[1],server[2],server[3],server[4])
+
+func _add_server_to_list(ip, port, desc, players, playermax):
+	var id = (ip + ":" + str(port))
+	var nserv
+	if id in servers.keys():
+		nserv = servers[id]
+	else:
+		nserv = $Discover/HBoxContainer/ScrollContainer/ServerBox/STEMP.duplicate()
+		servers[id] = nserv
+	var nip = nserv.get_node("HBoxContainer/IP")
+	var ndesc = nserv.get_node("Desc")
+	var npcount = nserv.get_node("HBoxContainer/PCount")
+	nip.text = id
+	ndesc.text = desc
+	npcount.text = str(players) + "/" + str(playermax)
+	nserv.visible = true
+	$Discover/HBoxContainer/ScrollContainer/ServerBox.add_child(nserv)
+	var idx = nserv.get_index()
+	nserv.focus_entered.connect(_on_sitem_focus_entered.bind(idx))
+	nserv.focus_exited.connect(_on_sitem_focus_exited.bind(idx))
+
 func _on_singleplayer_pressed() -> void:
 	Persist.menu_singleplayer()
 
@@ -24,7 +53,13 @@ func _on_join_pressed() -> void:
 	$MP.visible = false
 
 func _on_discover_pressed() -> void:
-	pass # Replace with function body.
+	var res = MultiplayerController.initialize_scanner()
+	if res == -1:
+		return
+	var sig = MultiplayerController.scanner_start_scan()
+	sig.connect(_handle_detected_servers)
+	$MP.visible = false
+	$Discover.visible = true
 
 func _on_create_pressed() -> void:
 	var player_max = int($Host/HBoxContainer2/MaxPlayers.value)
@@ -64,3 +99,29 @@ func _on_join_return_pressed() -> void:
 func _on_private_pressed() -> void:
 	$Host/HBoxContainer4/Label2.visible = not $Host/HBoxContainer4/Label2.visible
 	$Host/HBoxContainer4/Code.visible = not $Host/HBoxContainer4/Code.visible
+
+func _on_refresh_pressed() -> void:
+	servers = {}
+
+func _on_discover_join_pressed() -> void:
+	var sit = get_viewport().gui_get_focus_owner()
+	if (not sit) or sit is not VBoxContainer:
+		return
+	var dat = sit.get_node("HBoxContainer/IP").text
+	var ip = dat.split(":")[0]
+	var port = dat.split(":")[1]
+	Persist.menu_join_game(ip,port,'')
+	
+
+func _on_discover_return_pressed() -> void:
+	MultiplayerController.close_scanner()
+	$Discover.visible = false
+	$MP.visible = true
+
+func _on_sitem_focus_entered(id) -> void:
+	var sit = $Discover/HBoxContainer/ScrollContainer/ServerBox.get_children()[id]
+	sit.modulate = whi
+
+func _on_sitem_focus_exited(id) -> void:
+	var sit = $Discover/HBoxContainer/ScrollContainer/ServerBox.get_children()[id]
+	sit.modulate = gra
