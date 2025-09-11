@@ -20,7 +20,7 @@ func get_local_ip():
 	var to_check = []
 	
 	for candidate in candidates:
-		if (not String(candidate).begins_with("127")) and (not String(candidate).begins_with("fe80")) and (not String(candidate).begins_with("0")) and (not String(candidate).begins_with("169")):
+		if (not String(candidate).begins_with("127")) and (not String(candidate).begins_with("fe80")) and (not String(candidate).begins_with("0")) and (not String(candidate).begins_with("169")) and (not String(candidate).contains(":")):
 			to_check.append(candidate)
 	
 	var srt = func s(a,b):
