@@ -2,7 +2,15 @@ extends Node
 
 func menu_join_game(ip: String, port: int, code):
 	MultiplayerController.switch_scene(MultiplayerController.SCENE_HUB_LOADING)
+	MultiplayerController.close_scanner()
 	var res = await MultiplayerController.initialize_client(false, ip, port, code)
+	if res != -1:
+		MultiplayerController.switch_scene(MultiplayerController.SCENE_HUB_WORLD)
+		return 0
+	else:
+		MultiplayerController.clear_data()
+		await Tools.wait(2000)
+		MultiplayerController.switch_scene(MultiplayerController.SCENE_MAIN_MENU)
 
 func menu_singleplayer():
 	MultiplayerController.switch_scene(MultiplayerController.SCENE_HUB_LOADING)

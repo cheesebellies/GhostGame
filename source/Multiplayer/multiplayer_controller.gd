@@ -49,11 +49,29 @@ func _ready():
 func clear_data():
 	var res
 	var res2
+	var res3
 	if server:
 		res = stop_server()
 	if client:
 		res2 = close_client()
-	return [res,res2]
+	if scanner:
+		res3 = close_scanner()
+	return [res,res2,res3]
+
+func close_scanner():
+	if (not scanner) or (not create_scanner_ok):
+		debug("No scanner to close.", MSG_ERROR)
+		return -1
+	debug("Closing scanner...", MSG_INFO)
+	create_scanner_ok = false
+	scanner.close()
+	var wdel = func helper():
+		scanner.free()
+		create_scanner_ok = true
+		scanner = null
+	wdel.call_deferred()
+	debug("Scanner closed. Scanner Node will be freed at the end of the next frame.", MSG_OK)
+	return 0
 
 func initialize_scanner():
 	if not create_scanner_ok:
@@ -65,17 +83,35 @@ func initialize_scanner():
 	scanner = scanner_node.instantiate()
 	scanner.name = "Scanner"
 	add_child(scanner)
+	debug("Initialized scanner.", MSG_OK)
 	return 0
+
+func scanner_start_scan():
+	if scanner.get_node("Scan").is_stopped():
+		var res = scanner.start_scan(53827, 1)
+		if res != 0:
+			debug("Could not start scan, error \"" + str(error_string(res)) + "\".", MSG_ERROR)
+			return -1
+	else:
+		debug("Scanner already started. Returning signal.", MSG_INFO)
+	debug("Scanner started.", MSG_INFO)
+	return scanner.servers
+
+func update_scanner_players(count, max, description):
+	if scanner:
+		scanner.players = count
+		scanner.max_players = max
+		scanner.description = description
 
 func scanner_start_broadcast():
 	if not server:
 		debug("No open server, cannot start broadcast.", MSG_ERROR)
 		return -1
-	var port = server.port
+	var port = Tools.scan_for_port(port_min,port_max)
 	if port == -1:
 		debug("Could not find an open port in the range " + str(port_min) + "-" + str(port_max) + " to start a Scanner broadcast.", MSG_ERROR)
 		return -1
-	var res = scanner.start_broadcast(53827, port, 1)
+	var res = scanner.start_broadcast(server.port, port, 53827, 1)
 	if res != 0:
 		debug("Could not start the broadcast, error code " + str(res) + ".", MSG_ERROR)
 		return -1
