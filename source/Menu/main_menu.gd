@@ -1,8 +1,5 @@
 extends Control
 
-func _ready():
-	print(await Tools.get_local_ip())
-
 func _on_singleplayer_pressed() -> void:
 	Persist.menu_singleplayer()
 
@@ -33,8 +30,8 @@ func _on_create_pressed() -> void:
 	var player_max = int($Host/HBoxContainer2/MaxPlayers.value)
 	var description = String($Host/HBoxContainer3/Description.text)
 	var private = bool($Host/HBoxContainer4/Private.button_pressed)
-	var code = int($Host/HBoxContainer4/Code.value)
-	Persist.menu_host_game(player_max,description,private,code)
+	var code = String($Host/HBoxContainer4/Code.text)
+	Persist.menu_host_game(player_max,description,private,code if private else '')
 
 func _on_settings_return_pressed() -> void:
 	$Settings.visible = false
@@ -56,10 +53,14 @@ func _on_host_return_pressed() -> void:
 
 func _on_join_game_pressed() -> void:
 	var ip = String($Join/HBoxContainer2/IP.text)
-	var code = int($Join/HBoxContainer3/Code.value)
-	var port = int($Join/HBoxContainer3/HBoxContainer3/Port.value)
+	var code = String($Join/HBoxContainer4/Code.text)
+	var port = int($Join/HBoxContainer3/Port.value)
 	Persist.menu_join_game(ip, port, code)
 
 func _on_join_return_pressed() -> void:
 	$Join.visible = false
 	$MP.visible = true
+
+func _on_private_pressed() -> void:
+	$Host/HBoxContainer4/Label2.visible = not $Host/HBoxContainer4/Label2.visible
+	$Host/HBoxContainer4/Code.visible = not $Host/HBoxContainer4/Code.visible

@@ -37,8 +37,6 @@ func debug(msg, type: int):
 
 func _ready():
 	debug("Ready.", MSG_INFO)
-	var p = await IP.resolve_hostname('localhost')
-	print(p)
 	var todo = """
 	TODO:
 		Edit scanner to have a confirmation echo
@@ -121,7 +119,7 @@ func close_client():
 	debug("Client closed. Client Node will be freed at the end of the next frame.", MSG_OK)
 	return 0
 
-func initialize_client(is_admin: bool, ip: String, port: int, code: int = 0):
+func initialize_client(is_admin: bool, ip: String, port: int, code = ""):
 	if not create_client_ok:
 		debug("Failed to create a new client, as the previous client is still being deleted.", MSG_ERROR)
 		return -1
@@ -145,7 +143,7 @@ func initialize_client(is_admin: bool, ip: String, port: int, code: int = 0):
 	debug("Successfully created a client.", MSG_OK)
 	return 0
 
-func initialize_server(max_clients: int, description: String = "", code: int = 0):
+func initialize_server(max_clients: int, description: String = "", code = ""):
 	if not create_server_ok:
 		debug("Failed to open a new server, as the previous server is still being closed.", MSG_ERROR)
 		return -1

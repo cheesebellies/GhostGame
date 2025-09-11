@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="GhostGame"
-run/main_scene="uid://blio0v0sfnjbc"
+run/main_scene="uid://kyjiw1vprwxj"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://Assets/icon.svg"
 

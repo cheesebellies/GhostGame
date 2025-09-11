@@ -8,7 +8,7 @@ const HMAC_LENGTH = 32
 var max_clients = 4
 var port = 50000
 var description: String
-var code: int
+var code
 
 var authentication_info: Dictionary = {}
 var client_info: Dictionary = {}
@@ -82,6 +82,10 @@ func fail_authentication(peer):
 	debug("Disconnected peer " + str(peer) + ".", MSG_INFO)
 
 func _handle_peer_authenticating(peer):
+	if code == '':
+		debug("Skipping authentication for peer " + str(peer) + " at " + multiplayer.multiplayer_peer.get_peer(peer).get_remote_address() + ".", MSG_INFO)
+		multiplayer.complete_auth(peer)
+		return
 	debug("Authenticating peer " + str(peer) + " at " + multiplayer.multiplayer_peer.get_peer(peer).get_remote_address(),MSG_INFO)
 
 func _handle_authentication_failed(peer):

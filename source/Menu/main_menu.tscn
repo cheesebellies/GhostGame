@@ -17,7 +17,6 @@ grow_vertical = 2
 script = ExtResource("1_sla5p")
 
 [node name="Main" type="VBoxContainer" parent="."]
-visible = false
 layout_mode = 1
 anchors_preset = 13
 anchor_left = 0.5
@@ -152,6 +151,7 @@ theme_override_font_sizes/font_size = 40
 text = "Return"
 
 [node name="Host" type="VBoxContainer" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 13
 anchor_left = 0.5
@@ -222,16 +222,16 @@ theme_override_icons/unchecked = ExtResource("3_ohgnh")
 icon_alignment = 1
 
 [node name="Label2" type="Label" parent="Host/HBoxContainer4"]
+visible = false
 layout_mode = 2
 theme_override_font_sizes/font_size = 40
 text = "Code"
 
-[node name="Code" type="SpinBox" parent="Host/HBoxContainer4"]
+[node name="Code" type="LineEdit" parent="Host/HBoxContainer4"]
+visible = false
 layout_mode = 2
 size_flags_horizontal = 3
 theme = SubResource("Theme_sla5p")
-max_value = 999999.0
-rounded = true
 alignment = 1
 
 [node name="Control3" type="Control" parent="Host"]
@@ -295,32 +295,31 @@ theme_override_constants/separation = 30
 [node name="Label" type="Label" parent="Join/HBoxContainer3"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 40
-text = "Code"
+text = "Port"
 
-[node name="Code" type="SpinBox" parent="Join/HBoxContainer3"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme = SubResource("Theme_sla5p")
-max_value = 999999.0
-rounded = true
-alignment = 1
-
-[node name="HBoxContainer3" type="HBoxContainer" parent="Join/HBoxContainer3"]
-layout_mode = 2
-theme_override_constants/separation = 30
-
-[node name="Label" type="Label" parent="Join/HBoxContainer3/HBoxContainer3"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 40
-text = "IP"
-
-[node name="Port" type="SpinBox" parent="Join/HBoxContainer3/HBoxContainer3"]
+[node name="Port" type="SpinBox" parent="Join/HBoxContainer3"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme = SubResource("Theme_sla5p")
 max_value = 99999.0
 value = 50000.0
 rounded = true
+alignment = 1
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="Join"]
+layout_mode = 2
+theme_override_constants/separation = 30
+
+[node name="Label" type="Label" parent="Join/HBoxContainer4"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Private Code"
+
+[node name="Code" type="LineEdit" parent="Join/HBoxContainer4"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = SubResource("Theme_sla5p")
+placeholder_text = "If Applicable"
 alignment = 1
 
 [node name="Control3" type="Control" parent="Join"]
@@ -352,6 +351,7 @@ text = "Return"
 [connection signal="pressed" from="MP/Join" to="." method="_on_join_pressed"]
 [connection signal="pressed" from="MP/Discover" to="." method="_on_discover_pressed"]
 [connection signal="pressed" from="MP/MPReturn" to="." method="_on_mp_return_pressed"]
+[connection signal="pressed" from="Host/HBoxContainer4/Private" to="." method="_on_private_pressed"]
 [connection signal="pressed" from="Host/Create" to="." method="_on_create_pressed"]
 [connection signal="pressed" from="Host/HostReturn" to="." method="_on_host_return_pressed"]
 [connection signal="pressed" from="Join/JoinGame" to="." method="_on_join_game_pressed"]

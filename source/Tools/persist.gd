@@ -1,6 +1,6 @@
 extends Node
 
-func menu_join_game(ip: String, port: int, code: int):
+func menu_join_game(ip: String, port: int, code):
 	MultiplayerController.switch_scene(MultiplayerController.SCENE_HUB_LOADING)
 	var res = await MultiplayerController.initialize_client(false, ip, port, code)
 
@@ -16,7 +16,7 @@ func menu_singleplayer():
 	await Tools.wait(2000)
 	MultiplayerController.switch_scene(MultiplayerController.SCENE_MAIN_MENU)
 
-func menu_host_game(player_max,description,private=false,code=0):
+func menu_host_game(player_max,description,private=false,code=''):
 	MultiplayerController.switch_scene(MultiplayerController.SCENE_HUB_LOADING)
 	var res = MultiplayerController.initialize_server(player_max,description,code)
 	if res != -1:

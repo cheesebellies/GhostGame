@@ -10,7 +10,7 @@ var port
 var index
 
 var cryptography = Crypto.new()
-var code: int
+var code
 var authentication_data
 
 var enet_peer: ENetMultiplayerPeer
@@ -53,6 +53,10 @@ func _handle_authentication_failed(peer):
 	failed_authentication()
 
 func _handle_peer_authenticating(peer):
+	if code == "":
+		debug("Skipping authentication.", MSG_INFO)
+		multiplayer.complete_auth(peer)
+		return
 	debug("Starting authentication...", MSG_INFO)
 	authentication_data = cryptography.generate_random_bytes(NONCE_LENGTH)
 	multiplayer.send_auth(peer, authentication_data)
