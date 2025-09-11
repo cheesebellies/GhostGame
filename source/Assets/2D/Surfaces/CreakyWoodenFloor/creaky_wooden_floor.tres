@@ -1,0 +1,19 @@
+[gd_resource type="StandardMaterial3D" load_steps=6 format=3 uid="uid://bj7tua5mv0shm"]
+
+[ext_resource type="Texture2D" uid="uid://bkmm4iuwrk4h5" path="res://Assets/2D/Surfaces/CreakyWoodenFloor/ugcwcevaw_1K_Albedo.jpg" id="1_1dgtq"]
+[ext_resource type="Texture2D" uid="uid://doewgk7nakacw" path="res://Assets/2D/Surfaces/CreakyWoodenFloor/ugcwcevaw_1K_AO.jpg" id="2_hwu3k"]
+[ext_resource type="Texture2D" uid="uid://cpei2juof4436" path="res://Assets/2D/Surfaces/CreakyWoodenFloor/ugcwcevaw_1K_Gloss.jpg" id="3_hwu3k"]
+[ext_resource type="Texture2D" uid="uid://xpa5c8bksavs" path="res://Assets/2D/Surfaces/CreakyWoodenFloor/ugcwcevaw_1K_Normal.jpg" id="3_v3mvf"]
+[ext_resource type="Texture2D" uid="uid://dyithc2nsic2r" path="res://Assets/2D/Surfaces/CreakyWoodenFloor/ugcwcevaw_1K_Roughness.jpg" id="4_tqrem"]
+
+[resource]
+albedo_texture = ExtResource("1_1dgtq")
+roughness_texture = ExtResource("4_tqrem")
+normal_enabled = true
+normal_scale = 1.17
+normal_texture = ExtResource("3_v3mvf")
+clearcoat = 0.14
+clearcoat_texture = ExtResource("3_hwu3k")
+ao_enabled = true
+ao_texture = ExtResource("2_hwu3k")
+uv1_scale = Vector3(14.82, 14.82, 14.82)

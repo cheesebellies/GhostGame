@@ -6,11 +6,14 @@
 [ext_resource type="Texture2D" uid="uid://bf1j04drl3f5b" path="res://Assets/2D/UI/Crosshair/reticle_tex_drag.png" id="4_e3an6"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_hvfyp"]
+radius = 0.25
+height = 1.5
 
 [sub_resource type="BoxMesh" id="BoxMesh_l8h54"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_it674"]
-height = 2.02341
+radius = 0.253664
+height = 1.50206
 
 [node name="PlayerPlaceholder" type="CharacterBody3D"]
 collision_layer = 2
@@ -45,12 +48,12 @@ expand_mode = 1
 stretch_mode = 5
 
 [node name="Body" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.02616, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.000561237, 1.02489, 0.00115204)
 cast_shadow = 0
 mesh = SubResource("CapsuleMesh_hvfyp")
 
 [node name="Facing" type="MeshInstance3D" parent="."]
-transform = Transform3D(1.02285e-07, 0, -0.06, 0, 0.06, 0, 0.78, 0, 7.86805e-09, 0, 2.115, 0.433)
+transform = Transform3D(1.02285e-07, 0, -0.06, 0, 0.06, 0, 0.78, 0, 7.86805e-09, 0, 1.61667, 0.433)
 cast_shadow = 0
 mesh = SubResource("BoxMesh_l8h54")
 
@@ -59,8 +62,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.026, 0)
 shape = SubResource("CapsuleShape3D_it674")
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 1.53184, 0)
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 1.426, 0)
 current = true
+fov = 70.0
 
 [node name="LookRay" type="RayCast3D" parent="Camera3D"]
 target_position = Vector3(0, 0, -3)

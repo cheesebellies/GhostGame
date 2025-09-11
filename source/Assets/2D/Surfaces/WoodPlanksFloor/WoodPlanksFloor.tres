@@ -1,0 +1,14 @@
+[gd_resource type="StandardMaterial3D" load_steps=5 format=3 uid="uid://dnnr67cd2nfrl"]
+
+[ext_resource type="Texture2D" uid="uid://bcw3arhxtf8oj" path="res://Assets/2D/Surfaces/WoodPlanksFloor/Wooden_Planks_wckqdbvs_1K_BaseColor.jpg" id="1_1fpxj"]
+[ext_resource type="Texture2D" uid="uid://cbu0u87foygs1" path="res://Assets/2D/Surfaces/WoodPlanksFloor/Wooden_Planks_wckqdbvs_1K_AO.jpg" id="2_uo8is"]
+[ext_resource type="Texture2D" uid="uid://bowa1sp08m7us" path="res://Assets/2D/Surfaces/WoodPlanksFloor/Wooden_Planks_wckqdbvs_1K_Normal.jpg" id="3_lna6g"]
+[ext_resource type="Texture2D" uid="uid://db3xhf6byvmd4" path="res://Assets/2D/Surfaces/WoodPlanksFloor/Wooden_Planks_wckqdbvs_1K_Roughness.jpg" id="4_xysle"]
+
+[resource]
+albedo_texture = ExtResource("1_1fpxj")
+roughness_texture = ExtResource("4_xysle")
+normal_enabled = true
+normal_texture = ExtResource("3_lna6g")
+ao_enabled = true
+ao_texture = ExtResource("2_uo8is")
