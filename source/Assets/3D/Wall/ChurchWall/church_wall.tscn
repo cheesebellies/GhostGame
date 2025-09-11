@@ -60,6 +60,7 @@ size = Vector3(1.99884, 2.7164, 0.119995)
 
 [node name="wbhobeedw_LOD0_TIER3_000" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1.2, 0, 0, 0, 1, 0, 0, 0)
+cast_shadow = 2
 mesh = SubResource("ArrayMesh_ahnvn")
 skeleton = NodePath("")
 surface_material_override/0 = SubResource("StandardMaterial3D_fdy0c")

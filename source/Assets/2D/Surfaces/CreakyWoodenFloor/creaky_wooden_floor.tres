@@ -16,4 +16,4 @@ clearcoat = 0.14
 clearcoat_texture = ExtResource("3_hwu3k")
 ao_enabled = true
 ao_texture = ExtResource("2_hwu3k")
-uv1_scale = Vector3(14.82, 14.82, 14.82)
+uv1_scale = Vector3(27.4, 27.4, 27.4)

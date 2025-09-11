@@ -48,21 +48,21 @@ expand_mode = 1
 stretch_mode = 5
 
 [node name="Body" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.000561237, 1.02489, 0.00115204)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.000561237, 0.752199, 0.00115204)
 cast_shadow = 0
 mesh = SubResource("CapsuleMesh_hvfyp")
 
 [node name="Facing" type="MeshInstance3D" parent="."]
-transform = Transform3D(1.02285e-07, 0, -0.06, 0, 0.06, 0, 0.78, 0, 7.86805e-09, 0, 1.61667, 0.433)
+transform = Transform3D(1.02285e-07, 0, -0.06, 0, 0.06, 0, 0.78, 0, 7.86805e-09, 0, 1.91761, 0.187138)
 cast_shadow = 0
 mesh = SubResource("BoxMesh_l8h54")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.026, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.753308, 0)
 shape = SubResource("CapsuleShape3D_it674")
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 1.426, 0)
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 1.10745, 0)
 current = true
 fov = 70.0
 
