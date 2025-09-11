@@ -19,6 +19,7 @@ config/icon="res://Assets/icon.svg"
 
 MultiplayerController="*res://Multiplayer/multiplayer_controller.gd"
 Tools="*res://Tools/tools.gd"
+Persist="*res://Tools/persist.gd"
 
 [input]
 
