@@ -4,6 +4,7 @@ const gra = Color('#d4d4d4')
 const whi = Color('#ffffff')
 
 var servers = {}
+var selected
 
 func _handle_detected_servers(servers):
 	for server in servers:
@@ -12,22 +13,27 @@ func _handle_detected_servers(servers):
 func _add_server_to_list(ip, port, desc, players, playermax):
 	var id = (ip + ":" + str(port))
 	var nserv
+	var new = false
 	if id in servers.keys():
 		nserv = servers[id]
 	else:
 		nserv = $Discover/HBoxContainer/ScrollContainer/ServerBox/STEMP.duplicate()
-		servers[id] = nserv
+		servers.set(id,nserv)
+		new = true
 	var nip = nserv.get_node("HBoxContainer/IP")
 	var ndesc = nserv.get_node("Desc")
 	var npcount = nserv.get_node("HBoxContainer/PCount")
+	var njoin = nserv.get_node("VBoxContainer/Join")
 	nip.text = id
 	ndesc.text = desc
 	npcount.text = str(players) + "/" + str(playermax)
 	nserv.visible = true
-	$Discover/HBoxContainer/ScrollContainer/ServerBox.add_child(nserv)
-	var idx = nserv.get_index()
-	nserv.focus_entered.connect(_on_sitem_focus_entered.bind(idx))
-	nserv.focus_exited.connect(_on_sitem_focus_exited.bind(idx))
+	if new:
+		$Discover/HBoxContainer/ScrollContainer/ServerBox.add_child(nserv)
+		var idx = nserv.get_index()
+		nserv.focus_entered.connect(_on_sitem_focus_entered.bind(idx))
+		nserv.focus_exited.connect(_on_sitem_focus_exited.bind(idx))
+		njoin.pressed.connect(_on_discover_join_pressed.bind(idx))
 
 func _on_singleplayer_pressed() -> void:
 	Persist.menu_singleplayer()
@@ -103,14 +109,12 @@ func _on_private_pressed() -> void:
 func _on_refresh_pressed() -> void:
 	servers = {}
 
-func _on_discover_join_pressed() -> void:
-	var sit = get_viewport().gui_get_focus_owner()
-	if (not sit) or sit is not VBoxContainer:
-		return
+func _on_discover_join_pressed(id) -> void:
+	var sit = $Discover/HBoxContainer/ScrollContainer/ServerBox.get_children()[id]
 	var dat = sit.get_node("HBoxContainer/IP").text
 	var ip = dat.split(":")[0]
 	var port = dat.split(":")[1]
-	Persist.menu_join_game(ip,port,'')
+	Persist.menu_join_game(ip,int(port),'')
 	
 
 func _on_discover_return_pressed() -> void:

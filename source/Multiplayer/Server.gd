@@ -11,12 +11,43 @@ var description: String
 var code
 
 var authentication_info: Dictionary = {}
-var client_info: Dictionary = {}
 var cryptography = Crypto.new()
+
+var client_info: Dictionary = {}
+var sync_registry: Dictionary = {}
 
 var enet_peer: ENetMultiplayerPeer
 
 enum {MSG_INFO, MSG_ERROR, MSG_OK}
+
+var istr = 0.0
+
+func _handle_peer_packet(id: int, packet: PackedByteArray):
+	print(packet)
+	print("sthread" + str(OS.get_thread_caller_id()))
+
+func _process(delta: float) -> void:
+	if not multiplayer:
+		return
+	multiplayer.poll()
+	#istr += delta
+	#if istr-float(floor(istr)) < 0.1:
+		#print(str(OS.get_thread_caller_id()))
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 func debug(msg, type: int):
 	var color = ""
@@ -33,6 +64,7 @@ func init():
 	multiplayer.peer_connected.connect(_handle_peer_connected)
 	multiplayer.peer_disconnected.connect(_handle_peer_disconnected)
 	multiplayer.peer_authenticating.connect(_handle_peer_authenticating)
+	multiplayer.peer_packet.connect(_handle_peer_packet)
 	multiplayer.set_auth_callback(authenticate_client)
 	multiplayer.peer_authentication_failed.connect(_handle_authentication_failed)
 	var res = enet_peer.create_server(port, max_clients)
@@ -110,3 +142,4 @@ func _handle_peer_connected(id):
 func _ready():
 	get_tree().set_multiplayer(MultiplayerAPI.create_default_interface(),self.get_path())
 	enet_peer = ENetMultiplayerPeer.new()
+	print("1sthread" + str(OS.get_thread_caller_id()))

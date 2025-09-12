@@ -36,6 +36,7 @@ func debug(msg, type: int):
 	print_rich("[color=" + color + "][MultiplayerController][/color] " + str(msg))
 
 func _ready():
+	get_tree().multiplayer_poll = false
 	debug("Ready.", MSG_INFO)
 	var todo = """
 	TODO:
@@ -45,6 +46,38 @@ func _ready():
 		Create synchronization registry within MultiplayerController
 	"""
 	debug(todo, MSG_INFO)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#
+#
+#
+#
+#
+# INITIALIZATIONS BELOW
+#
+#
+#
+#
+#
+
+
 
 func clear_data():
 	var res
@@ -82,7 +115,7 @@ func initialize_scanner():
 		return -1
 	scanner = scanner_node.instantiate()
 	scanner.name = "Scanner"
-	add_child(scanner)
+	get_tree().root.add_child(scanner)
 	debug("Initialized scanner.", MSG_OK)
 	return 0
 
@@ -111,6 +144,9 @@ func scanner_start_broadcast():
 	if port == -1:
 		debug("Could not find an open port in the range " + str(port_min) + "-" + str(port_max) + " to start a Scanner broadcast.", MSG_ERROR)
 		return -1
+	scanner.description = server.description
+	scanner.max_players = server.max_clients
+	scanner.players = len(server.client_info)
 	var res = scanner.start_broadcast(server.port, port, 53827, 1)
 	if res != 0:
 		debug("Could not start the broadcast, error code " + str(res) + ".", MSG_ERROR)

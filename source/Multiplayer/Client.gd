@@ -42,6 +42,8 @@ func init():
 		return -1
 	multiplayer.multiplayer_peer = enet_peer
 	var res = await self.connection_update
+	var dda = 'test'.to_ascii_buffer()
+	multiplayer.send_bytes(dda,1,MultiplayerPeer.TRANSFER_MODE_RELIABLE,0)
 	if res:
 		debug("Client created.", MSG_OK)
 		return 0
@@ -85,6 +87,11 @@ func _handle_connection_failed():
 
 func _handle_server_disconnected():
 	debug("Server disconnected.", MSG_ERROR)
+
+func _process(delta: float) -> void:
+	if not multiplayer:
+		return
+	multiplayer.poll()
 
 func _ready():
 	get_tree().set_multiplayer(MultiplayerAPI.create_default_interface(),self.get_path())

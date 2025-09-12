@@ -371,7 +371,6 @@ horizontal_alignment = 1
 
 [node name="STEMP" type="VBoxContainer" parent="Discover/HBoxContainer/ScrollContainer/ServerBox"]
 visible = false
-modulate = Color(0.831373, 0.831373, 0.831373, 1)
 layout_mode = 2
 focus_mode = 2
 
@@ -402,6 +401,16 @@ theme_override_font_sizes/font_size = 25
 text = "MMMMMMMMMMMMMMMM"
 horizontal_alignment = 1
 
+[node name="VBoxContainer" type="HBoxContainer" parent="Discover/HBoxContainer/ScrollContainer/ServerBox/STEMP"]
+layout_mode = 2
+alignment = 1
+
+[node name="Join" type="Button" parent="Discover/HBoxContainer/ScrollContainer/ServerBox/STEMP/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/h_separation = 0
+theme_override_font_sizes/font_size = 25
+text = "Join Game"
+
 [node name="VSeparator" type="VSeparator" parent="Discover/HBoxContainer"]
 layout_mode = 2
 
@@ -415,12 +424,6 @@ layout_mode = 2
 theme_override_constants/h_separation = 0
 theme_override_font_sizes/font_size = 40
 text = "Refresh"
-
-[node name="Join" type="Button" parent="Discover/HBoxContainer/Actions"]
-layout_mode = 2
-theme_override_constants/h_separation = 0
-theme_override_font_sizes/font_size = 40
-text = "Join Game"
 
 [node name="DiscoverReturn" type="Button" parent="Discover/HBoxContainer/Actions"]
 layout_mode = 2
@@ -445,5 +448,4 @@ text = "Return"
 [connection signal="pressed" from="Join/JoinGame" to="." method="_on_join_game_pressed"]
 [connection signal="pressed" from="Join/JoinReturn" to="." method="_on_join_return_pressed"]
 [connection signal="pressed" from="Discover/HBoxContainer/Actions/Refresh" to="." method="_on_refresh_pressed"]
-[connection signal="pressed" from="Discover/HBoxContainer/Actions/Join" to="." method="_on_discover_join_pressed"]
 [connection signal="pressed" from="Discover/HBoxContainer/Actions/DiscoverReturn" to="." method="_on_discover_return_pressed"]
