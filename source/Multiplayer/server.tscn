@@ -3,4 +3,8 @@
 [ext_resource type="Script" uid="uid://dy823fqd82nkr" path="res://Multiplayer/server.gd" id="1_gvnof"]
 
 [node name="Server" type="Node"]
+process_mode = 3
+process_thread_group = 2
+process_thread_group_order = 0
+process_thread_messages = 3
 script = ExtResource("1_gvnof")

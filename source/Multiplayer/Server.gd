@@ -4,6 +4,7 @@ extends Node
 const NONCE_LENGTH = 128
 const HMAC_LENGTH = 32
 
+var cmultiplayer: SceneMultiplayer
 
 var max_clients = 4
 var port = 50000
@@ -11,12 +12,50 @@ var description: String
 var code
 
 var authentication_info: Dictionary = {}
-var client_info: Dictionary = {}
 var cryptography = Crypto.new()
+
+var client_info: Dictionary = {}
+var sync_registry: Dictionary = {}
 
 var enet_peer: ENetMultiplayerPeer
 
 enum {MSG_INFO, MSG_ERROR, MSG_OK}
+
+var istr = 0.0
+
+func _handle_peer_packet(id: int, packet: PackedByteArray):
+	print(packet)
+	print("sthread" + str(OS.get_thread_caller_id()))
+
+func _process(delta: float) -> void:
+	if not cmultiplayer:
+		return
+	cmultiplayer.poll()
+	istr += delta
+	if istr-float(floor(istr)) < 0.05:
+		var psr = cmultiplayer.get_peers()
+		if len(psr) > 0:
+			var ps = cmultiplayer.multiplayer_peer.get_peer(psr[0])
+			var rtt = ps.get_statistic(ENetPacketPeer.PeerStatistic.PEER_ROUND_TRIP_TIME)
+			print("1  " + str(rtt))
+			if len(psr) > 1:
+				var ps1 = cmultiplayer.multiplayer_peer.get_peer(psr[1])
+				var rtt1 = ps.get_statistic(ENetPacketPeer.PeerStatistic.PEER_ROUND_TRIP_TIME)
+				print("2  " + str(rtt1))
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 func debug(msg, type: int):
 	var color = ""
@@ -30,21 +69,22 @@ func debug(msg, type: int):
 	print_rich("[color=" + color + "][Server][/color] " + str(msg))
 
 func init():
-	multiplayer.peer_connected.connect(_handle_peer_connected)
-	multiplayer.peer_disconnected.connect(_handle_peer_disconnected)
-	multiplayer.peer_authenticating.connect(_handle_peer_authenticating)
-	multiplayer.set_auth_callback(authenticate_client)
-	multiplayer.peer_authentication_failed.connect(_handle_authentication_failed)
+	cmultiplayer.peer_connected.connect(_handle_peer_connected)
+	cmultiplayer.peer_disconnected.connect(_handle_peer_disconnected)
+	cmultiplayer.peer_authenticating.connect(_handle_peer_authenticating)
+	cmultiplayer.peer_packet.connect(_handle_peer_packet)
+	cmultiplayer.set_auth_callback(authenticate_client)
+	cmultiplayer.peer_authentication_failed.connect(_handle_authentication_failed)
 	var res = enet_peer.create_server(port, max_clients)
 	if res != 0:
 		return -1
-	multiplayer.multiplayer_peer = enet_peer
+	cmultiplayer.multiplayer_peer = enet_peer
 	debug("Server started.", MSG_OK)
-	MultiplayerController.update_scanner_players(len(multiplayer.get_peers()),max_clients, description)
+	MultiplayerController.update_scanner_players(len(cmultiplayer.get_peers()),max_clients, description)
 	return port
 
 func authenticate_client(peer, data: PackedByteArray):
-	var ip = multiplayer.multiplayer_peer.get_peer(peer).get_remote_address()
+	var ip = cmultiplayer.multiplayer_peer.get_peer(peer).get_remote_address()
 	if not ip in authentication_info.keys():
 		authentication_info[ip] = {'attempts': 0}
 		if data.size() != NONCE_LENGTH:
@@ -52,7 +92,7 @@ func authenticate_client(peer, data: PackedByteArray):
 			fail_authentication(peer)
 		else:
 			var nonce := cryptography.generate_random_bytes(NONCE_LENGTH)
-			multiplayer.send_auth(peer, nonce)
+			cmultiplayer.send_auth(peer, nonce)
 			authentication_info[ip]['combined_nonce'] = data + nonce
 			debug("Peer " + str(peer) + ": step 1/2 passed.", MSG_INFO)
 	else:
@@ -70,8 +110,8 @@ func authenticate_client(peer, data: PackedByteArray):
 				var to_send = PackedByteArray()
 				to_send.resize(1)
 				to_send.encode_u8(0,len(client_info))
-				multiplayer.send_auth(peer, to_send)
-				multiplayer.complete_auth(peer)
+				cmultiplayer.send_auth(peer, to_send)
+				cmultiplayer.complete_auth(peer)
 				authentication_info.erase(ip)
 				debug("Peer " + str(peer) + ": step 2/2 passed.", MSG_INFO)
 			else:
@@ -79,34 +119,35 @@ func authenticate_client(peer, data: PackedByteArray):
 				fail_authentication(peer)
 
 func fail_authentication(peer):
-	multiplayer.disconnect_peer(peer)
+	cmultiplayer.disconnect_peer(peer)
 	debug("Disconnected peer " + str(peer) + ".", MSG_INFO)
 
 func _handle_peer_authenticating(peer):
 	if code == '':
-		debug("Skipping authentication for peer " + str(peer) + " at " + multiplayer.multiplayer_peer.get_peer(peer).get_remote_address() + ".", MSG_INFO)
-		multiplayer.complete_auth(peer)
+		debug("Skipping authentication for peer " + str(peer) + " at " + cmultiplayer.multiplayer_peer.get_peer(peer).get_remote_address() + ".", MSG_INFO)
+		cmultiplayer.complete_auth(peer)
 		return
-	debug("Authenticating peer " + str(peer) + " at " + multiplayer.multiplayer_peer.get_peer(peer).get_remote_address(),MSG_INFO)
+	debug("Authenticating peer " + str(peer) + " at " + cmultiplayer.multiplayer_peer.get_peer(peer).get_remote_address(),MSG_INFO)
 
 func _handle_authentication_failed(peer):
 	debug("Authentication failed for peer " + str(peer) + ".", MSG_ERROR)
 
 func close():
-	multiplayer.multiplayer_peer.close()
-	multiplayer.multiplayer_peer = null
+	cmultiplayer.multiplayer_peer.close()
+	cmultiplayer.multiplayer_peer = null
 	debug("Closed.", MSG_OK)
 	return 0
 
 func _handle_peer_disconnected(id):
-	MultiplayerController.update_scanner_players(len(multiplayer.get_peers()),max_clients, description)
+	MultiplayerController.update_scanner_players(len(cmultiplayer.get_peers()),max_clients, description)
 	print("Peer disconnected: " + str(id))
 
 func _handle_peer_connected(id):
-	MultiplayerController.update_scanner_players(len(multiplayer.get_peers()),max_clients, description)
+	MultiplayerController.update_scanner_players(len(cmultiplayer.get_peers()),max_clients, description)
 	client_info[id] = {'index': len(client_info), 'admin': len(client_info) == 0}
-	debug("Authentication successful for peer " + str(id) + " at " + multiplayer.multiplayer_peer.get_peer(id).get_remote_address() + ".", MSG_OK)
+	debug("Authentication successful for peer " + str(id) + " at " + cmultiplayer.multiplayer_peer.get_peer(id).get_remote_address() + ".", MSG_OK)
 
 func _ready():
-	get_tree().set_multiplayer(MultiplayerAPI.create_default_interface(),self.get_path())
+	cmultiplayer = MultiplayerAPI.create_default_interface()
 	enet_peer = ENetMultiplayerPeer.new()
+	print("1sthread" + str(OS.get_thread_caller_id()))

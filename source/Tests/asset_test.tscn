@@ -3,7 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://cyuokft23l3tk" path="res://Assets/3D/Floor/Materials/T_vizbefe_1K_B.jpg" id="1_03f35"]
 [ext_resource type="PackedScene" uid="uid://ci07ew6bsbjr8" path="res://Assets/3D/Shelf/Shelf.tscn" id="2_8ipm7"]
 [ext_resource type="Texture2D" uid="uid://catbugr67umx0" path="res://Assets/3D/Floor/Materials/T_vizbefe_1K_N.jpg" id="2_jo2cq"]
-[ext_resource type="PackedScene" uid="uid://dv7wbheebeajf" path="res://Player/player_placeholder.tscn" id="2_xpmcy"]
+[ext_resource type="PackedScene" path="res://Player/player_placeholder.tscn" id="2_xpmcy"]
 [ext_resource type="Texture2D" uid="uid://ctekvg2tv5h6g" path="res://Assets/3D/Floor/Materials/T_vizbefe_1K_ORM.jpg" id="3_wvaf2"]
 [ext_resource type="PackedScene" uid="uid://daixbglqdff8t" path="res://Assets/3D/Pallet/Pallet.tscn" id="3_xpmcy"]
 [ext_resource type="PackedScene" uid="uid://c4t74qwkid1k5" path="res://Assets/3D/Box/BoxBig.tscn" id="7_wns2i"]
@@ -173,10 +173,10 @@ transform = Transform3D(0.999938, 0, -0.0111699, 0, 1, 0, 0.0111699, 0, 0.999938
 [node name="Pallet9" parent="Shelf3" instance=ExtResource("3_xpmcy")]
 transform = Transform3D(0.997607, 0, -0.0691471, 0, 1, 0, 0.0691471, 0, 0.997607, -1.89471, 0.467944, 3.29044)
 
-[node name="BoxBig" parent="." instance=ExtResource("7_wns2i")]
+[node name="BoxBig" parent="." groups=["hauntable"] instance=ExtResource("7_wns2i")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.55289, -1.11554, 3.0107)
 
-[node name="BoxMedium" parent="." instance=ExtResource("8_3ydhk")]
+[node name="BoxMedium" parent="." groups=["hauntable"] instance=ExtResource("8_3ydhk")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.0843, -1.25205, 2.71334)
 
 [node name="BoxMediumThin" parent="." instance=ExtResource("9_hhswp")]
@@ -230,7 +230,7 @@ surface_material_override/0 = SubResource("StandardMaterial3D_7hxfu")
 transform = Transform3D(1, -1.64203e-15, 0, -1.64203e-15, 1, 0, 0, 0, 1, -0.00291067, 0.00178146, 0)
 shape = SubResource("BoxShape3D_x4t73")
 
-[node name="Box2" parent="." instance=ExtResource("10_kq4t5")]
+[node name="Box2" parent="." groups=["hauntable"] instance=ExtResource("10_kq4t5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.76189, -1.03428, -0.573979)
 
 [node name="Box3" parent="." instance=ExtResource("10_kq4t5")]
