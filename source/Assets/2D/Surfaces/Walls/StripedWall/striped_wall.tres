@@ -1,0 +1,14 @@
+[gd_resource type="StandardMaterial3D" load_steps=5 format=3 uid="uid://d2l7yh8j2lrb3"]
+
+[ext_resource type="Texture2D" uid="uid://dc6w0r3yuk7b8" path="res://Assets/2D/Surfaces/Walls/StripedWall/uculeewfw_1K_Albedo.jpg" id="1_237r0"]
+[ext_resource type="Texture2D" uid="uid://gwe7g8vq6rtk" path="res://Assets/2D/Surfaces/Walls/StripedWall/uculeewfw_1K_AO.jpg" id="2_a3nkm"]
+[ext_resource type="Texture2D" uid="uid://b62ryjxefo6cx" path="res://Assets/2D/Surfaces/Walls/StripedWall/uculeewfw_1K_Normal.jpg" id="3_k72oi"]
+[ext_resource type="Texture2D" uid="uid://tbmlrm75ia" path="res://Assets/2D/Surfaces/Walls/StripedWall/uculeewfw_1K_Roughness.jpg" id="4_5r8ou"]
+
+[resource]
+albedo_texture = ExtResource("1_237r0")
+roughness_texture = ExtResource("4_5r8ou")
+normal_enabled = true
+normal_texture = ExtResource("3_k72oi")
+ao_enabled = true
+ao_texture = ExtResource("2_a3nkm")

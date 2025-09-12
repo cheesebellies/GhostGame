@@ -57,6 +57,7 @@ ao_texture = ExtResource("2_vewpl")
 [node name="CeilingLightLong" type="StaticBody3D"]
 
 [node name="vidrear_LOD0_TIER3_000" type="MeshInstance3D" parent="."]
+cast_shadow = 2
 mesh = SubResource("ArrayMesh_rcuop")
 skeleton = NodePath("")
 surface_material_override/0 = SubResource("StandardMaterial3D_h0wtm")

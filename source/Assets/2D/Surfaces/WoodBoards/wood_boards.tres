@@ -16,4 +16,4 @@ ao_texture = ExtResource("2_escee")
 heightmap_enabled = true
 heightmap_scale = 16.0
 heightmap_texture = ExtResource("3_escee")
-uv1_scale = Vector3(20, 20, 20)
+uv1_scale = Vector3(3.7, 3.7, 3.7)
