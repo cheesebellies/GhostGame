@@ -1,7 +1,7 @@
 [gd_scene load_steps=33 format=3 uid="uid://c20x6wmwj3i27"]
 
 [ext_resource type="Texture2D" uid="uid://ue2uqtpju6k2" path="res://Assets/2D/HDRI/qwantani_moonrise_puresky_2k.exr" id="1_uvytk"]
-[ext_resource type="PackedScene" uid="uid://dv7wbheebeajf" path="res://Player/player_placeholder.tscn" id="2_o5lh6"]
+[ext_resource type="PackedScene" path="res://Player/player_placeholder.tscn" id="2_o5lh6"]
 [ext_resource type="Material" uid="uid://bj7tua5mv0shm" path="res://Assets/2D/Surfaces/CreakyWoodenFloor/creaky_wooden_floor.tres" id="3_o5lh6"]
 [ext_resource type="PackedScene" uid="uid://c2lydde8lb785" path="res://Assets/3D/Chairs/ChurchChair/church_chair.tscn" id="4_voknd"]
 [ext_resource type="PackedScene" uid="uid://b45qod1a1no47" path="res://Assets/3D/Stage/StageBase/stage_base.tscn" id="5_38uxw"]
@@ -98,11 +98,13 @@ environment = SubResource("Environment_38uxw")
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="Environment"]
 transform = Transform3D(0.819085, 0.0837288, -0.567529, 0.00466023, 0.988288, 0.15253, 0.573654, -0.12758, 0.809101, 0.00495338, 3.6983, 1.15037)
 light_energy = 1.539
+light_bake_mode = 1
 shadow_enabled = true
 
 [node name="DirectionalLight3D2" type="DirectionalLight3D" parent="Environment"]
 transform = Transform3D(-0.854632, -0.075261, 0.51375, 0.00466023, 0.988288, 0.15253, -0.519213, 0.132751, -0.844272, 0.00495338, 3.6983, 1.15037)
 light_energy = 0.068
+light_bake_mode = 1
 
 [node name="GroundPlane" type="StaticBody3D" parent="."]
 visible = false
@@ -932,6 +934,7 @@ metadata/_edit_group_ = true
 [node name="OmniLight3D" type="OmniLight3D" parent="Furniture/Lights/CeilingLampRound"]
 transform = Transform3D(0.306138, 0, 0, 0, -1.33817e-08, 0.306138, 0, -0.306138, -1.33817e-08, -0.0110004, -0.305948, -0.015)
 light_energy = 1.616
+light_bake_mode = 1
 shadow_enabled = true
 shadow_blur = 7.25
 omni_range = 17.859
@@ -951,6 +954,7 @@ metadata/_edit_group_ = true
 [node name="OmniLight3D" type="OmniLight3D" parent="Furniture/Lights/CeilingLampRound2"]
 transform = Transform3D(0.306138, 0, 0, 0, -1.33817e-08, 0.306138, 0, -0.306138, -1.33817e-08, -0.0109999, -0.305948, -0.015)
 light_energy = 1.616
+light_bake_mode = 1
 shadow_enabled = true
 shadow_blur = 7.25
 omni_range = 17.859
@@ -970,6 +974,7 @@ metadata/_edit_group_ = true
 [node name="OmniLight3D" type="OmniLight3D" parent="Furniture/Lights/CeilingLampRound3"]
 transform = Transform3D(0.306138, 0, 0, 0, -1.33817e-08, 0.306138, 0, -0.306138, -1.33817e-08, -0.011, -0.305948, -0.015)
 light_energy = 1.616
+light_bake_mode = 1
 shadow_enabled = true
 shadow_blur = 7.25
 omni_range = 17.859
@@ -989,6 +994,7 @@ metadata/_edit_group_ = true
 [node name="OmniLight3D" type="OmniLight3D" parent="Furniture/Lights/CeilingLampRound4"]
 transform = Transform3D(0.306138, 0, 0, 0, -1.33817e-08, 0.306138, 0, -0.306138, -1.33817e-08, -0.0109999, -0.305948, -0.015)
 light_energy = 1.616
+light_bake_mode = 1
 shadow_enabled = true
 shadow_blur = 7.25
 omni_range = 17.859
@@ -1008,6 +1014,7 @@ metadata/_edit_group_ = true
 [node name="OmniLight3D" type="OmniLight3D" parent="Furniture/Lights/CeilingLampRound6"]
 transform = Transform3D(0.306138, 0, 0, 0, -1.33817e-08, 0.306138, 0, -0.306138, -1.33817e-08, -0.0110006, -0.305948, -0.015)
 light_energy = 1.616
+light_bake_mode = 1
 shadow_enabled = true
 shadow_blur = 7.25
 omni_range = 17.859
@@ -1027,6 +1034,7 @@ metadata/_edit_group_ = true
 [node name="OmniLight3D" type="OmniLight3D" parent="Furniture/Lights/CeilingLampRound7"]
 transform = Transform3D(0.306138, 0, 0, 0, -1.33817e-08, 0.306138, 0, -0.306138, -1.33817e-08, -0.0110006, -0.305948, -0.015)
 light_energy = 1.616
+light_bake_mode = 1
 shadow_enabled = true
 shadow_blur = 7.25
 omni_range = 17.859
@@ -1046,6 +1054,7 @@ metadata/_edit_group_ = true
 [node name="OmniLight3D" type="OmniLight3D" parent="Furniture/Lights/CeilingLampRound5"]
 transform = Transform3D(0.306138, 0, 0, 0, -1.33817e-08, 0.306138, 0, -0.306138, -1.33817e-08, -0.0105493, -0.305737, -0.0148314)
 light_energy = 1.616
+light_bake_mode = 1
 shadow_enabled = true
 shadow_blur = 7.25
 omni_range = 17.859
@@ -1083,16 +1092,19 @@ surface_material_override/0 = SubResource("StandardMaterial3D_q3f35")
 [node name="OmniLight3D" type="OmniLight3D" parent="Furniture/Lights/CeilingLightLong"]
 transform = Transform3D(0.310071, 0, 0, 0, 0.310071, 0, 0, 0, 0.310071, 0, -0.131196, 0)
 light_energy = 0.491
+light_bake_mode = 1
 shadow_enabled = true
 
 [node name="OmniLight3D2" type="OmniLight3D" parent="Furniture/Lights/CeilingLightLong"]
 transform = Transform3D(0.310071, 0, 0, 0, 0.310071, 0, 0, 0, 0.310071, 0, -0.131196, -0.148605)
 light_energy = 0.491
+light_bake_mode = 1
 shadow_enabled = true
 
 [node name="OmniLight3D3" type="OmniLight3D" parent="Furniture/Lights/CeilingLightLong"]
 transform = Transform3D(0.310071, 0, 0, 0, 0.310071, 0, 0, 0, 0.310071, 0, -0.131196, 0.151411)
 light_energy = 0.491
+light_bake_mode = 1
 shadow_enabled = true
 
 [node name="CeilingLightLong2" parent="Furniture/Lights" instance=ExtResource("17_q3f35")]
@@ -1120,16 +1132,19 @@ surface_material_override/0 = SubResource("StandardMaterial3D_q3f35")
 [node name="OmniLight3D" type="OmniLight3D" parent="Furniture/Lights/CeilingLightLong2"]
 transform = Transform3D(0.310071, 0, 0, 0, 0.310071, 0, 0, 0, 0.310071, 0, -0.131196, 0)
 light_energy = 0.491
+light_bake_mode = 1
 shadow_enabled = true
 
 [node name="OmniLight3D2" type="OmniLight3D" parent="Furniture/Lights/CeilingLightLong2"]
 transform = Transform3D(0.310071, 0, 0, 0, 0.310071, 0, 0, 0, 0.310071, 0, -0.131196, -0.148605)
 light_energy = 0.491
+light_bake_mode = 1
 shadow_enabled = true
 
 [node name="OmniLight3D3" type="OmniLight3D" parent="Furniture/Lights/CeilingLightLong2"]
 transform = Transform3D(0.310071, 0, 0, 0, 0.310071, 0, 0, 0, 0.310071, 0, -0.131196, 0.151411)
 light_energy = 0.491
+light_bake_mode = 1
 shadow_enabled = true
 
 [node name="CeilingLightLong3" parent="Furniture/Lights" instance=ExtResource("17_q3f35")]
@@ -1157,19 +1172,23 @@ surface_material_override/0 = SubResource("StandardMaterial3D_q3f35")
 [node name="OmniLight3D" type="OmniLight3D" parent="Furniture/Lights/CeilingLightLong3"]
 transform = Transform3D(0.310071, 0, 0, 0, 0.310071, 0, 0, 0, 0.310071, 0, -0.131196, 0)
 light_energy = 0.491
+light_bake_mode = 1
 shadow_enabled = true
 
 [node name="OmniLight3D2" type="OmniLight3D" parent="Furniture/Lights/CeilingLightLong3"]
 transform = Transform3D(0.310071, 0, 0, 0, 0.310071, 0, 0, 0, 0.310071, 0, -0.131196, -0.148605)
 light_energy = 0.491
+light_bake_mode = 1
 shadow_enabled = true
 
 [node name="OmniLight3D3" type="OmniLight3D" parent="Furniture/Lights/CeilingLightLong3"]
 transform = Transform3D(0.310071, 0, 0, 0, 0.310071, 0, 0, 0, 0.310071, 0, -0.131196, 0.151411)
 light_energy = 0.491
+light_bake_mode = 1
 shadow_enabled = true
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.354893, 0.509472, 0.783894, -0.791334, 0.282789, -0.542053, -0.497837, -0.812692, 0.302803, 0, 0, 0)
 visible = false
 light_energy = 4.345
+light_bake_mode = 1

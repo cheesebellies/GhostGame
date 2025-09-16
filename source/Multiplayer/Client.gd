@@ -1,9 +1,10 @@
-class_name Client
 extends Node
 
 const NONCE_LENGTH = 128
 const HMAC_LENGTH = 32
-#minor change
+
+var cmultiplayer
+
 var admin
 var ip
 var port
@@ -31,19 +32,19 @@ func debug(msg, type: int):
 	print_rich("[color=" + color + "][Client][/color] " + str(msg))
 
 func init():
-	multiplayer.peer_authenticating.connect(_handle_peer_authenticating)
-	multiplayer.set_auth_callback(authenticate)
-	multiplayer.peer_authentication_failed.connect(_handle_authentication_failed)
-	multiplayer.connected_to_server.connect(_handle_connected_to_server)
-	multiplayer.connection_failed.connect(_handle_connection_failed)
-	multiplayer.server_disconnected.connect(_handle_server_disconnected)
+	cmultiplayer.peer_authenticating.connect(_handle_peer_authenticating)
+	cmultiplayer.set_auth_callback(authenticate)
+	cmultiplayer.peer_authentication_failed.connect(_handle_authentication_failed)
+	cmultiplayer.connected_to_server.connect(_handle_connected_to_server)
+	cmultiplayer.connection_failed.connect(_handle_connection_failed)
+	cmultiplayer.server_disconnected.connect(_handle_server_disconnected)
 	var err = enet_peer.create_client(ip, port)
 	if err != OK:
 		return -1
-	multiplayer.multiplayer_peer = enet_peer
+	cmultiplayer.multiplayer_peer = enet_peer
 	var res = await self.connection_update
-	var dda = 'test'.to_ascii_buffer()
-	multiplayer.send_bytes(dda,1,MultiplayerPeer.TRANSFER_MODE_RELIABLE,0)
+	var dda = 'test'.to_utf8_buffer()
+	cmultiplayer.send_bytes(dda,1,MultiplayerPeer.TRANSFER_MODE_RELIABLE,0)
 	if res:
 		debug("Client created.", MSG_OK)
 		return 0
@@ -57,24 +58,24 @@ func _handle_authentication_failed(peer):
 func _handle_peer_authenticating(peer):
 	if code == "":
 		debug("Skipping authentication.", MSG_INFO)
-		multiplayer.complete_auth(peer)
+		cmultiplayer.complete_auth(peer)
 		return
 	debug("Starting authentication...", MSG_INFO)
 	authentication_data = cryptography.generate_random_bytes(NONCE_LENGTH)
-	multiplayer.send_auth(peer, authentication_data)
+	cmultiplayer.send_auth(peer, authentication_data)
 
 func authenticate(peer, data: PackedByteArray):
 	if data.size() != NONCE_LENGTH:
 		if data.size() == 1:
 			index = data.decode_u8(0)
 			debug("Completing authentication...", MSG_INFO)
-			multiplayer.complete_auth(peer)
+			cmultiplayer.complete_auth(peer)
 		else:
 			debug("Authentication failed. (Incorrect nonce length).", MSG_ERROR)
 			failed_authentication()
 	else:
-		var hash = cryptography.hmac_digest(HashingContext.HASH_SHA256, str(code).to_ascii_buffer(), authentication_data + data)
-		multiplayer.send_auth(peer, hash)
+		var hash = cryptography.hmac_digest(HashingContext.HASH_SHA256, str(code).to_utf8_buffer(), authentication_data + data)
+		cmultiplayer.send_auth(peer, hash)
 
 func failed_authentication():
 	pass
@@ -89,10 +90,10 @@ func _handle_server_disconnected():
 	debug("Server disconnected.", MSG_ERROR)
 
 func _process(delta: float) -> void:
-	if not multiplayer:
+	if not cmultiplayer:
 		return
-	multiplayer.poll()
+	cmultiplayer.poll()
 
 func _ready():
-	get_tree().set_multiplayer(MultiplayerAPI.create_default_interface(),self.get_path())
+	cmultiplayer = MultiplayerAPI.create_default_interface()
 	enet_peer = ENetMultiplayerPeer.new()

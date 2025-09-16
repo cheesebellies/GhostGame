@@ -1,4 +1,3 @@
-class_name Server
 extends Node
 
 const NONCE_LENGTH = 128
@@ -15,47 +14,60 @@ var authentication_info: Dictionary = {}
 var cryptography = Crypto.new()
 
 var client_info: Dictionary = {}
-var sync_registry: Dictionary = {}
 
 var enet_peer: ENetMultiplayerPeer
 
 enum {MSG_INFO, MSG_ERROR, MSG_OK}
 
-var istr = 0.0
+enum {
+	PT_PLAYER_INPUT,
+	PT_INIT_INFO,
+	PT_STATE_UPDATE,
+	PT_EVENT,
+	PT_CHAT_MESSAGE,
+	PT_SPAWN_DESPAWN,
+	PT_LOBBY_MATCHMAKING,
+	PT_PING,
+	PT_SCORE_STATS,
+	PT_ERROR_NOTIFICATION,
+	PT_CUSTOM_SYNC
+}
 
 func _handle_peer_packet(id: int, packet: PackedByteArray):
-	print(packet)
-	print("sthread" + str(OS.get_thread_caller_id()))
+	var type = packet.decode_u8(0)
+	match type:
+		PT_INIT_INFO:
+			pt_handle_player_initialization(id, packet)
+
+
+
+func pt_handle_player_initialization(id: int, packet: PackedByteArray):
+	if not client_connected(id):
+		debug("{pt_handle_player_initialization} Client " + str(id) + " not connected.", MSG_ERROR)
+	var offset = 1
+	var username_len = packet.decode_u8(offset)
+	offset += 1
+	var username = packet.slice(offset, offset + username_len).get_string_from_utf8()
+	offset += username_len
+	var character_model = packet.decode_u8(offset)
+	# TODO: insert character model & username validation here
+	client_info[id]['username'] = username
+	client_info[id]['character_model'] = character_model
+
+
+
+
+
+
+
+
+func client_connected(id: int):
+	return client_info[id]['connected']
 
 func _process(delta: float) -> void:
 	if not cmultiplayer:
 		return
 	cmultiplayer.poll()
-	istr += delta
-	if istr-float(floor(istr)) < 0.05:
-		var psr = cmultiplayer.get_peers()
-		if len(psr) > 0:
-			var ps = cmultiplayer.multiplayer_peer.get_peer(psr[0])
-			var rtt = ps.get_statistic(ENetPacketPeer.PeerStatistic.PEER_ROUND_TRIP_TIME)
-			print("1  " + str(rtt))
-			if len(psr) > 1:
-				var ps1 = cmultiplayer.multiplayer_peer.get_peer(psr[1])
-				var rtt1 = ps.get_statistic(ENetPacketPeer.PeerStatistic.PEER_ROUND_TRIP_TIME)
-				print("2  " + str(rtt1))
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 func debug(msg, type: int):
 	var color = ""
@@ -105,7 +117,7 @@ func authenticate_client(peer, data: PackedByteArray):
 			debug("Authentication failed for peer " + str(peer) + " at " + ip + ". (Incorrect HMAC length) Attempt " + str(authentication_info[ip]['attempts']) + "/3.", MSG_ERROR)
 			fail_authentication(peer)
 		else:
-			var hash = cryptography.hmac_digest(HashingContext.HASH_SHA256, str(code).to_ascii_buffer(), authentication_info[ip]['combined_nonce'])
+			var hash = cryptography.hmac_digest(HashingContext.HASH_SHA256, str(code).to_utf8_buffer(), authentication_info[ip]['combined_nonce'])
 			if cryptography.constant_time_compare(hash, data):
 				var to_send = PackedByteArray()
 				to_send.resize(1)
@@ -140,11 +152,12 @@ func close():
 
 func _handle_peer_disconnected(id):
 	MultiplayerController.update_scanner_players(len(cmultiplayer.get_peers()),max_clients, description)
+	client_info[id]['connected'] = false
 	print("Peer disconnected: " + str(id))
 
 func _handle_peer_connected(id):
 	MultiplayerController.update_scanner_players(len(cmultiplayer.get_peers()),max_clients, description)
-	client_info[id] = {'index': len(client_info), 'admin': len(client_info) == 0}
+	client_info[id] = {'index': len(client_info), 'admin': len(client_info) == 0, 'connected': false}
 	debug("Authentication successful for peer " + str(id) + " at " + cmultiplayer.multiplayer_peer.get_peer(id).get_remote_address() + ".", MSG_OK)
 
 func _ready():
