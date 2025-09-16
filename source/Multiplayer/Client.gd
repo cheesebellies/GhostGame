@@ -96,4 +96,5 @@ func _process(delta: float) -> void:
 
 func _ready():
 	cmultiplayer = MultiplayerAPI.create_default_interface()
+	cmultiplayer.set_root_path("/root/Client")
 	enet_peer = ENetMultiplayerPeer.new()

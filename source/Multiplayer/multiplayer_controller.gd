@@ -16,7 +16,7 @@ enum {SCENE_HUB_LOADING, SCENE_MAIN_MENU, SCENE_TEST_WORLD, SCENE_HUB_WORLD}
 const scene_reference := {
 	SCENE_HUB_LOADING: 'res://Tests/temp_loading.tscn',
 	SCENE_MAIN_MENU: 'res://Menu/main_menu.tscn',
-	SCENE_HUB_WORLD: 'res://Tests/asset_test.tscn',
+	SCENE_HUB_WORLD: 'res://World/hub/hub.tscn',
 	SCENE_TEST_WORLD: 'res://Tests/asset_test.tscn'
 }
 

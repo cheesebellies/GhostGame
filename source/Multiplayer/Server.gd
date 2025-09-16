@@ -162,5 +162,6 @@ func _handle_peer_connected(id):
 
 func _ready():
 	cmultiplayer = MultiplayerAPI.create_default_interface()
+	cmultiplayer.set_root_path("/root/Server")
 	enet_peer = ENetMultiplayerPeer.new()
 	print("1sthread" + str(OS.get_thread_caller_id()))
