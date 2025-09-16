@@ -48,7 +48,7 @@ func _scan() -> void:
 			var fport = packet.decode_u32(0)
 			var fplayers = packet.decode_u32(4)
 			var fmax = packet.decode_u32(8)
-			var fdesc = packet.slice(12).get_string_from_ascii()
+			var fdesc = packet.slice(12).get_string_from_utf8()
 			if fip != "":
 				fs.append([fip,fport,fdesc,fplayers,fmax])
 		servers.emit(fs)
@@ -60,5 +60,5 @@ func _broadcast() -> void:
 	status.encode_u32(0, chosen_port)
 	status.encode_u32(4, players)
 	status.encode_u32(8, max_players)
-	status += description.to_ascii_buffer()
+	status += description.to_utf8_buffer()
 	peer.put_packet(status)
