@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://jyi4os12dqdb"
-path.s3tc="res://.godot/imported/ufouccbo_1K_Basecolor.jpg-60b76bf89dca0814e4b16d2b371a3a03.s3tc.ctex"
+uid="uid://br1xaaljajjj7"
+path.s3tc="res://.godot/imported/Old_Decorative_Wallpaper_umridamn_1K_Roughness.jpg-e037f52da0830e9acbf381c230503a61.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://Assets/3D/Wall/Materials/ufouccbo_1K_Basecolor.jpg"
-dest_files=["res://.godot/imported/ufouccbo_1K_Basecolor.jpg-60b76bf89dca0814e4b16d2b371a3a03.s3tc.ctex"]
+source_file="res://Assets/2D/Surfaces/Walls/OldWallpaper/Old_Decorative_Wallpaper_umridamn_1K_Roughness.jpg"
+dest_files=["res://.godot/imported/Old_Decorative_Wallpaper_umridamn_1K_Roughness.jpg-e037f52da0830e9acbf381c230503a61.s3tc.ctex"]
 
 [params]
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://c20x6wmwj3i27"]
+[gd_scene load_steps=34 format=3 uid="uid://c20x6wmwj3i27"]
 
 [ext_resource type="Texture2D" uid="uid://ue2uqtpju6k2" path="res://Assets/2D/HDRI/qwantani_moonrise_puresky_2k.exr" id="1_uvytk"]
 [ext_resource type="PackedScene" uid="uid://dv7wbheebeajf" path="res://Player/player_placeholder.tscn" id="2_o5lh6"]
@@ -22,13 +22,13 @@
 panorama = ExtResource("1_uvytk")
 energy_multiplier = 0.35
 
-[sub_resource type="Sky" id="Sky_1xoun"]
+[sub_resource type="Sky" id="Sky_q3f35"]
 sky_material = SubResource("PanoramaSkyMaterial_voknd")
 
 [sub_resource type="Environment" id="Environment_38uxw"]
 background_mode = 2
 background_energy_multiplier = 0.17
-sky = SubResource("Sky_1xoun")
+sky = SubResource("Sky_q3f35")
 ambient_light_source = 3
 ssao_radius = 2.7
 ssil_radius = 16.0
@@ -53,7 +53,7 @@ size = Vector2(53.54, 74.47)
 data = PackedVector3Array(7.6, 0, 10.6, -7.6, 0, 10.6, 7.6, 0, -10.6, -7.6, 0, 10.6, -7.6, 0, -10.6, 7.6, 0, -10.6)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_yw8v0"]
-size = Vector2(0.33, 0.43)
+size = Vector2(0.4, 0.72)
 
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_wbqnw"]
 data = PackedVector3Array(1, 0, 1, -1, 0, 1, 1, 0, -1, -1, 0, 1, -1, 0, -1, 1, 0, -1)
@@ -63,6 +63,9 @@ size = Vector2(0.18, 0.22)
 
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_8f2db"]
 data = PackedVector3Array(0.09, 0, 0.11, -0.09, 0, 0.11, 0.09, 0, -0.11, -0.09, 0, 0.11, -0.09, 0, -0.11, 0.09, 0, -0.11)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_8f2db"]
+size = Vector2(0.18, 0.32)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_q3f35"]
 material = ExtResource("10_wbqnw")
@@ -203,9 +206,6 @@ transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -1.259
 
 [node name="ChurchWall53" parent="Structure/Walls/HubWalls" instance=ExtResource("6_heb22")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -1.25945, 0, 6)
-
-[node name="ChurchWall72" parent="Structure/Walls/HubWalls" instance=ExtResource("6_heb22")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -1.25945, 2.08407, 6)
 
 [node name="ChurchWall64" parent="Structure/Walls/HubWalls" instance=ExtResource("6_heb22")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -1.25945, 0, 8)
@@ -361,7 +361,7 @@ transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 16.740
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 16.7405, 0, 1.00643)
 
 [node name="Column2" parent="Structure/Walls/HubWalls" instance=ExtResource("7_x1j8u")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1.24534, 0, -1, 0, -4.37114e-08, -1.20991, 0.01, 1.93833)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1.24534, 0, -1, 0, -4.37114e-08, -1.17174, 0.01, 1.90707)
 
 [node name="Column6" parent="Structure/Walls/HubWalls" instance=ExtResource("7_x1j8u")]
 transform = Transform3D(1, 0, 1.06581e-14, 0, 1.24534, 0, -1.06581e-14, 0, 1, 14.743, 0.01, 7)
@@ -382,7 +382,7 @@ transform = Transform3D(-4.37114e-08, 0, 1, 0, 1.24534, 0, -1, 0, -4.37114e-08, 
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1.24534, 0, -1, 0, -4.37114e-08, -11.2162, 0.01, 1.99997)
 
 [node name="Column3" parent="Structure/Walls/HubWalls" instance=ExtResource("7_x1j8u")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1.24534, 0, -1, 0, -4.37114e-08, -1.216, 0.01, -1.95727)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1.24534, 0, -1, 0, -4.37114e-08, -1.172, 0.01, -1.957)
 
 [node name="Trims" type="Node3D" parent="Structure/Walls"]
 
@@ -677,6 +677,60 @@ transform = Transform3D(-1, 0, 1.39091e-08, 0, 1, 0, -1.39091e-08, 0, -1, 0.7428
 [node name="Trim98" parent="Structure/Walls/Trims" instance=ExtResource("11_yw8v0")]
 transform = Transform3D(5.76205e-08, 0, 1, 0, 1, 0, -1, 0, 5.76205e-08, -1.25715, 4.87707, 7)
 
+[node name="Trim105" parent="Structure/Walls/Trims" instance=ExtResource("11_yw8v0")]
+transform = Transform3D(5.76205e-08, 0, 1, 0, 1, 0, -1, 0, 5.76205e-08, -1.25715, 4.87707, 9)
+
+[node name="Trim106" parent="Structure/Walls/Trims" instance=ExtResource("11_yw8v0")]
+transform = Transform3D(5.76205e-08, 0, 1, 0, 1, 0, -1, 0, 5.76205e-08, -1.25715, 4.87707, 10)
+
+[node name="Trim107" parent="Structure/Walls/Trims" instance=ExtResource("11_yw8v0")]
+transform = Transform3D(-1, 0, 1.39091e-08, 0, 1, 0, -1.39091e-08, 0, -1, -1.25715, 4.87707, 10)
+
+[node name="Trim108" parent="Structure/Walls/Trims" instance=ExtResource("11_yw8v0")]
+transform = Transform3D(-1, 0, 1.39091e-08, 0, 1, 0, -1.39091e-08, 0, -1, -3.25715, 4.87707, 10)
+
+[node name="Trim109" parent="Structure/Walls/Trims" instance=ExtResource("11_yw8v0")]
+transform = Transform3D(-1, 0, 1.39091e-08, 0, 1, 0, -1.39091e-08, 0, -1, -5.25715, 4.87707, 10)
+
+[node name="Trim110" parent="Structure/Walls/Trims" instance=ExtResource("11_yw8v0")]
+transform = Transform3D(-1, 0, 1.39091e-08, 0, 1, 0, -1.39091e-08, 0, -1, -7.25715, 4.87707, 10)
+
+[node name="Trim111" parent="Structure/Walls/Trims" instance=ExtResource("11_yw8v0")]
+transform = Transform3D(-1, 0, 1.39091e-08, 0, 1, 0, -1.39091e-08, 0, -1, -9.25715, 4.87707, 10)
+
+[node name="Trim112" parent="Structure/Walls/Trims" instance=ExtResource("11_yw8v0")]
+transform = Transform3D(-1, 0, 1.39091e-08, 0, 1, 0, -1.39091e-08, 0, -1, -11.2572, 4.87707, 10)
+
+[node name="Trim113" parent="Structure/Walls/Trims" instance=ExtResource("11_yw8v0")]
+transform = Transform3D(5.76205e-08, 0, 1, 0, 1, 0, -1, 0, 5.76205e-08, -13.2572, 4.87707, 10)
+
+[node name="Trim114" parent="Structure/Walls/Trims" instance=ExtResource("11_yw8v0")]
+transform = Transform3D(5.76205e-08, 0, 1, 0, 1, 0, -1, 0, 5.76205e-08, -13.2572, 4.87707, 8)
+
+[node name="Trim115" parent="Structure/Walls/Trims" instance=ExtResource("11_yw8v0")]
+transform = Transform3D(5.76205e-08, 0, 1, 0, 1, 0, -1, 0, 5.76205e-08, -13.2572, 4.87707, 6)
+
+[node name="Trim116" parent="Structure/Walls/Trims" instance=ExtResource("11_yw8v0")]
+transform = Transform3D(5.76205e-08, 0, 1, 0, 1, 0, -1, 0, 5.76205e-08, -13.2555, 4.87707, 3.99963)
+
+[node name="Trim117" parent="Structure/Walls/Trims" instance=ExtResource("11_yw8v0")]
+transform = Transform3D(1, 0, -1.01332e-07, 0, 1, 0, 1.01332e-07, 0, 1, -13.2555, 4.87707, 1.99963)
+
+[node name="Trim118" parent="Structure/Walls/Trims" instance=ExtResource("11_yw8v0")]
+transform = Transform3D(1, 0, -1.01332e-07, 0, 1, 0, 1.01332e-07, 0, 1, -11.2555, 4.87707, 1.99963)
+
+[node name="Trim119" parent="Structure/Walls/Trims" instance=ExtResource("11_yw8v0")]
+transform = Transform3D(1, 0, -1.01332e-07, 0, 1, 0, 1.01332e-07, 0, 1, -9.25554, 4.87707, 1.99963)
+
+[node name="Trim120" parent="Structure/Walls/Trims" instance=ExtResource("11_yw8v0")]
+transform = Transform3D(1, 0, -1.01332e-07, 0, 1, 0, 1.01332e-07, 0, 1, -7.25554, 4.87707, 1.99963)
+
+[node name="Trim121" parent="Structure/Walls/Trims" instance=ExtResource("11_yw8v0")]
+transform = Transform3D(1, 0, -1.01332e-07, 0, 1, 0, 1.01332e-07, 0, 1, -5.25554, 4.87707, 1.99963)
+
+[node name="Trim122" parent="Structure/Walls/Trims" instance=ExtResource("11_yw8v0")]
+transform = Transform3D(1, 0, -1.01332e-07, 0, 1, 0, 1.01332e-07, 0, 1, -3.25554, 4.87707, 1.99963)
+
 [node name="Trim99" parent="Structure/Walls/Trims" instance=ExtResource("11_yw8v0")]
 transform = Transform3D(5.76205e-08, 0, 1, 0, 1, 0, -1, 0, 5.76205e-08, -1.25715, 4.87707, 5)
 
@@ -701,17 +755,17 @@ transform = Transform3D(5.76205e-08, 0, 1, 0, 1, 0, -1, 0, 5.76205e-08, -1.25715
 [node name="Ceiling" type="Node3D" parent="Structure/Walls"]
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Structure/Walls/Ceiling"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.85621, 0)
 metadata/_edit_group_ = true
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Structure/Walls/Ceiling/StaticBody3D"]
-transform = Transform3D(-1.94528e-06, -3.89056e-06, -44.5028, 0, -44.5028, 3.89056e-06, -44.5028, 1.70062e-13, 1.94528e-06, 7.6996, 4.85921, 0)
+transform = Transform3D(-1.94528e-06, -3.89056e-06, -44.5028, 0, -44.5028, 3.89056e-06, -44.5028, 1.70062e-13, 1.94528e-06, 1.89619, 0, 1.52136)
 cast_shadow = 2
 mesh = SubResource("PlaneMesh_yw8v0")
 surface_material_override/0 = ExtResource("9_5w1mf")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Structure/Walls/Ceiling/StaticBody3D"]
 transform = Transform3D(-1.94528e-06, -3.89056e-06, -44.5028, 0, -44.5028, 3.89056e-06, -44.5028, 1.70062e-13, 1.94528e-06, 0, 4.85921, 0)
-visible = false
 shape = SubResource("ConcavePolygonShape3D_wbqnw")
 
 [node name="StaticBody3D2" type="StaticBody3D" parent="Structure/Walls/Ceiling"]
@@ -728,6 +782,16 @@ surface_material_override/0 = ExtResource("9_5w1mf")
 transform = Transform3D(-1.94528e-06, -3.89056e-06, -44.5028, 0, -44.5028, 3.89056e-06, -44.5028, 1.70062e-13, 1.94528e-06, 13.1325, 4.86197, 10.9005)
 visible = false
 shape = SubResource("ConcavePolygonShape3D_8f2db")
+
+[node name="StaticBody3D3" type="StaticBody3D" parent="Structure/Walls/Ceiling"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.31709, 3.16381, -2.06319)
+metadata/_edit_group_ = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Structure/Walls/Ceiling/StaticBody3D3"]
+transform = Transform3D(-1.94528e-06, -3.89056e-06, -44.5028, 0, -44.5028, 3.89056e-06, -44.5028, 1.70062e-13, 1.94528e-06, -2.24722, -0.414197, 0)
+cast_shadow = 2
+mesh = SubResource("PlaneMesh_8f2db")
+surface_material_override/0 = ExtResource("9_5w1mf")
 
 [node name="UpperWalls" type="Node3D" parent="Structure/Walls"]
 
@@ -843,6 +907,86 @@ mesh = SubResource("PlaneMesh_q3f35")
 transform = Transform3D(1.31134e-07, 1, -4.37114e-08, 0, -4.37114e-08, -1, -1, 1.31134e-07, -5.73206e-15, -1.25866, 3.78463, 2.0139)
 mesh = SubResource("PlaneMesh_q3f35")
 
+[node name="MeshInstance3D33" type="MeshInstance3D" parent="Structure/Walls/UpperWalls"]
+transform = Transform3D(1, -1.74846e-07, -4.37114e-08, -4.37114e-08, -1.37337e-15, -1, 1.74846e-07, 1, -7.10543e-15, -8.25866, 3.78463, 2.0139)
+mesh = SubResource("PlaneMesh_q3f35")
+
+[node name="MeshInstance3D51" type="MeshInstance3D" parent="Structure/Walls/UpperWalls"]
+transform = Transform3D(1, -1.74846e-07, -4.37114e-08, -4.37114e-08, -1.37337e-15, -1, 1.74846e-07, 1, -7.10543e-15, -10.2587, 3.78463, 2.0139)
+mesh = SubResource("PlaneMesh_q3f35")
+
+[node name="MeshInstance3D52" type="MeshInstance3D" parent="Structure/Walls/UpperWalls"]
+transform = Transform3D(1, -1.74846e-07, -4.37114e-08, -4.37114e-08, -1.37337e-15, -1, 1.74846e-07, 1, -7.10543e-15, -12.2587, 3.78463, 2.0139)
+mesh = SubResource("PlaneMesh_q3f35")
+
+[node name="MeshInstance3D34" type="MeshInstance3D" parent="Structure/Walls/UpperWalls"]
+transform = Transform3D(1, -1.74846e-07, -4.37114e-08, -4.37114e-08, -1.37337e-15, -1, 1.74846e-07, 1, -7.10543e-15, -6.25866, 3.78463, 2.0139)
+mesh = SubResource("PlaneMesh_q3f35")
+
+[node name="MeshInstance3D35" type="MeshInstance3D" parent="Structure/Walls/UpperWalls"]
+transform = Transform3D(1, -1.74846e-07, -4.37114e-08, -4.37114e-08, -1.37337e-15, -1, 1.74846e-07, 1, -7.10543e-15, -4.25866, 3.78463, 2.0139)
+mesh = SubResource("PlaneMesh_q3f35")
+
+[node name="MeshInstance3D36" type="MeshInstance3D" parent="Structure/Walls/UpperWalls"]
+transform = Transform3D(1, -1.74846e-07, -4.37114e-08, -4.37114e-08, -1.37337e-15, -1, 1.74846e-07, 1, -7.10543e-15, -2.25866, 3.78463, 2.0139)
+mesh = SubResource("PlaneMesh_q3f35")
+
+[node name="MeshInstance3D37" type="MeshInstance3D" parent="Structure/Walls/UpperWalls"]
+transform = Transform3D(-2.18557e-07, -1, -4.37114e-08, -3.0154e-15, 4.37114e-08, -1, 1, -2.18557e-07, -7.10543e-15, -1.25866, 3.78463, 3.0139)
+mesh = SubResource("PlaneMesh_q3f35")
+
+[node name="MeshInstance3D38" type="MeshInstance3D" parent="Structure/Walls/UpperWalls"]
+transform = Transform3D(-2.18557e-07, -1, -4.37114e-08, -3.0154e-15, 4.37114e-08, -1, 1, -2.18557e-07, -7.10543e-15, -1.25866, 3.78463, 5.0139)
+mesh = SubResource("PlaneMesh_q3f35")
+
+[node name="MeshInstance3D39" type="MeshInstance3D" parent="Structure/Walls/UpperWalls"]
+transform = Transform3D(-2.18557e-07, -1, -4.37114e-08, -3.0154e-15, 4.37114e-08, -1, 1, -2.18557e-07, -7.10543e-15, -1.25866, 3.78463, 7.0139)
+mesh = SubResource("PlaneMesh_q3f35")
+
+[node name="MeshInstance3D40" type="MeshInstance3D" parent="Structure/Walls/UpperWalls"]
+transform = Transform3D(-2.18557e-07, -1, -4.37114e-08, -3.0154e-15, 4.37114e-08, -1, 1, -2.18557e-07, -7.10543e-15, -1.25866, 3.78463, 9.0139)
+mesh = SubResource("PlaneMesh_q3f35")
+
+[node name="MeshInstance3D41" type="MeshInstance3D" parent="Structure/Walls/UpperWalls"]
+transform = Transform3D(-1, 2.62268e-07, -4.37114e-08, 4.37114e-08, -2.448e-15, -1, -2.62268e-07, -1, -7.10543e-15, -2.25867, 3.78463, 10.0139)
+mesh = SubResource("PlaneMesh_q3f35")
+
+[node name="MeshInstance3D42" type="MeshInstance3D" parent="Structure/Walls/UpperWalls"]
+transform = Transform3D(-1, 2.62268e-07, -4.37114e-08, 4.37114e-08, -2.448e-15, -1, -2.62268e-07, -1, -7.10543e-15, -4.25867, 3.78463, 10.0139)
+mesh = SubResource("PlaneMesh_q3f35")
+
+[node name="MeshInstance3D43" type="MeshInstance3D" parent="Structure/Walls/UpperWalls"]
+transform = Transform3D(-1, 2.62268e-07, -4.37114e-08, 4.37114e-08, -2.448e-15, -1, -2.62268e-07, -1, -7.10543e-15, -6.25867, 3.78463, 10.0139)
+mesh = SubResource("PlaneMesh_q3f35")
+
+[node name="MeshInstance3D44" type="MeshInstance3D" parent="Structure/Walls/UpperWalls"]
+transform = Transform3D(-1, 2.62268e-07, -4.37114e-08, 4.37114e-08, -2.448e-15, -1, -2.62268e-07, -1, -7.10543e-15, -8.25867, 3.78463, 10.0139)
+mesh = SubResource("PlaneMesh_q3f35")
+
+[node name="MeshInstance3D45" type="MeshInstance3D" parent="Structure/Walls/UpperWalls"]
+transform = Transform3D(-1, 2.62268e-07, -4.37114e-08, 4.37114e-08, -2.448e-15, -1, -2.62268e-07, -1, -7.10543e-15, -10.2587, 3.78463, 10.0139)
+mesh = SubResource("PlaneMesh_q3f35")
+
+[node name="MeshInstance3D46" type="MeshInstance3D" parent="Structure/Walls/UpperWalls"]
+transform = Transform3D(-1, 2.62268e-07, -4.37114e-08, 4.37114e-08, -2.448e-15, -1, -2.62268e-07, -1, -7.10543e-15, -12.2587, 3.78463, 10.0139)
+mesh = SubResource("PlaneMesh_q3f35")
+
+[node name="MeshInstance3D47" type="MeshInstance3D" parent="Structure/Walls/UpperWalls"]
+transform = Transform3D(2.38419e-07, 1, 7.99361e-15, 4.37114e-08, -2.448e-15, -1, -1, 2.38419e-07, -4.37114e-08, -13.2587, 3.78463, 9.0139)
+mesh = SubResource("PlaneMesh_q3f35")
+
+[node name="MeshInstance3D48" type="MeshInstance3D" parent="Structure/Walls/UpperWalls"]
+transform = Transform3D(2.38419e-07, 1, 7.99361e-15, 4.37114e-08, -2.448e-15, -1, -1, 2.38419e-07, -4.37114e-08, -13.2587, 3.78463, 7.0139)
+mesh = SubResource("PlaneMesh_q3f35")
+
+[node name="MeshInstance3D49" type="MeshInstance3D" parent="Structure/Walls/UpperWalls"]
+transform = Transform3D(2.38419e-07, 1, 7.99361e-15, 4.37114e-08, -2.448e-15, -1, -1, 2.38419e-07, -4.37114e-08, -13.2587, 3.78463, 5.0139)
+mesh = SubResource("PlaneMesh_q3f35")
+
+[node name="MeshInstance3D50" type="MeshInstance3D" parent="Structure/Walls/UpperWalls"]
+transform = Transform3D(2.38419e-07, 1, 7.99361e-15, 4.37114e-08, -2.448e-15, -1, -1, 2.38419e-07, -4.37114e-08, -13.2571, 3.78463, 3.01352)
+mesh = SubResource("PlaneMesh_q3f35")
+
 [node name="MeshInstance3D29" type="MeshInstance3D" parent="Structure/Walls/UpperWalls"]
 transform = Transform3D(1.31134e-07, 1, -4.37114e-08, 0, -4.37114e-08, -1, -1, 1.31134e-07, -5.73206e-15, -1.25866, 3.78463, 0.0138974)
 mesh = SubResource("PlaneMesh_q3f35")
@@ -932,6 +1076,7 @@ metadata/_edit_group_ = true
 [node name="OmniLight3D" type="OmniLight3D" parent="Furniture/Lights/CeilingLampRound"]
 transform = Transform3D(0.306138, 0, 0, 0, -1.33817e-08, 0.306138, 0, -0.306138, -1.33817e-08, -0.0110004, -0.305948, -0.015)
 light_energy = 1.616
+light_bake_mode = 1
 shadow_enabled = true
 shadow_blur = 7.25
 omni_range = 17.859
@@ -951,6 +1096,7 @@ metadata/_edit_group_ = true
 [node name="OmniLight3D" type="OmniLight3D" parent="Furniture/Lights/CeilingLampRound2"]
 transform = Transform3D(0.306138, 0, 0, 0, -1.33817e-08, 0.306138, 0, -0.306138, -1.33817e-08, -0.0109999, -0.305948, -0.015)
 light_energy = 1.616
+light_bake_mode = 1
 shadow_enabled = true
 shadow_blur = 7.25
 omni_range = 17.859
@@ -970,6 +1116,7 @@ metadata/_edit_group_ = true
 [node name="OmniLight3D" type="OmniLight3D" parent="Furniture/Lights/CeilingLampRound3"]
 transform = Transform3D(0.306138, 0, 0, 0, -1.33817e-08, 0.306138, 0, -0.306138, -1.33817e-08, -0.011, -0.305948, -0.015)
 light_energy = 1.616
+light_bake_mode = 1
 shadow_enabled = true
 shadow_blur = 7.25
 omni_range = 17.859
@@ -989,6 +1136,7 @@ metadata/_edit_group_ = true
 [node name="OmniLight3D" type="OmniLight3D" parent="Furniture/Lights/CeilingLampRound4"]
 transform = Transform3D(0.306138, 0, 0, 0, -1.33817e-08, 0.306138, 0, -0.306138, -1.33817e-08, -0.0109999, -0.305948, -0.015)
 light_energy = 1.616
+light_bake_mode = 1
 shadow_enabled = true
 shadow_blur = 7.25
 omni_range = 17.859
@@ -1008,6 +1156,7 @@ metadata/_edit_group_ = true
 [node name="OmniLight3D" type="OmniLight3D" parent="Furniture/Lights/CeilingLampRound6"]
 transform = Transform3D(0.306138, 0, 0, 0, -1.33817e-08, 0.306138, 0, -0.306138, -1.33817e-08, -0.0110006, -0.305948, -0.015)
 light_energy = 1.616
+light_bake_mode = 1
 shadow_enabled = true
 shadow_blur = 7.25
 omni_range = 17.859
@@ -1027,6 +1176,7 @@ metadata/_edit_group_ = true
 [node name="OmniLight3D" type="OmniLight3D" parent="Furniture/Lights/CeilingLampRound7"]
 transform = Transform3D(0.306138, 0, 0, 0, -1.33817e-08, 0.306138, 0, -0.306138, -1.33817e-08, -0.0110006, -0.305948, -0.015)
 light_energy = 1.616
+light_bake_mode = 1
 shadow_enabled = true
 shadow_blur = 7.25
 omni_range = 17.859
@@ -1046,6 +1196,7 @@ metadata/_edit_group_ = true
 [node name="OmniLight3D" type="OmniLight3D" parent="Furniture/Lights/CeilingLampRound5"]
 transform = Transform3D(0.306138, 0, 0, 0, -1.33817e-08, 0.306138, 0, -0.306138, -1.33817e-08, -0.0105493, -0.305737, -0.0148314)
 light_energy = 1.616
+light_bake_mode = 1
 shadow_enabled = true
 shadow_blur = 7.25
 omni_range = 17.859
@@ -1056,6 +1207,128 @@ cast_shadow = 0
 mesh = SubResource("SphereMesh_8f2db")
 
 [node name="HangingChain" parent="Furniture/Lights/CeilingLampRound5" instance=ExtResource("15_wbqnw")]
+transform = Transform3D(0.429614, 0, 0, 0, 0.429614, 0, 0, 0, 0.429614, 0, 0.754433, 0)
+
+[node name="CeilingLampRound8" parent="Furniture/Lights" instance=ExtResource("14_msoki")]
+transform = Transform3D(3.2665, 0, 0, 0, 3.2665, 0, 0, 0, 3.2665, -7.53868, 4.70639, 6.61211)
+visible = false
+metadata/_edit_group_ = true
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Furniture/Lights/CeilingLampRound8"]
+transform = Transform3D(0.306138, 0, 0, 0, -1.33817e-08, 0.306138, 0, -0.306138, -1.33817e-08, -0.0109999, -0.305948, -0.015)
+light_energy = 1.616
+light_bake_mode = 1
+shadow_enabled = true
+shadow_blur = 7.25
+omni_range = 17.859
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Furniture/Lights/CeilingLampRound8"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0105493, -0.262, -0.0148314)
+cast_shadow = 0
+mesh = SubResource("SphereMesh_8f2db")
+
+[node name="HangingChain" parent="Furniture/Lights/CeilingLampRound8" instance=ExtResource("15_wbqnw")]
+transform = Transform3D(0.429614, 0, 0, 0, 0.429614, 0, 0, 0, 0.429614, 0, 0.754433, 0)
+
+[node name="CeilingLampRound9" parent="Furniture/Lights" instance=ExtResource("14_msoki")]
+transform = Transform3D(2.39863, 0, 0, 0, 2.39863, 0, 0, 0, 2.39863, -11.0464, 4.08264, 4.08056)
+metadata/_edit_group_ = true
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Furniture/Lights/CeilingLampRound9"]
+transform = Transform3D(0.306138, 0, 0, 0, -1.33817e-08, 0.306138, 0, -0.306138, -1.33817e-08, -0.011, -0.305948, -0.015)
+light_energy = 1.616
+light_bake_mode = 1
+shadow_enabled = true
+shadow_blur = 7.25
+omni_range = 17.859
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Furniture/Lights/CeilingLampRound9"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0105493, -0.262, -0.0148314)
+cast_shadow = 0
+mesh = SubResource("SphereMesh_8f2db")
+
+[node name="HangingChain" parent="Furniture/Lights/CeilingLampRound9" instance=ExtResource("15_wbqnw")]
+transform = Transform3D(0.429614, 0, 0, 0, 0.429614, 0, 0, 0, 0.429614, 0, 0.754433, 0)
+
+[node name="CeilingLampRound10" parent="Furniture/Lights" instance=ExtResource("14_msoki")]
+transform = Transform3D(3.2665, 0, 0, 0, 3.2665, 0, 0, 0, 3.2665, -7.53868, 4.70639, 8.64136)
+visible = false
+metadata/_edit_group_ = true
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Furniture/Lights/CeilingLampRound10"]
+transform = Transform3D(0.306138, 0, 0, 0, -1.33817e-08, 0.306138, 0, -0.306138, -1.33817e-08, -0.0109999, -0.305948, -0.015)
+light_energy = 1.616
+light_bake_mode = 1
+shadow_enabled = true
+shadow_blur = 7.25
+omni_range = 17.859
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Furniture/Lights/CeilingLampRound10"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0105493, -0.262, -0.0148314)
+cast_shadow = 0
+mesh = SubResource("SphereMesh_8f2db")
+
+[node name="HangingChain" parent="Furniture/Lights/CeilingLampRound10" instance=ExtResource("15_wbqnw")]
+transform = Transform3D(0.429614, 0, 0, 0, 0.429614, 0, 0, 0, 0.429614, 0, 0.754433, 0)
+
+[node name="CeilingLampRound11" parent="Furniture/Lights" instance=ExtResource("14_msoki")]
+transform = Transform3D(2.39863, 0, 0, 0, 2.39863, 0, 0, 0, 2.39863, -4.20171, 4.08271, 4.08049)
+metadata/_edit_group_ = true
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Furniture/Lights/CeilingLampRound11"]
+transform = Transform3D(0.306138, 0, 0, 0, -1.33817e-08, 0.306138, 0, -0.306138, -1.33817e-08, -0.0110006, -0.305948, -0.015)
+light_energy = 1.616
+light_bake_mode = 1
+shadow_enabled = true
+shadow_blur = 7.25
+omni_range = 17.859
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Furniture/Lights/CeilingLampRound11"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0105493, -0.262, -0.0148314)
+cast_shadow = 0
+mesh = SubResource("SphereMesh_8f2db")
+
+[node name="HangingChain" parent="Furniture/Lights/CeilingLampRound11" instance=ExtResource("15_wbqnw")]
+transform = Transform3D(0.429614, 0, 0, 0, 0.429614, 0, 0, 0, 0.429614, 0, 0.754433, 0)
+
+[node name="CeilingLampRound12" parent="Furniture/Lights" instance=ExtResource("14_msoki")]
+transform = Transform3D(2.39863, 0, 0, 0, 2.39863, 0, 0, 0, 2.39863, -4.20171, 4.08271, 7.9426)
+metadata/_edit_group_ = true
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Furniture/Lights/CeilingLampRound12"]
+transform = Transform3D(0.306138, 0, 0, 0, -1.33817e-08, 0.306138, 0, -0.306138, -1.33817e-08, -0.0110006, -0.305948, -0.015)
+light_energy = 1.616
+light_bake_mode = 1
+shadow_enabled = true
+shadow_blur = 7.25
+omni_range = 17.859
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Furniture/Lights/CeilingLampRound12"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0105493, -0.262, -0.0148314)
+cast_shadow = 0
+mesh = SubResource("SphereMesh_8f2db")
+
+[node name="HangingChain" parent="Furniture/Lights/CeilingLampRound12" instance=ExtResource("15_wbqnw")]
+transform = Transform3D(0.429614, 0, 0, 0, 0.429614, 0, 0, 0, 0.429614, 0, 0.754433, 0)
+
+[node name="CeilingLampRound13" parent="Furniture/Lights" instance=ExtResource("14_msoki")]
+transform = Transform3D(2.39863, 0, 0, 0, 2.39863, 0, 0, 0, 2.39863, -11.0464, 4.08264, 7.94266)
+metadata/_edit_group_ = true
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Furniture/Lights/CeilingLampRound13"]
+transform = Transform3D(0.306138, 0, 0, 0, -1.33817e-08, 0.306138, 0, -0.306138, -1.33817e-08, -0.0105493, -0.305737, -0.0148314)
+light_energy = 1.616
+light_bake_mode = 1
+shadow_enabled = true
+shadow_blur = 7.25
+omni_range = 17.859
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Furniture/Lights/CeilingLampRound13"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0105493, -0.261812, -0.0148314)
+cast_shadow = 0
+mesh = SubResource("SphereMesh_8f2db")
+
+[node name="HangingChain" parent="Furniture/Lights/CeilingLampRound13" instance=ExtResource("15_wbqnw")]
 transform = Transform3D(0.429614, 0, 0, 0, 0.429614, 0, 0, 0, 0.429614, 0, 0.754433, 0)
 
 [node name="CeilingLightLong" parent="Furniture/Lights" instance=ExtResource("17_q3f35")]
@@ -1082,17 +1355,22 @@ surface_material_override/0 = SubResource("StandardMaterial3D_q3f35")
 
 [node name="OmniLight3D" type="OmniLight3D" parent="Furniture/Lights/CeilingLightLong"]
 transform = Transform3D(0.310071, 0, 0, 0, 0.310071, 0, 0, 0, 0.310071, 0, -0.131196, 0)
-light_energy = 0.491
+light_energy = 1.616
+light_bake_mode = 1
 shadow_enabled = true
 
 [node name="OmniLight3D2" type="OmniLight3D" parent="Furniture/Lights/CeilingLightLong"]
 transform = Transform3D(0.310071, 0, 0, 0, 0.310071, 0, 0, 0, 0.310071, 0, -0.131196, -0.148605)
+visible = false
 light_energy = 0.491
+light_bake_mode = 1
 shadow_enabled = true
 
 [node name="OmniLight3D3" type="OmniLight3D" parent="Furniture/Lights/CeilingLightLong"]
 transform = Transform3D(0.310071, 0, 0, 0, 0.310071, 0, 0, 0, 0.310071, 0, -0.131196, 0.151411)
+visible = false
 light_energy = 0.491
+light_bake_mode = 1
 shadow_enabled = true
 
 [node name="CeilingLightLong2" parent="Furniture/Lights" instance=ExtResource("17_q3f35")]
@@ -1119,17 +1397,22 @@ surface_material_override/0 = SubResource("StandardMaterial3D_q3f35")
 
 [node name="OmniLight3D" type="OmniLight3D" parent="Furniture/Lights/CeilingLightLong2"]
 transform = Transform3D(0.310071, 0, 0, 0, 0.310071, 0, 0, 0, 0.310071, 0, -0.131196, 0)
-light_energy = 0.491
+light_energy = 1.616
+light_bake_mode = 1
 shadow_enabled = true
 
 [node name="OmniLight3D2" type="OmniLight3D" parent="Furniture/Lights/CeilingLightLong2"]
 transform = Transform3D(0.310071, 0, 0, 0, 0.310071, 0, 0, 0, 0.310071, 0, -0.131196, -0.148605)
+visible = false
 light_energy = 0.491
+light_bake_mode = 1
 shadow_enabled = true
 
 [node name="OmniLight3D3" type="OmniLight3D" parent="Furniture/Lights/CeilingLightLong2"]
 transform = Transform3D(0.310071, 0, 0, 0, 0.310071, 0, 0, 0, 0.310071, 0, -0.131196, 0.151411)
+visible = false
 light_energy = 0.491
+light_bake_mode = 1
 shadow_enabled = true
 
 [node name="CeilingLightLong3" parent="Furniture/Lights" instance=ExtResource("17_q3f35")]
@@ -1156,17 +1439,192 @@ surface_material_override/0 = SubResource("StandardMaterial3D_q3f35")
 
 [node name="OmniLight3D" type="OmniLight3D" parent="Furniture/Lights/CeilingLightLong3"]
 transform = Transform3D(0.310071, 0, 0, 0, 0.310071, 0, 0, 0, 0.310071, 0, -0.131196, 0)
-light_energy = 0.491
+light_energy = 1.616
+light_bake_mode = 1
 shadow_enabled = true
 
 [node name="OmniLight3D2" type="OmniLight3D" parent="Furniture/Lights/CeilingLightLong3"]
 transform = Transform3D(0.310071, 0, 0, 0, 0.310071, 0, 0, 0, 0.310071, 0, -0.131196, -0.148605)
+visible = false
 light_energy = 0.491
+light_bake_mode = 1
 shadow_enabled = true
 
 [node name="OmniLight3D3" type="OmniLight3D" parent="Furniture/Lights/CeilingLightLong3"]
 transform = Transform3D(0.310071, 0, 0, 0, 0.310071, 0, 0, 0, 0.310071, 0, -0.131196, 0.151411)
+visible = false
 light_energy = 0.491
+light_bake_mode = 1
+shadow_enabled = true
+
+[node name="CeilingLightLong4" parent="Furniture/Lights" instance=ExtResource("17_q3f35")]
+transform = Transform3D(3.22507, 0, 0, 0, 3.22507, 0, 0, 0, 3.22507, -3.5, 2.752, 0)
+metadata/_edit_group_ = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Furniture/Lights/CeilingLightLong4"]
+transform = Transform3D(0.0167622, 0, 0, 0, -1.02237e-08, 0.0167622, 0, -0.233891, -7.327e-10, -0.000747204, -0.0562933, 0)
+cast_shadow = 0
+mesh = SubResource("CylinderMesh_w4jjc")
+surface_material_override/0 = SubResource("StandardMaterial3D_q3f35")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Furniture/Lights/CeilingLightLong4"]
+transform = Transform3D(0.0167622, 0, 0, 0, -1.02237e-08, 0.0167622, 0, -0.233891, -7.327e-10, -0.0416465, -0.0502783, 0)
+cast_shadow = 0
+mesh = SubResource("CylinderMesh_w4jjc")
+surface_material_override/0 = SubResource("StandardMaterial3D_q3f35")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="Furniture/Lights/CeilingLightLong4"]
+transform = Transform3D(0.0167622, 0, 0, 0, -1.02237e-08, 0.0167622, 0, -0.233891, -7.327e-10, 0.0385385, -0.0502783, 0)
+cast_shadow = 0
+mesh = SubResource("CylinderMesh_w4jjc")
+surface_material_override/0 = SubResource("StandardMaterial3D_q3f35")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Furniture/Lights/CeilingLightLong4"]
+transform = Transform3D(0.310071, 0, 0, 0, 0.310071, 0, 0, 0, 0.310071, 0, -0.131196, 0)
+visible = false
+light_energy = 1.616
+light_bake_mode = 1
+shadow_enabled = true
+
+[node name="OmniLight3D2" type="OmniLight3D" parent="Furniture/Lights/CeilingLightLong4"]
+transform = Transform3D(0.310071, 0, 0, 0, 0.310071, 0, 0, 0, 0.310071, 0, -0.131196, -0.148605)
+visible = false
+light_energy = 0.491
+light_bake_mode = 1
+shadow_enabled = true
+
+[node name="OmniLight3D3" type="OmniLight3D" parent="Furniture/Lights/CeilingLightLong4"]
+transform = Transform3D(0.310071, 0, 0, 0, 0.310071, 0, 0, 0, 0.310071, 0, -0.131196, 0.151411)
+visible = false
+light_energy = 0.491
+light_bake_mode = 1
+shadow_enabled = true
+
+[node name="CeilingLightLong5" parent="Furniture/Lights" instance=ExtResource("17_q3f35")]
+transform = Transform3D(3.22507, 0, 0, 0, 3.22507, 0, 0, 0, 3.22507, -6.5, 2.752, 0)
+metadata/_edit_group_ = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Furniture/Lights/CeilingLightLong5"]
+transform = Transform3D(0.0167622, 0, 0, 0, -1.02237e-08, 0.0167622, 0, -0.233891, -7.327e-10, -0.000747204, -0.0562933, 0)
+cast_shadow = 0
+mesh = SubResource("CylinderMesh_w4jjc")
+surface_material_override/0 = SubResource("StandardMaterial3D_q3f35")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Furniture/Lights/CeilingLightLong5"]
+transform = Transform3D(0.0167622, 0, 0, 0, -1.02237e-08, 0.0167622, 0, -0.233891, -7.327e-10, -0.0416465, -0.0502783, 0)
+cast_shadow = 0
+mesh = SubResource("CylinderMesh_w4jjc")
+surface_material_override/0 = SubResource("StandardMaterial3D_q3f35")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="Furniture/Lights/CeilingLightLong5"]
+transform = Transform3D(0.0167622, 0, 0, 0, -1.02237e-08, 0.0167622, 0, -0.233891, -7.327e-10, 0.0385385, -0.0502783, 0)
+cast_shadow = 0
+mesh = SubResource("CylinderMesh_w4jjc")
+surface_material_override/0 = SubResource("StandardMaterial3D_q3f35")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Furniture/Lights/CeilingLightLong5"]
+transform = Transform3D(0.310071, 0, 0, 0, 0.310071, 0, 0, 0, 0.310071, 0, -0.131196, 0)
+light_energy = 1.616
+light_bake_mode = 1
+shadow_enabled = true
+
+[node name="OmniLight3D2" type="OmniLight3D" parent="Furniture/Lights/CeilingLightLong5"]
+transform = Transform3D(0.310071, 0, 0, 0, 0.310071, 0, 0, 0, 0.310071, 0, -0.131196, -0.148605)
+visible = false
+light_energy = 0.491
+light_bake_mode = 1
+shadow_enabled = true
+
+[node name="OmniLight3D3" type="OmniLight3D" parent="Furniture/Lights/CeilingLightLong5"]
+transform = Transform3D(0.310071, 0, 0, 0, 0.310071, 0, 0, 0, 0.310071, 0, -0.131196, 0.151411)
+visible = false
+light_energy = 0.491
+light_bake_mode = 1
+shadow_enabled = true
+
+[node name="CeilingLightLong6" parent="Furniture/Lights" instance=ExtResource("17_q3f35")]
+transform = Transform3D(3.22507, 0, 0, 0, 3.22507, 0, 0, 0, 3.22507, -7.5, 2.752, 0)
+visible = false
+metadata/_edit_group_ = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Furniture/Lights/CeilingLightLong6"]
+transform = Transform3D(0.0167622, 0, 0, 0, -1.02237e-08, 0.0167622, 0, -0.233891, -7.327e-10, -0.000747204, -0.0562933, 0)
+cast_shadow = 0
+mesh = SubResource("CylinderMesh_w4jjc")
+surface_material_override/0 = SubResource("StandardMaterial3D_q3f35")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Furniture/Lights/CeilingLightLong6"]
+transform = Transform3D(0.0167622, 0, 0, 0, -1.02237e-08, 0.0167622, 0, -0.233891, -7.327e-10, -0.0416465, -0.0502783, 0)
+cast_shadow = 0
+mesh = SubResource("CylinderMesh_w4jjc")
+surface_material_override/0 = SubResource("StandardMaterial3D_q3f35")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="Furniture/Lights/CeilingLightLong6"]
+transform = Transform3D(0.0167622, 0, 0, 0, -1.02237e-08, 0.0167622, 0, -0.233891, -7.327e-10, 0.0385385, -0.0502783, 0)
+cast_shadow = 0
+mesh = SubResource("CylinderMesh_w4jjc")
+surface_material_override/0 = SubResource("StandardMaterial3D_q3f35")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Furniture/Lights/CeilingLightLong6"]
+transform = Transform3D(0.310071, 0, 0, 0, 0.310071, 0, 0, 0, 0.310071, 0, -0.131196, 0)
+light_energy = 1.616
+light_bake_mode = 1
+shadow_enabled = true
+
+[node name="OmniLight3D2" type="OmniLight3D" parent="Furniture/Lights/CeilingLightLong6"]
+transform = Transform3D(0.310071, 0, 0, 0, 0.310071, 0, 0, 0, 0.310071, 0, -0.131196, -0.148605)
+visible = false
+light_energy = 0.491
+light_bake_mode = 1
+shadow_enabled = true
+
+[node name="OmniLight3D3" type="OmniLight3D" parent="Furniture/Lights/CeilingLightLong6"]
+transform = Transform3D(0.310071, 0, 0, 0, 0.310071, 0, 0, 0, 0.310071, 0, -0.131196, 0.151411)
+visible = false
+light_energy = 0.491
+light_bake_mode = 1
+shadow_enabled = true
+
+[node name="CeilingLightLong7" parent="Furniture/Lights" instance=ExtResource("17_q3f35")]
+transform = Transform3D(3.22507, 0, 0, 0, 3.22507, 0, 0, 0, 3.22507, -9.5, 2.752, 0)
+metadata/_edit_group_ = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Furniture/Lights/CeilingLightLong7"]
+transform = Transform3D(0.0167622, 0, 0, 0, -1.02237e-08, 0.0167622, 0, -0.233891, -7.327e-10, -0.000747204, -0.0562933, 0)
+cast_shadow = 0
+mesh = SubResource("CylinderMesh_w4jjc")
+surface_material_override/0 = SubResource("StandardMaterial3D_q3f35")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Furniture/Lights/CeilingLightLong7"]
+transform = Transform3D(0.0167622, 0, 0, 0, -1.02237e-08, 0.0167622, 0, -0.233891, -7.327e-10, -0.0416465, -0.0502783, 0)
+cast_shadow = 0
+mesh = SubResource("CylinderMesh_w4jjc")
+surface_material_override/0 = SubResource("StandardMaterial3D_q3f35")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="Furniture/Lights/CeilingLightLong7"]
+transform = Transform3D(0.0167622, 0, 0, 0, -1.02237e-08, 0.0167622, 0, -0.233891, -7.327e-10, 0.0385385, -0.0502783, 0)
+cast_shadow = 0
+mesh = SubResource("CylinderMesh_w4jjc")
+surface_material_override/0 = SubResource("StandardMaterial3D_q3f35")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Furniture/Lights/CeilingLightLong7"]
+transform = Transform3D(0.310071, 0, 0, 0, 0.310071, 0, 0, 0, 0.310071, 0, -0.131196, 0)
+light_energy = 1.616
+light_bake_mode = 1
+shadow_enabled = true
+
+[node name="OmniLight3D2" type="OmniLight3D" parent="Furniture/Lights/CeilingLightLong7"]
+transform = Transform3D(0.310071, 0, 0, 0, 0.310071, 0, 0, 0, 0.310071, 0, -0.131196, -0.148605)
+visible = false
+light_energy = 0.491
+light_bake_mode = 1
+shadow_enabled = true
+
+[node name="OmniLight3D3" type="OmniLight3D" parent="Furniture/Lights/CeilingLightLong7"]
+transform = Transform3D(0.310071, 0, 0, 0, 0.310071, 0, 0, 0, 0.310071, 0, -0.131196, 0.151411)
+visible = false
+light_energy = 0.491
+light_bake_mode = 1
 shadow_enabled = true
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]

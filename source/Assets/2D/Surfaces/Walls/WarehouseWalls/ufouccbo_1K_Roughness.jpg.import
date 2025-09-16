@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bes0o0f6ea31q"
-path.s3tc="res://.godot/imported/ufouccbo_1K_AO.jpg-b80dddf18224e0b7dcc9c45a84993d58.s3tc.ctex"
+uid="uid://cg3k76tm4x5wr"
+path.s3tc="res://.godot/imported/ufouccbo_1K_Roughness.jpg-7aad1b2475db5b1711ff843c98dfc34d.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://Assets/3D/Wall/Materials/ufouccbo_1K_AO.jpg"
-dest_files=["res://.godot/imported/ufouccbo_1K_AO.jpg-b80dddf18224e0b7dcc9c45a84993d58.s3tc.ctex"]
+source_file="res://Assets/2D/Surfaces/Walls/WarehouseWalls/ufouccbo_1K_Roughness.jpg"
+dest_files=["res://.godot/imported/ufouccbo_1K_Roughness.jpg-7aad1b2475db5b1711ff843c98dfc34d.s3tc.ctex"]
 
 [params]
 
