@@ -8,7 +8,7 @@ var cmultiplayer: SceneMultiplayer
 var max_clients = 4
 var port = 50000
 var description: String
-var code
+var code: String
 
 var authentication_info: Dictionary = {}
 var cryptography = Crypto.new()
@@ -19,31 +19,52 @@ var enet_peer: ENetMultiplayerPeer
 
 enum {MSG_INFO, MSG_ERROR, MSG_OK}
 
-enum {
-	PT_PLAYER_INPUT,
-	PT_INIT_INFO,
-	PT_STATE_UPDATE,
-	PT_EVENT,
-	PT_CHAT_MESSAGE,
-	PT_SPAWN_DESPAWN,
-	PT_LOBBY_MATCHMAKING,
-	PT_PING,
-	PT_SCORE_STATS,
-	PT_ERROR_NOTIFICATION,
-	PT_CUSTOM_SYNC
+enum pt {
+	PLAYER_INPUT,
+	INIT_INFO,
+	STATE_UPDATE,
+	EVENT,
+	CHAT_MESSAGE,
+	SPAWN_DESPAWN,
+	LOBBY_MATCHMAKING,
+	PING,
+	SCORE_STATS,
+	ERROR_NOTIFICATION,
+	CUSTOM_SYNC
 }
+'''
+Packet Reference:
+
+_handle_peer_packet:
+	Function called for every packet recieved
+
+CLIENT INITIALIZATION:
+	1. Client sends a request to the server to be initialized
+	2. Server validates the information
+	2a. If invalid, send a callback to the client, remove any client_info
+		for the peer, and disconnect the peer
+	2b. If valid, send a callback and continue
+	3. Send information about client to peers
+	4. Send information about game state to client
+	5. Send information about peers to client
+	6. Send initialization request for client to peers
+	7. Send initialization request for each peer to client
+	8. Set client state to active
+
+'''
+
 
 func _handle_peer_packet(id: int, packet: PackedByteArray):
 	var type = packet.decode_u8(0)
 	match type:
-		PT_INIT_INFO:
-			pt_handle_player_initialization(id, packet)
+		pt.INIT_INFO:
+			init_client_validate(id, packet)
 
 
 
-func pt_handle_player_initialization(id: int, packet: PackedByteArray):
+func init_client_validate(id: int, packet: PackedByteArray):
 	if not client_connected(id):
-		debug("{pt_handle_player_initialization} Client " + str(id) + " not connected.", MSG_ERROR)
+		debug("{pt_process_player_initialization} Client " + str(id) + " not connected.", MSG_ERROR)
 	var offset = 1
 	var username_len = packet.decode_u8(offset)
 	offset += 1
@@ -51,8 +72,35 @@ func pt_handle_player_initialization(id: int, packet: PackedByteArray):
 	offset += username_len
 	var character_model = packet.decode_u8(offset)
 	# TODO: insert character model & username validation here
+	var success = true
 	client_info[id]['username'] = username
 	client_info[id]['character_model'] = character_model
+	init_client_validate_callback(id, success)
+
+func init_client_validate_callback(id: int, success: bool):
+	if success:
+		debug("Client player initialization successful.", MSG_INFO)
+		var packet = PackedByteArray()
+		
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -64,7 +112,7 @@ func pt_handle_player_initialization(id: int, packet: PackedByteArray):
 func client_connected(id: int):
 	return client_info[id]['connected']
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if not cmultiplayer:
 		return
 	cmultiplayer.poll()
@@ -117,6 +165,7 @@ func authenticate_client(peer, data: PackedByteArray):
 			debug("Authentication failed for peer " + str(peer) + " at " + ip + ". (Incorrect HMAC length) Attempt " + str(authentication_info[ip]['attempts']) + "/3.", MSG_ERROR)
 			fail_authentication(peer)
 		else:
+			@warning_ignore('shadowed_global_identifier')
 			var hash = cryptography.hmac_digest(HashingContext.HASH_SHA256, str(code).to_utf8_buffer(), authentication_info[ip]['combined_nonce'])
 			if cryptography.constant_time_compare(hash, data):
 				var to_send = PackedByteArray()
