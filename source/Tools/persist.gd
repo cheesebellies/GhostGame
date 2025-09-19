@@ -1,5 +1,10 @@
 extends Node
 
+func client_failed_authentication():
+	MultiplayerController.switch_scene(MultiplayerController.SCENE_GENERIC_LOADING)
+	MultiplayerController.clear_data()
+	MultiplayerController.switch_scene(MultiplayerController.SCENE_MAIN_MENU)
+
 func menu_join_game(ip: String, port: int, code):
 	MultiplayerController.switch_scene(MultiplayerController.SCENE_HUB_LOADING)
 	MultiplayerController.close_scanner()
@@ -9,7 +14,7 @@ func menu_join_game(ip: String, port: int, code):
 		return 0
 	else:
 		MultiplayerController.clear_data()
-		await Tools.wait(2000)
+		await Tools.wait(2)
 		MultiplayerController.switch_scene(MultiplayerController.SCENE_MAIN_MENU)
 
 func menu_singleplayer():
@@ -21,7 +26,7 @@ func menu_singleplayer():
 			MultiplayerController.switch_scene(MultiplayerController.SCENE_HUB_WORLD)
 			return 0
 	MultiplayerController.clear_data()
-	await Tools.wait(2000)
+	await Tools.wait(2)
 	MultiplayerController.switch_scene(MultiplayerController.SCENE_MAIN_MENU)
 
 func menu_host_game(player_max,description,private=false,code=''):

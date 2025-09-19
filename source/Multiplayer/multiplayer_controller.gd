@@ -11,13 +11,14 @@ var port_min = 50000
 var port_max = 50100
 
 enum {MSG_INFO, MSG_ERROR, MSG_OK}
-enum {SCENE_HUB_LOADING, SCENE_MAIN_MENU, SCENE_TEST_WORLD, SCENE_HUB_WORLD}
+enum {SCENE_HUB_LOADING, SCENE_MAIN_MENU, SCENE_TEST_WORLD, SCENE_HUB_WORLD, SCENE_GENERIC_LOADING}
 
 const scene_reference := {
 	SCENE_HUB_LOADING: 'res://Tests/temp_loading.tscn',
 	SCENE_MAIN_MENU: 'res://Menu/main_menu.tscn',
 	SCENE_HUB_WORLD: 'res://World/hub/hub.tscn',
-	SCENE_TEST_WORLD: 'res://Tests/asset_test.tscn'
+	SCENE_TEST_WORLD: 'res://Tests/asset_test.tscn',
+	SCENE_GENERIC_LOADING: 'res://Tests/temp_loading.tscn'
 }
 
 const server_node = preload("res://Multiplayer/server.tscn")

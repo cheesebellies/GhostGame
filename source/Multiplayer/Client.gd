@@ -3,7 +3,7 @@ extends Node
 const NONCE_LENGTH = 128
 const HMAC_LENGTH = 32
 
-var cmultiplayer
+var cmultiplayer: SceneMultiplayer
 
 var admin
 var ip
@@ -30,6 +30,9 @@ func debug(msg, type: int):
 		2:
 			color = "light_green"
 	print_rich("[color=" + color + "][Client][/color] " + str(msg))
+
+func close():
+	return 0
 
 func init():
 	cmultiplayer.peer_authenticating.connect(_handle_peer_authenticating)
@@ -78,7 +81,8 @@ func authenticate(peer, data: PackedByteArray):
 		cmultiplayer.send_auth(peer, hash)
 
 func failed_authentication():
-	pass
+	debug("Returning to menu...", MSG_INFO)
+	Persist.client_failed_authentication()
 
 func _handle_connected_to_server():
 	connection_update.emit(true)

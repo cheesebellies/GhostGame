@@ -1,24 +1,45 @@
 extends Node
 
+#Constants
 const NONCE_LENGTH = 128
 const HMAC_LENGTH = 32
 
+#"Custom" (local) multiplayer implementation
 var cmultiplayer: SceneMultiplayer
+var enet_peer: ENetMultiplayerPeer
 
+#Server information
 var max_clients = 4
 var port = 50000
 var description: String
 var code: String
 
+#Authentication
 var authentication_info: Dictionary = {}
 var cryptography = Crypto.new()
 
+#Initialization
+var initialized_peers : Array[int] = []
+var sending_state : Array[int] = []
+var initializing : Array[int] = []
+var initialized : Array[int] = []
+
+#Game state
 var client_info: Dictionary = {}
+var game_state: Dictionary = {}
 
-var enet_peer: ENetMultiplayerPeer
-
+#Enums
 enum {MSG_INFO, MSG_ERROR, MSG_OK}
-
+enum ch {
+	WORLDEVENT,	# Reliable
+	POSITIONAL,	# Unreliable ordered
+	PHYSICS,		# Unreliable ordered
+	PLAYEREVENT,# Reliable
+	CHAT,		# Reliable
+	VOICE,		# Unreliable ordered
+	INIT,		# Typically reliable, unreliable for init failure
+	DEBUG		# Reliable
+}
 enum pt {
 	PLAYER_INPUT,
 	INIT_INFO,
@@ -32,39 +53,50 @@ enum pt {
 	ERROR_NOTIFICATION,
 	CUSTOM_SYNC
 }
+
+
 '''
 Packet Reference:
 
-_handle_peer_packet:
-	Function called for every packet recieved
-
 CLIENT INITIALIZATION:
 	1. Client sends a request to the server to be initialized
-	2. Server validates the information
-	2a. If invalid, send a callback to the client, remove any client_info
+X	2. Server validates the information
+X	2a. If invalid, send a callback to the client, remove any client_info
 		for the peer, and disconnect the peer
-	2b. If valid, send a callback and continue
-	3. Send information about client to peers
-	4. Send information about game state to client
-	5. Send information about peers to client
+X	2b. If valid, send a callback and continue
+x	3. Send information about client to peers
+x	4. Send information about game state to client
+x	5. Send information about peers to client
 	6. Send initialization request for client to peers
 	7. Send initialization request for each peer to client
 	8. Set client state to active
-
+	
 '''
+
+
+
 
 
 func _handle_peer_packet(id: int, packet: PackedByteArray):
 	var type = packet.decode_u8(0)
 	match type:
 		pt.INIT_INFO:
-			init_client_validate(id, packet)
+			var start = packet.decode_u8(1) == 0
+			if start:
+				sending_state.append(id)
+				if len(sending_state) == 0:
+					initialized_peers = client_info.keys()
+					
+				if len(initializing) == 0:
+					init_client_validate(id, packet)
+			else:
+				init_complete_initialization(id, packet)
 
 
 
 func init_client_validate(id: int, packet: PackedByteArray):
 	if not client_connected(id):
-		debug("{pt_process_player_initialization} Client " + str(id) + " not connected.", MSG_ERROR)
+		debug("{init} Client " + str(id) + " not connected.", MSG_ERROR)
 	var offset = 1
 	var username_len = packet.decode_u8(offset)
 	offset += 1
@@ -79,12 +111,57 @@ func init_client_validate(id: int, packet: PackedByteArray):
 
 func init_client_validate_callback(id: int, success: bool):
 	if success:
-		debug("Client player initialization successful.", MSG_INFO)
+		debug("{init} Client " + str(id) + ": init info validated.", MSG_INFO)
 		var packet = PackedByteArray()
-		
-
-
-
+		packet.resize(2)
+		packet.encode_u8(0,pt.INIT_INFO)
+		packet.encode_u8(0,0)
+		cmultiplayer.send_bytes(packet,id,MultiplayerPeer.TRANSFER_MODE_RELIABLE, ch.INIT)
+	else:
+		debug("{init} Client " + str(id) + ": init info invalid.", MSG_ERROR)
+		var packet = PackedByteArray()
+		packet.resize(2)
+		packet.encode_u8(0,pt.INIT_INFO)
+		packet.encode_u8(0,1)
+		cmultiplayer.send_bytes(packet,id,MultiplayerPeer.TRANSFER_MODE_UNRELIABLE, ch.INIT)
+		cmultiplayer.disconnect_peer(id)
+		sending_state.erase(id)
+		client_info.erase(id)
+		return
+	var client_state = client_info.get(id)
+	if not client_state:
+		debug("Client " + str(id) + " does not exist.", MSG_ERROR)
+		return -1
+	var packet := PackedByteArray()
+	packet.resize(2)
+	packet.encode_u8(0,pt.INIT_INFO)
+	packet.encode_u8(1,1)
+	packet += var_to_bytes(client_state)
+	for peer in cmultiplayer.get_peers():
+		if peer != id:
+			cmultiplayer.send_bytes(packet, peer, MultiplayerPeer.TRANSFER_MODE_RELIABLE, ch.INIT)
+	packet = PackedByteArray()
+	packet.resize(2)
+	packet.encode_u8(0,pt.INIT_INFO)
+	packet.encode_u8(0,2)
+	packet += var_to_bytes(game_state)
+	cmultiplayer.send_bytes(packet, id, MultiplayerPeer.TRANSFER_MODE_RELIABLE, ch.INIT)
+	var peerdata: Array[PackedByteArray] = []
+	for peer in cmultiplayer.get_peers():
+		if peer != id:
+			peerdata.append(var_to_bytes(client_info[peer]))
+	packet = PackedByteArray()
+	packet.resize(3+(len(peerdata)*4))
+	packet.encode_u8(0,pt.INIT_INFO)
+	packet.encode_u8(1,3)
+	packet.encode_u8(2,len(peerdata))
+	var offset = 3
+	for i in peerdata:
+		packet.encode_u32(offset, len(i))
+		offset += 4
+		packet += i
+	cmultiplayer.send_bytes(packet, id, MultiplayerPeer.TRANSFER_MODE_RELIABLE, ch.INIT)
+	
 
 
 
@@ -135,7 +212,7 @@ func init():
 	cmultiplayer.peer_packet.connect(_handle_peer_packet)
 	cmultiplayer.set_auth_callback(authenticate_client)
 	cmultiplayer.peer_authentication_failed.connect(_handle_authentication_failed)
-	var res = enet_peer.create_server(port, max_clients)
+	var res = enet_peer.create_server(port, max_clients, len(ch))
 	if res != 0:
 		return -1
 	cmultiplayer.multiplayer_peer = enet_peer

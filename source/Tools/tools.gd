@@ -1,9 +1,10 @@
 extends Node
 
-func wait(milliseconds: int):
-	await get_tree().create_timer(float(milliseconds)/1000).timeout
+func wait(time: float):
+	await get_tree().create_timer(time).timeout
 	return 0
 
+@warning_ignore("shadowed_global_identifier")
 func scan_for_port(min, max):
 	for port in range(min,max+1):
 		var peer = PacketPeerUDP.new()
