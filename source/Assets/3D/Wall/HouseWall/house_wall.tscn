@@ -87,7 +87,7 @@ mesh = SubResource("ArrayMesh_pq5rn")
 skeleton = NodePath("")
 
 [node name="Cube_001" type="MeshInstance3D" parent="."]
-transform = Transform3D(100, 0, 0, 0, -1.1920929e-05, 99.99999, 0, -99.99999, -1.1920929e-05, 0, 0.25, 0.20678113)
+transform = Transform3D(100, 0, 0, 0, -8.160524e-06, 78.27339, 0, -68.45543, -9.330916e-06, 0, 0.1938329, 0.1881877)
 mesh = SubResource("ArrayMesh_bspw6")
 skeleton = NodePath("")
 surface_material_override/0 = SubResource("StandardMaterial3D_aybrx")

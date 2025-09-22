@@ -89,8 +89,9 @@ func _handle_peer_packet(id: int, packet: PackedByteArray):
 					
 				if len(initializing) == 0:
 					init_client_validate(id, packet)
-			else:
-				init_complete_initialization(id, packet)
+			#else:
+				##init_complete_initialization(id, packet)
+
 
 
 

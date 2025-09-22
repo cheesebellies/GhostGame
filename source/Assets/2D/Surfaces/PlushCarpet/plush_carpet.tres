@@ -1,0 +1,15 @@
+[gd_resource type="StandardMaterial3D" load_steps=5 format=3 uid="uid://bw5nn1483vxgk"]
+
+[ext_resource type="Texture2D" uid="uid://bkaweb5tbikfj" path="res://Assets/2D/Surfaces/PlushCarpet/Plush_Carpet_umonbbqdy_1K_BaseColor.jpg" id="1_81bpu"]
+[ext_resource type="Texture2D" uid="uid://cxj0y0v3ml7mi" path="res://Assets/2D/Surfaces/PlushCarpet/Plush_Carpet_umonbbqdy_1K_AO.jpg" id="2_kr0dx"]
+[ext_resource type="Texture2D" uid="uid://dnkisnc0q02rc" path="res://Assets/2D/Surfaces/PlushCarpet/Plush_Carpet_umonbbqdy_1K_Normal.jpg" id="3_ebvbj"]
+[ext_resource type="Texture2D" uid="uid://b6wraodnh8doq" path="res://Assets/2D/Surfaces/PlushCarpet/Plush_Carpet_umonbbqdy_1K_Roughness.jpg" id="4_beo6q"]
+
+[resource]
+albedo_texture = ExtResource("1_81bpu")
+roughness_texture = ExtResource("4_beo6q")
+normal_enabled = true
+normal_texture = ExtResource("3_ebvbj")
+ao_enabled = true
+ao_texture = ExtResource("2_kr0dx")
+uv1_scale = Vector3(50, 50, 50)

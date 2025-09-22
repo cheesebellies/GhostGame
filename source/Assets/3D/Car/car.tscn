@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=3 uid="uid://dpmkceq64bg7e"]
+
+[ext_resource type="PackedScene" uid="uid://c16615koahln1" path="res://Assets/3D/Car/Chapman73.fbx" id="1_7822p"]
+
+[node name="Chapman73" instance=ExtResource("1_7822p")]
