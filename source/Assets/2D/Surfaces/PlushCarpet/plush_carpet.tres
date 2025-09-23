@@ -6,10 +6,11 @@
 [ext_resource type="Texture2D" uid="uid://b6wraodnh8doq" path="res://Assets/2D/Surfaces/PlushCarpet/Plush_Carpet_umonbbqdy_1K_Roughness.jpg" id="4_beo6q"]
 
 [resource]
+albedo_color = Color(1, 1, 0.8901961, 1)
 albedo_texture = ExtResource("1_81bpu")
 roughness_texture = ExtResource("4_beo6q")
 normal_enabled = true
 normal_texture = ExtResource("3_ebvbj")
 ao_enabled = true
 ao_texture = ExtResource("2_kr0dx")
-uv1_scale = Vector3(50, 50, 50)
+uv1_scale = Vector3(200, 200, 200)

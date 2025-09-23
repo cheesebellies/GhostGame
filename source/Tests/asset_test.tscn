@@ -173,10 +173,10 @@ transform = Transform3D(0.999938, 0, -0.0111699, 0, 1, 0, 0.0111699, 0, 0.999938
 [node name="Pallet9" parent="Shelf3" instance=ExtResource("3_xpmcy")]
 transform = Transform3D(0.997607, 0, -0.0691471, 0, 1, 0, 0.0691471, 0, 0.997607, -1.89471, 0.467944, 3.29044)
 
-[node name="BoxBig" parent="." groups=["hauntable"] instance=ExtResource("7_wns2i")]
+[node name="BoxBig" parent="." instance=ExtResource("7_wns2i")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.55289, -1.11554, 3.0107)
 
-[node name="BoxMedium" parent="." groups=["hauntable"] instance=ExtResource("8_3ydhk")]
+[node name="BoxMedium" parent="." instance=ExtResource("8_3ydhk")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.0843, -1.25205, 2.71334)
 
 [node name="BoxMediumThin" parent="." instance=ExtResource("9_hhswp")]
@@ -230,7 +230,7 @@ surface_material_override/0 = SubResource("StandardMaterial3D_7hxfu")
 transform = Transform3D(1, -1.64203e-15, 0, -1.64203e-15, 1, 0, 0, 0, 1, -0.00291067, 0.00178146, 0)
 shape = SubResource("BoxShape3D_x4t73")
 
-[node name="Box2" parent="." groups=["hauntable"] instance=ExtResource("10_kq4t5")]
+[node name="Box2" parent="." instance=ExtResource("10_kq4t5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.76189, -1.03428, -0.573979)
 
 [node name="Box3" parent="." instance=ExtResource("10_kq4t5")]

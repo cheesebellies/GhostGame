@@ -1,0 +1,10 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://c2ib2ns15s8gt"]
+
+[ext_resource type="Texture2D" uid="uid://o0h3hj0njkqt" path="res://Assets/3D/Car/materials/Generic_bodymat_dif.jpg" id="1_d8ptr"]
+
+[resource]
+resource_name = "Murphy92_Bodymat"
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("1_d8ptr")
+emission_enabled = true
+emission_energy_multiplier = 0.0

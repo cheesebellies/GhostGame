@@ -1,0 +1,10 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://kbi8b5bdtahp"]
+
+[ext_resource type="Texture2D" uid="uid://d02aylmx8bwjp" path="res://Assets/3D/Car/materials/RB1c_Tire_1k_Dif.jpg" id="1_i1tgr"]
+
+[resource]
+resource_name = "RB1c_Tire_1k"
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("1_i1tgr")
+emission_enabled = true
+emission_energy_multiplier = 0.0
