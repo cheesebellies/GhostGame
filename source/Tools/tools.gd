@@ -4,6 +4,18 @@ func wait(time: float):
 	await get_tree().create_timer(time).timeout
 	return 0
 
+func with_timeout(sig, timeout):
+	var dummy_obj = RefCounted.new()
+	dummy_obj.add_user_signal("result")
+	var sig_first = func(): dummy_obj.emit_signal("result", [true])
+	var timeout_first = func(...sig_result): dummy_obj.emit_signal("result", [false, sig_result])
+	get_tree().create_timer(timeout).timeout.connect(timeout_first)
+	sig.connect(sig_first)
+	var dummy_signal = Signal(dummy_obj, "result")
+	var result = await dummy_signal
+	dummy_obj.free()
+	return result
+
 @warning_ignore("shadowed_global_identifier")
 func scan_for_port(min, max):
 	for port in range(min,max+1):
