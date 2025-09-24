@@ -1,0 +1,10 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://desb3g0qwliur"]
+
+[ext_resource type="Texture2D" uid="uid://b8o7jmreykudc" path="res://Assets/3D/Car/materials/UCB_BOTTOM_LT_DIF.jpg" id="1_4iqwf"]
+
+[resource]
+resource_name = "UCB_BOTTOM_LT"
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("1_4iqwf")
+emission_enabled = true
+emission_energy_multiplier = 0.0

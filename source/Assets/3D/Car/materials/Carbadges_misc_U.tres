@@ -1,0 +1,11 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://cwevtfd6rm7f0"]
+
+[ext_resource type="Texture2D" uid="uid://bieu7kdb6d2xv" path="res://Assets/3D/Car/materials/Carbadges_misc_U_dif.png" id="1_ji5xj"]
+
+[resource]
+resource_name = "Carbadges_misc_U"
+transparency = 4
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("1_ji5xj")
+emission_enabled = true
+emission_energy_multiplier = 0.0

@@ -1,8 +1,8 @@
 extends CharacterBody3D
 
-@export var walk_speed: float = 5.0
-@export var sprint_speed: float = 8.5
-@export var jump_height: float = 1.6
+@export var walk_speed: float = 2.5
+@export var sprint_speed: float = 4.0
+@export var jump_height: float = 0.5
 @export var mouse_sens: float = 0.003
 @export var cam_stand_height: float = 1.3
 @export var cam_crouch_height: float = 0.8

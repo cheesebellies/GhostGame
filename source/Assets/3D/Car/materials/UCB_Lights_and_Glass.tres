@@ -1,0 +1,10 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://fxunah2omcrs"]
+
+[ext_resource type="Texture2D" uid="uid://b7ibv6xvfx5hr" path="res://Assets/3D/Car/materials/UCB_Lights_and_Glass_Dif.jpg" id="1_kydbv"]
+
+[resource]
+resource_name = "UCB_Lights_and_Glass"
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("1_kydbv")
+emission_enabled = true
+emission_energy_multiplier = 0.0
