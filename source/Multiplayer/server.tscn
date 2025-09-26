@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://gbivte5tcksm"]
 
-[ext_resource type="Script" uid="uid://bdxkxk63r2hc3" path="res://Multiplayer/server.gd" id="1_gvnof"]
+[ext_resource type="Script" uid="uid://bdxkxk63r2hc3" path="res://Multiplayer/serverr.gd" id="1_gvnof"]
 
 [node name="Server" type="Node"]
 process_mode = 3
