@@ -19,6 +19,67 @@ var enet_peer: ENetMultiplayerPeer
 signal connection_update(type: bool)
 
 enum {MSG_INFO, MSG_ERROR, MSG_OK}
+enum ch {
+	WORLDEVENT,	# Reliable
+	POSITIONAL,	# Unreliable ordered
+	PHYSICS,		# Unreliable ordered
+	PLAYEREVENT,# Reliable
+	CHAT,		# Reliable
+	VOICE,		# Unreliable ordered
+	INIT,		# Reliable
+	DEBUG		# Reliable
+}
+enum pt {
+	PLAYER_INPUT,
+	INIT_INFO,
+	DEINIT_INFO,
+	STATE_UPDATE,
+	EVENT,
+	CHAT_MESSAGE,
+	SPAWN_DESPAWN,
+	LOBBY_MATCHMAKING,
+	PING,
+	SCORE_STATS,
+	ERROR_NOTIFICATION,
+	CUSTOM_SYNC
+}
+enum init_step {
+	VALIDATION_SUCCESS,
+	VALIDATION_FAILURE,
+	CLIENT_STATE,
+	GAME_STATE,
+	PEER_STATE,
+	REQUEST_INIT,
+	INIT_FAILURE
+}
+
+
+
+
+func _handle_server_packet(id: int, packet: PackedByteArray):
+	pass
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 func debug(msg, type: int):
 	var color = ""
@@ -41,6 +102,7 @@ func init():
 	cmultiplayer.connected_to_server.connect(_handle_connected_to_server)
 	cmultiplayer.connection_failed.connect(_handle_connection_failed)
 	cmultiplayer.server_disconnected.connect(_handle_server_disconnected)
+	cmultiplayer.peer_packet.connect(_handle_server_packet)
 	var err = enet_peer.create_client(ip, port)
 	if err != OK:
 		return -1
@@ -77,6 +139,7 @@ func authenticate(peer, data: PackedByteArray):
 			debug("Authentication failed. (Incorrect nonce length).", MSG_ERROR)
 			failed_authentication()
 	else:
+		@warning_ignore("shadowed_global_identifier")
 		var hash = cryptography.hmac_digest(HashingContext.HASH_SHA256, str(code).to_utf8_buffer(), authentication_data + data)
 		cmultiplayer.send_auth(peer, hash)
 

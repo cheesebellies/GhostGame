@@ -3,6 +3,7 @@ extends Node
 #Constants
 const NONCE_LENGTH = 128
 const HMAC_LENGTH = 32
+const INIT_TIMEOUT = 5.0
 
 #"Custom" (local) multiplayer implementation
 var cmultiplayer: SceneMultiplayer
@@ -19,10 +20,13 @@ var authentication_info: Dictionary = {}
 var cryptography = Crypto.new()
 
 #Initialization
-var initialized_peers : Array[int] = []
-var sending_state : Array[int] = []
-var initializing : Array[int] = []
 var initialized : Array[int] = []
+var succeeded: Array[int] = []
+var init_queue: Array = []
+var initializing: bool = false
+var initializing_id: int
+var init_success: bool = true
+signal all_init(success)
 
 #Game state
 var client_info: Dictionary = {}
@@ -37,12 +41,13 @@ enum ch {
 	PLAYEREVENT,# Reliable
 	CHAT,		# Reliable
 	VOICE,		# Unreliable ordered
-	INIT,		# Typically reliable, unreliable for init failure
+	INIT,		# Reliable
 	DEBUG		# Reliable
 }
 enum pt {
 	PLAYER_INPUT,
 	INIT_INFO,
+	DEINIT_INFO,
 	STATE_UPDATE,
 	EVENT,
 	CHAT_MESSAGE,
@@ -53,12 +58,31 @@ enum pt {
 	ERROR_NOTIFICATION,
 	CUSTOM_SYNC
 }
+enum init_step {
+	VALIDATION_SUCCESS,
+	VALIDATION_FAILURE,
+	CLIENT_STATE,
+	GAME_STATE,
+	PEER_STATE,
+	REQUEST_INIT,
+	INIT_FAILURE
+}
+
+
+
+'''
+TODO:
+	- Consider reworking initialization to just send out single packets
+	  for simplicity.
+'''
+
 
 
 '''
 Packet Reference:
 
-CLIENT INITIALIZATION:
+-----------------------------------------------------------------------------
+1. CLIENT INITIALIZATION:
 	1. Client sends a request to the server to be initialized
 X	2. Server validates the information
 X	2a. If invalid, send a callback to the client, remove any client_info
@@ -67,13 +91,20 @@ X	2b. If valid, send a callback and continue
 x	3. Send information about client to peers
 x	4. Send information about game state to client
 x	5. Send information about peers to client
-	6. Send initialization request for client to peers
-	7. Send initialization request for each peer to client
-	8. Set client state to active
-	
+x	6. Send initialization request for client to peers
+x	7. Send initialization request for each peer to client
+x	8. Recieve callbacks from all initialized peers and the client
+x	8a. If successful, set client state to active
+x	8b. If unsuccessful, send callback to the client, remove client_info,
+		and disconnect the peer
+	***
+	Steps 2-8 happen for clients one-at-a-time using the init_queue variable
+	until all initializing clients have been created.
+	***
+-----------------------------------------------------------------------------
+
+
 '''
-
-
 
 
 
@@ -81,21 +112,51 @@ func _handle_peer_packet(id: int, packet: PackedByteArray):
 	var type = packet.decode_u8(0)
 	match type:
 		pt.INIT_INFO:
-			var start = packet.decode_u8(1) == 0
-			if start:
-				sending_state.append(id)
-				if len(sending_state) == 0:
-					initialized_peers = client_info.keys()
-					
-				if len(initializing) == 0:
-					init_client_validate(id, packet)
-			#else:
-				##init_complete_initialization(id, packet)
+			
+			
+			# Reference 1.1
+			var start = packet.decode_u8(1)
+			if start == 0:
+				var isiniq = false
+				for peer in init_queue:
+					if id == peer[0]:
+						isiniq = true
+				if not isiniq:
+					init_queue.append([id,packet])
+			elif start == 1:
+				
+				
+				#Reference 1.8
+				if packet.decode_s64(3) != initializing_id:
+					return
+				if packet.decode_u8(2) == 1:
+					init_success = false
+					succeeded.append(-1)
+					return
+				if initializing and ((id in initialized) or (id == initializing_id)):
+					succeeded.append(id)
+					if len(succeeded) == len(initialized)+1:
+						all_init.emit(init_success)
 
-
-
+func init_progress_queue():
+	if initializing:
+		return
+	if len(init_queue) <= 0:
+		return
+	succeeded = []
+	init_success = true
+	initializing = true
+	initialized.clear()
+	for i in client_info.keys():
+		if client_info[i]['active']:
+			initialized.append(i)
+	initializing_id = init_queue[0][0]
+	var indat = init_queue[0][1]
+	init_queue.pop_front()
+	init_client_validate(initializing_id, indat)
 
 func init_client_validate(id: int, packet: PackedByteArray):
+	# Reference 1.2
 	if not client_connected(id):
 		debug("{init} Client " + str(id) + " not connected.", MSG_ERROR)
 	var offset = 1
@@ -112,49 +173,60 @@ func init_client_validate(id: int, packet: PackedByteArray):
 
 func init_client_validate_callback(id: int, success: bool):
 	if success:
+		# Reference 1.2a
 		debug("{init} Client " + str(id) + ": init info validated.", MSG_INFO)
 		var packet = PackedByteArray()
 		packet.resize(2)
 		packet.encode_u8(0,pt.INIT_INFO)
-		packet.encode_u8(0,0)
+		packet.encode_u8(1,init_step.VALIDATION_SUCCESS)
 		cmultiplayer.send_bytes(packet,id,MultiplayerPeer.TRANSFER_MODE_RELIABLE, ch.INIT)
+	
+	
 	else:
+		# Reference 1.2b
 		debug("{init} Client " + str(id) + ": init info invalid.", MSG_ERROR)
 		var packet = PackedByteArray()
 		packet.resize(2)
 		packet.encode_u8(0,pt.INIT_INFO)
-		packet.encode_u8(0,1)
-		cmultiplayer.send_bytes(packet,id,MultiplayerPeer.TRANSFER_MODE_UNRELIABLE, ch.INIT)
+		packet.encode_u8(1,init_step.VALIDATION_FAILURE)
+		cmultiplayer.send_bytes(packet,id,MultiplayerPeer.TRANSFER_MODE_RELIABLE, ch.INIT)
 		cmultiplayer.disconnect_peer(id)
-		sending_state.erase(id)
-		client_info.erase(id)
+		client_info[id]['connected'] = false
+		initializing = false
 		return
+	
+	
+	# Reference 1.3
 	var client_state = client_info.get(id)
-	if not client_state:
-		debug("Client " + str(id) + " does not exist.", MSG_ERROR)
-		return -1
 	var packet := PackedByteArray()
-	packet.resize(2)
+	packet.resize(10)
 	packet.encode_u8(0,pt.INIT_INFO)
-	packet.encode_u8(1,1)
+	packet.encode_u8(1,init_step.CLIENT_STATE)
+	packet.encode_s64(2,id)
 	packet += var_to_bytes(client_state)
-	for peer in cmultiplayer.get_peers():
+	for peer in initialized:
 		if peer != id:
 			cmultiplayer.send_bytes(packet, peer, MultiplayerPeer.TRANSFER_MODE_RELIABLE, ch.INIT)
+	
+	
+	# Reference 1.4
 	packet = PackedByteArray()
 	packet.resize(2)
 	packet.encode_u8(0,pt.INIT_INFO)
-	packet.encode_u8(0,2)
+	packet.encode_u8(1,init_step.GAME_STATE)
 	packet += var_to_bytes(game_state)
 	cmultiplayer.send_bytes(packet, id, MultiplayerPeer.TRANSFER_MODE_RELIABLE, ch.INIT)
+	
+	
+	# Reference 1.5
 	var peerdata: Array[PackedByteArray] = []
-	for peer in cmultiplayer.get_peers():
+	for peer in initialized:
 		if peer != id:
 			peerdata.append(var_to_bytes(client_info[peer]))
 	packet = PackedByteArray()
 	packet.resize(3+(len(peerdata)*4))
 	packet.encode_u8(0,pt.INIT_INFO)
-	packet.encode_u8(1,3)
+	packet.encode_u8(1,init_step.PEER_STATE)
 	packet.encode_u8(2,len(peerdata))
 	var offset = 3
 	for i in peerdata:
@@ -163,9 +235,55 @@ func init_client_validate_callback(id: int, success: bool):
 		packet += i
 	cmultiplayer.send_bytes(packet, id, MultiplayerPeer.TRANSFER_MODE_RELIABLE, ch.INIT)
 	
-
-
-
+	
+	# Reference 1.8
+	initialized.append(id)
+	init_success = true
+	
+	
+	# Reference 1.6
+	packet = PackedByteArray()
+	packet.resize(10)
+	packet.encode_u8(0,pt.INIT_INFO)
+	packet.encode_u8(1,init_step.REQUEST_INIT)
+	packet.encode_s64(2,id)
+	for peer in initialized:
+		cmultiplayer.send_bytes(packet, peer, MultiplayerPeer.TRANSFER_MODE_RELIABLE, ch.INIT)
+	
+	
+	#Reference 1.7
+	packet = PackedByteArray()
+	packet.resize(2)
+	packet.encode_u8(0,pt.INIT_INFO)
+	packet.encode_u8(1,init_step.REQUEST_INIT)
+	cmultiplayer.send_bytes(packet, id, MultiplayerPeer.TRANSFER_MODE_RELIABLE, ch.INIT)
+	
+	
+	#Reference 1.8
+	init_success = true
+	var cont = await Tools.with_timeout(self.all_init, INIT_TIMEOUT)
+	if cont[0] and cont[1]:
+		debug("Client " + str(id) + " initialization success!", MSG_OK)
+		client_info[id]['active'] = true
+		initializing = false
+	else:
+		debug("Client " + str(id) + " initialization failure!", MSG_ERROR)
+		packet = PackedByteArray()
+		packet.resize(2)
+		packet.encode_u8(0,pt.INIT_INFO)
+		packet.encode_u8(1,init_step.INIT_FAILURE)
+		cmultiplayer.send_bytes(packet, id, MultiplayerPeer.TRANSFER_MODE_RELIABLE, ch.INIT)
+		packet = PackedByteArray()
+		packet.resize(9)
+		packet.encode_u8(0, pt.DEINIT_INFO)
+		packet.encode_s64(1,id)
+		for peer in initialized:
+			if peer != id:
+				cmultiplayer.send_bytes(packet, peer, MultiplayerPeer.TRANSFER_MODE_RELIABLE, ch.INIT)
+		cmultiplayer.disconnect_peer(id)
+		client_info[id]['connected'] = false
+		initializing = false
+		return
 
 
 
@@ -188,12 +306,13 @@ func init_client_validate_callback(id: int, success: bool):
 
 
 func client_connected(id: int):
-	return client_info[id]['connected']
+	return client_info.has(id) and client_info[id]['connected']
 
 func _process(_delta: float) -> void:
 	if not cmultiplayer:
 		return
 	cmultiplayer.poll()
+	init_progress_queue()
 
 func debug(msg, type: int):
 	var color = ""
@@ -222,58 +341,54 @@ func init():
 	return port
 
 func authenticate_client(peer, data: PackedByteArray):
-	var ip = cmultiplayer.multiplayer_peer.get_peer(peer).get_remote_address()
-	if not ip in authentication_info.keys():
-		authentication_info[ip] = {'attempts': 0}
+	if not peer in authentication_info.keys():
+		authentication_info[peer] = {}
 		if data.size() != NONCE_LENGTH:
-			debug("Authentication failed for peer " + str(peer) + " at " + ip + ". (Incorrect nonce length) Attempt 1/3.", MSG_ERROR)
+			debug("Authentication failed for peer " + str(peer) + ". (Incorrect nonce length)", MSG_ERROR)
 			fail_authentication(peer)
 		else:
 			var nonce := cryptography.generate_random_bytes(NONCE_LENGTH)
 			cmultiplayer.send_auth(peer, nonce)
-			authentication_info[ip]['combined_nonce'] = data + nonce
+			authentication_info[peer]['combined_nonce'] = data + nonce
 			debug("Peer " + str(peer) + ": step 1/2 passed.", MSG_INFO)
 	else:
-		authentication_info[ip]['attempts'] += 1
-		if authentication_info[ip]['attempts'] > 3:
-			debug("Authentication failed for peer " + str(peer) + " at " + ip + ". Maximum attempts exceeded (" + str(authentication_info[ip]['attempts']) + ").", MSG_ERROR)
-			fail_authentication(peer)
-			return
 		if data.size() != HMAC_LENGTH:
-			debug("Authentication failed for peer " + str(peer) + " at " + ip + ". (Incorrect HMAC length) Attempt " + str(authentication_info[ip]['attempts']) + "/3.", MSG_ERROR)
+			debug("Authentication failed for peer " + str(peer) + ". (Incorrect HMAC length)", MSG_ERROR)
 			fail_authentication(peer)
 		else:
 			@warning_ignore('shadowed_global_identifier')
-			var hash = cryptography.hmac_digest(HashingContext.HASH_SHA256, str(code).to_utf8_buffer(), authentication_info[ip]['combined_nonce'])
+			var hash = cryptography.hmac_digest(HashingContext.HASH_SHA256, str(code).to_utf8_buffer(), authentication_info[peer]['combined_nonce'])
 			if cryptography.constant_time_compare(hash, data):
 				var to_send = PackedByteArray()
 				to_send.resize(1)
 				to_send.encode_u8(0,len(client_info))
 				cmultiplayer.send_auth(peer, to_send)
 				cmultiplayer.complete_auth(peer)
-				authentication_info.erase(ip)
+				authentication_info.erase(peer)
 				debug("Peer " + str(peer) + ": step 2/2 passed.", MSG_INFO)
 			else:
-				debug("Authentication failed for peer " + str(peer) + " at " + ip + ". (Incorrect HMAC hash) Attempt " + str(authentication_info[ip]['attempts']) + "/3.", MSG_ERROR)
+				debug("Authentication failed for peer " + str(peer) + ". (Incorrect HMAC hash)", MSG_ERROR)
 				fail_authentication(peer)
 
 func fail_authentication(peer):
 	cmultiplayer.disconnect_peer(peer)
+	authentication_info.erase(peer)
 	debug("Disconnected peer " + str(peer) + ".", MSG_INFO)
 
 func _handle_peer_authenticating(peer):
 	if code == '':
-		debug("Skipping authentication for peer " + str(peer) + " at " + cmultiplayer.multiplayer_peer.get_peer(peer).get_remote_address() + ".", MSG_INFO)
+		debug("Skipping authentication for peer " + str(peer) + ".", MSG_INFO)
 		cmultiplayer.complete_auth(peer)
 		return
-	debug("Authenticating peer " + str(peer) + " at " + cmultiplayer.multiplayer_peer.get_peer(peer).get_remote_address(),MSG_INFO)
+	debug("Authenticating peer " + str(peer) + ".",MSG_INFO)
 
 func _handle_authentication_failed(peer):
 	debug("Authentication failed for peer " + str(peer) + ".", MSG_ERROR)
 
 func close():
-	cmultiplayer.multiplayer_peer.close()
-	cmultiplayer.multiplayer_peer = null
+	if cmultiplayer.multiplayer_peer:
+		cmultiplayer.multiplayer_peer.close()
+		cmultiplayer.multiplayer_peer = null
 	debug("Closed.", MSG_OK)
 	return 0
 
@@ -284,8 +399,11 @@ func _handle_peer_disconnected(id):
 
 func _handle_peer_connected(id):
 	MultiplayerController.update_scanner_players(len(cmultiplayer.get_peers()),max_clients, description)
-	client_info[id] = {'index': len(client_info), 'admin': len(client_info) == 0, 'connected': false}
-	debug("Authentication successful for peer " + str(id) + " at " + cmultiplayer.multiplayer_peer.get_peer(id).get_remote_address() + ".", MSG_OK)
+	if not client_info.has(id):
+		client_info[id] = {'index': len(client_info), 'admin': len(client_info) == 0, 'connected': true, 'active': false}
+	else:
+		client_info[id]['connected'] = true
+	debug("Peer " + str(id) + " connected from " + cmultiplayer.multiplayer_peer.get_peer(id).get_remote_address() + ".", MSG_OK)
 
 func _ready():
 	cmultiplayer = MultiplayerAPI.create_default_interface()
