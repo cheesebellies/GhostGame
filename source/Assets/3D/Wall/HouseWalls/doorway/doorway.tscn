@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=4 uid="uid://0e4jtxjtwjww"]
+[gd_scene load_steps=19 format=4 uid="uid://0e4jtxjtwjww"]
 
 [ext_resource type="Texture2D" uid="uid://gd6mwkxxyw8j" path="res://Assets/2D/Surfaces/Walls/WallPaint/Wall_Paint_qj2luvs0_1K_BaseColor.jpg" id="1_x1q3v"]
 [ext_resource type="Texture2D" uid="uid://6gpl1lyxcthc" path="res://Assets/2D/Surfaces/Walls/WallPaint/Wall_Paint_qj2luvs0_1K_Normal.jpg" id="2_oq0cu"]
@@ -134,6 +134,9 @@ size = Vector3(0.4326172, 2.5058594, 0.41601563)
 [sub_resource type="BoxShape3D" id="BoxShape3D_mjnx0"]
 size = Vector3(1.9990234, 0.27819824, 0.41601563)
 
+[sub_resource type="PrismMesh" id="PrismMesh_x1q3v"]
+size = Vector3(0.166, 0.014, 1.27)
+
 [node name="doorway" type="StaticBody3D" groups=["keepserver"]]
 
 [node name="Cube" type="MeshInstance3D" parent="."]
@@ -169,3 +172,8 @@ shape = SubResource("BoxShape3D_oq0cu")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.3678305, 0)
 visible = false
 shape = SubResource("BoxShape3D_mjnx0")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0.016247869, 0)
+mesh = SubResource("PrismMesh_x1q3v")
+surface_material_override/0 = SubResource("StandardMaterial3D_mjnx0")

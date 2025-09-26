@@ -47,6 +47,7 @@ blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_hj5id")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pdsdq"]
+albedo_color = Color(0.7372549, 0.7372549, 0.7372549, 1)
 albedo_texture = ExtResource("1_4akdx")
 roughness_texture = ExtResource("4_d6c2s")
 normal_enabled = true
