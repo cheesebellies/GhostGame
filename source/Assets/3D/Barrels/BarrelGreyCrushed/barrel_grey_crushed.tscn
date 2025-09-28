@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=4 uid="uid://be5tw2aiet7d4"]
+[gd_scene load_steps=10 format=4 uid="uid://be5tw2aiet7d4"]
 
 [ext_resource type="Texture2D" uid="uid://ilt8kwf16u5v" path="res://Assets/3D/Barrels/BarrelGreyCrushed/ui1maewga_1K_Basecolor.JPG" id="1_rfs0x"]
 [ext_resource type="Texture2D" uid="uid://caf2yvqp32ehd" path="res://Assets/3D/Barrels/BarrelGreyCrushed/ui1maewga_1K_AO.JPG" id="2_uhiuh"]
@@ -54,9 +54,17 @@ normal_texture = ExtResource("3_0vus6")
 ao_enabled = true
 ao_texture = ExtResource("2_uhiuh")
 
-[node name="BarrelGreyCrushed" type="Node3D"]
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_0wxs4"]
+height = 0.88464355
+radius = 0.29101563
+
+[node name="BarrelGreyCrushed" type="StaticBody3D" groups=["keepserver"]]
 
 [node name="ui1maewga_LOD0_TIER3_000" type="MeshInstance3D" parent="."]
 mesh = SubResource("ArrayMesh_ympqn")
 skeleton = NodePath("")
 surface_material_override/0 = SubResource("StandardMaterial3D_vyjn2")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." groups=["keepserver"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.43023682, 0)
+shape = SubResource("CylinderShape3D_0wxs4")

@@ -58,13 +58,13 @@ ao_texture = ExtResource("3_lslvm")
 height = 0.876465
 radius = 0.291016
 
-[node name="BarrelGrey" type="StaticBody3D"]
+[node name="BarrelGrey" type="StaticBody3D" groups=["keepserver"]]
 
 [node name="uizhacnga_LOD0_TIER3_000" type="MeshInstance3D" parent="."]
 mesh = SubResource("ArrayMesh_4vski")
 skeleton = NodePath("")
 surface_material_override/0 = SubResource("StandardMaterial3D_fobah")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." groups=["keepserver"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.438232, 0)
 shape = SubResource("CylinderShape3D_xlsts")

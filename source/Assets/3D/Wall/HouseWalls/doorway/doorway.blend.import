@@ -4,12 +4,11 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://c7k57xdqxkh7i"
-path="res://.godot/imported/doorway.blend-0c390a6416e2b5e37f8165bdf9512b43.scn"
+valid=false
 
 [deps]
 
 source_file="res://Assets/3D/Wall/HouseWalls/doorway/doorway.blend"
-dest_files=["res://.godot/imported/doorway.blend-0c390a6416e2b5e37f8165bdf9512b43.scn"]
 
 [params]
 

@@ -42,14 +42,17 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_784gv")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yv5ob"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_x1q3v"]
 albedo_color = Color(0.51, 0.4964, 0.459, 1)
 albedo_texture = ExtResource("1_x1q3v")
 roughness_texture = ExtResource("3_mjnx0")
 normal_enabled = true
 normal_scale = 9.0
 normal_texture = ExtResource("2_oq0cu")
-uv1_scale = Vector3(2, 2, 2)
+clearcoat = 0.16
+clearcoat_roughness = 1.0
+clearcoat_texture = ExtResource("3_mjnx0")
+uv1_scale = Vector3(2.34, 2.34, 2.34)
 uv1_offset = Vector3(0, 0.57, 0)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_es2rh"]
@@ -143,7 +146,7 @@ size = Vector3(0.166, 0.014, 1.27)
 transform = Transform3D(100, 0, 0, 0, -1.1920929e-05, 99.99999, 0, -99.99999, -1.1920929e-05, 0, 0, 0)
 mesh = SubResource("ArrayMesh_m2s8h")
 skeleton = NodePath("")
-surface_material_override/0 = SubResource("StandardMaterial3D_yv5ob")
+surface_material_override/0 = SubResource("StandardMaterial3D_x1q3v")
 
 [node name="Cube_001" type="MeshInstance3D" parent="."]
 transform = Transform3D(100, 0, 0, 0, -4.2133406e-06, 99.87, 0, -96.39, -4.3654563e-06, 0, 0.252, 0.20231716)
