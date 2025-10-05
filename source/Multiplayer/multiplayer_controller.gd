@@ -39,13 +39,7 @@ func debug(msg, type: int):
 func _ready():
 	get_tree().multiplayer_poll = false
 	debug("Ready.", MSG_INFO)
-	var todo = """
-	TODO:
-		Edit scanner to have a confirmation echo
-		Create simple packet system
-			Ensure that it works with both singleplayer and multiplayer
-		Create synchronization registry within MultiplayerController
-	"""
+	var todo = """"""
 	debug(todo, MSG_INFO)
 
 
@@ -131,6 +125,7 @@ func scanner_start_scan():
 	debug("Scanner started.", MSG_INFO)
 	return scanner.servers
 
+@warning_ignore("shadowed_global_identifier")
 func update_scanner_players(count, max, description):
 	if scanner:
 		scanner.players = count

@@ -1,23 +1,33 @@
 extends Node
 
+#Constants
 const NONCE_LENGTH = 128
 const HMAC_LENGTH = 32
 
+#"Custom" (local) multiplayer implementation
 var cmultiplayer: SceneMultiplayer
+var enet_peer: ENetMultiplayerPeer
 
+#Client information
 var admin
 var ip
 var port
 var index
 
+#Authentication
 var cryptography = Crypto.new()
 var code
 var authentication_data
 
-var enet_peer: ENetMultiplayerPeer
-
+#Initialization
 signal connection_update(type: bool)
+var init_step := 0
 
+#Game state
+var client_info : Dictionary = {}
+var game_state: Dictionary = {}
+
+#Enums
 enum {MSG_INFO, MSG_ERROR, MSG_OK}
 enum ch {
 	WORLDEVENT,	# Reliable
@@ -43,28 +53,45 @@ enum pt {
 	ERROR_NOTIFICATION,
 	CUSTOM_SYNC
 }
-enum init_step {
-	VALIDATION_SUCCESS,
-	VALIDATION_FAILURE,
-	CLIENT_STATE,
-	GAME_STATE,
-	PEER_STATE,
-	REQUEST_INIT,
-	INIT_FAILURE
-}
-
 
 
 
 func _handle_server_packet(id: int, packet: PackedByteArray):
-	pass
+	if id != 1:
+		return
+	var type = packet.decode_u8(0)
+	match type:
+		pt.INIT_INFO:
+			var req = packet.decode_u8(1)
+			if req == 0:
+				init_recieve_game_data(packet)
+			elif req == 1:
+				init_recieve_client_info(packet)
+			elif req == 2:
+				init_new_client(packet)
 
+func init_new_client(packet: PackedByteArray):
+	var nc_id = packet.decode_s64(2)
+	var nc_data = packet.decode_var(10)
+	client_info[nc_id] = nc_data
+	debug("Recieved new client " + str(nc_id) + ".", MSG_OK)
 
+func init_recieve_game_data(packet: PackedByteArray):
+	game_state = packet.decode_var(2)
+	init_step += 1
 
-
-
-
-
+func init_recieve_client_info(packet: PackedByteArray):
+	client_info = packet.decode_var(2)
+	init_step += 1
+	var callback = PackedByteArray()
+	callback.resize(2)
+	callback.encode_u8(0,pt.INIT_INFO)
+	callback.encode_u8(1, 0 if init_step == 2 else 1)
+	if init_step == 2:
+		debug("Recieved valid init information.", MSG_OK)
+	else:
+		debug("Recieved invalid init information.", MSG_ERROR)
+	cmultiplayer.send_bytes(callback,1,MultiplayerPeer.TRANSFER_MODE_RELIABLE,ch.INIT)
 
 
 
@@ -108,8 +135,6 @@ func init():
 		return -1
 	cmultiplayer.multiplayer_peer = enet_peer
 	var res = await self.connection_update
-	var dda = 'test'.to_utf8_buffer()
-	cmultiplayer.send_bytes(dda,1,MultiplayerPeer.TRANSFER_MODE_RELIABLE,0)
 	if res:
 		debug("Client created.", MSG_OK)
 		return 0
@@ -155,6 +180,7 @@ func _handle_connection_failed():
 
 func _handle_server_disconnected():
 	debug("Server disconnected.", MSG_ERROR)
+	#Persist.client_failed_authentication()
 
 func _process(delta: float) -> void:
 	if not cmultiplayer:
