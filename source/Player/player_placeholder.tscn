@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://dv7wbheebeajf"]
+[gd_scene load_steps=10 format=3 uid="uid://dv7wbheebeajf"]
 
 [ext_resource type="Script" uid="uid://b31wnef2aqc85" path="res://Player/player_placeholder.gd" id="1_qe0qx"]
 [ext_resource type="Texture2D" uid="uid://b0t47v7qbspho" path="res://Assets/2D/UI/Crosshair/reticle_tex_none.png" id="2_ys2oj"]
@@ -14,6 +14,14 @@ height = 1.5
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_it674"]
 radius = 0.253664
 height = 1.50206
+
+[sub_resource type="Environment" id="Environment_ys2oj"]
+tonemap_mode = 2
+tonemap_exposure = 0.86
+
+[sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_h5ri8"]
+dof_blur_far_enabled = true
+dof_blur_amount = 0.02
 
 [node name="PlayerPlaceholder" type="CharacterBody3D"]
 collision_layer = 2
@@ -62,7 +70,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.753308, 0)
 shape = SubResource("CapsuleShape3D_it674")
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 1.10745, 0)
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 1.2702355, 0)
+environment = SubResource("Environment_ys2oj")
+attributes = SubResource("CameraAttributesPractical_h5ri8")
 current = true
 fov = 70.0
 

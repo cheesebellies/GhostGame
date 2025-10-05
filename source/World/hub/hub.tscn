@@ -30,6 +30,8 @@ background_mode = 2
 background_energy_multiplier = 0.17
 sky = SubResource("Sky_q3f35")
 ambient_light_source = 3
+tonemap_mode = 2
+ssao_enabled = true
 ssao_radius = 2.7
 ssil_radius = 16.0
 ssil_intensity = 10.8
@@ -92,7 +94,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.138994, 1.44784, 1.92696)
 visible = false
 
 [node name="Environment" type="Node3D" parent="."]
-visible = false
 metadata/_edit_group_ = true
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="Environment"]
@@ -100,11 +101,13 @@ environment = SubResource("Environment_38uxw")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="Environment"]
 transform = Transform3D(0.819085, 0.0837288, -0.567529, 0.00466023, 0.988288, 0.15253, 0.573654, -0.12758, 0.809101, 0.00495338, 3.6983, 1.15037)
+visible = false
 light_energy = 1.539
 shadow_enabled = true
 
 [node name="DirectionalLight3D2" type="DirectionalLight3D" parent="Environment"]
 transform = Transform3D(-0.854632, -0.075261, 0.51375, 0.00466023, 0.988288, 0.15253, -0.519213, 0.132751, -0.844272, 0.00495338, 3.6983, 1.15037)
+visible = false
 light_energy = 0.068
 
 [node name="GroundPlane" type="StaticBody3D" parent="."]

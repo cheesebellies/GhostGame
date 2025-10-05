@@ -189,38 +189,14 @@ transform = Transform3D(1, 0, 1.7484555e-07, 0, 1, 0, -1.7484555e-07, 0, 1, 0, 0
 [node name="house_wall22" parent="InnerWallsUpdate" instance=ExtResource("4_vir6t")]
 transform = Transform3D(1, 0, 1.7484555e-07, 0, 1, 0, -1.7484555e-07, 0, 1, 2, 0, -19)
 
-[node name="house_wall23" parent="InnerWallsUpdate" instance=ExtResource("4_vir6t")]
-transform = Transform3D(1.3113416e-07, 0, -1, 0, 1, 0, 1, 0, 1.3113416e-07, 3, 0, -20)
-
 [node name="house_wall67" parent="InnerWallsUpdate" instance=ExtResource("4_vir6t")]
 transform = Transform3D(-2.1855693e-07, 0, 1, 0, 1, 0, -1, 0, -2.1855693e-07, 3, 0, -18)
-
-[node name="house_wall68" parent="InnerWallsUpdate" instance=ExtResource("4_vir6t")]
-transform = Transform3D(-2.1855693e-07, 0, 1, 0, 1, 0, -1, 0, -2.1855693e-07, 3, 0, -22)
-
-[node name="house_wall69" parent="InnerWallsUpdate" instance=ExtResource("4_vir6t")]
-transform = Transform3D(-2.1855693e-07, 0, 1, 0, 1, 0, -1, 0, -2.1855693e-07, 3, 0, -21)
 
 [node name="house_wall71" parent="InnerWallsUpdate" instance=ExtResource("4_vir6t")]
 transform = Transform3D(1, 0, 1.7484555e-07, 0, 1, 0, -1.7484555e-07, 0, 1, 6, 0, -18.464178)
 
 [node name="house_wall72" parent="InnerWallsUpdate" instance=ExtResource("4_vir6t")]
 transform = Transform3D(1, 0, 1.7484555e-07, 0, 1, 0, -1.7484555e-07, 0, 1, 8, 0, -18.464178)
-
-[node name="house_wall73" parent="InnerWallsUpdate" instance=ExtResource("4_vir6t")]
-transform = Transform3D(1, 0, 1.7484555e-07, 0, 1, 0, -1.7484555e-07, 0, 1, 10, 0, -16)
-
-[node name="house_wall74" parent="InnerWallsUpdate" instance=ExtResource("4_vir6t")]
-transform = Transform3D(1, 0, 1.7484555e-07, 0, 1, 0, -1.7484555e-07, 0, 1, 12, 0, -16)
-
-[node name="house_wall75" parent="InnerWallsUpdate" instance=ExtResource("4_vir6t")]
-transform = Transform3D(1.3113416e-07, 0, -1, 0, 1, 0, 1, 0, 1.3113416e-07, 13, 0, -23.517986)
-
-[node name="house_wall76" parent="InnerWallsUpdate" instance=ExtResource("4_vir6t")]
-transform = Transform3D(1.3113416e-07, 0, -1, 0, 1, 0, 1, 0, 1.3113416e-07, 13, 0, -21.517986)
-
-[node name="house_wall77" parent="InnerWallsUpdate" instance=ExtResource("4_vir6t")]
-transform = Transform3D(1.3113416e-07, 0, -1, 0, 1, 0, 1, 0, 1.3113416e-07, 13, 0, -19.517986)
 
 [node name="house_wall78" parent="InnerWallsUpdate" instance=ExtResource("4_vir6t")]
 transform = Transform3D(1.3113416e-07, 0, -1, 0, 1, 0, 1, 0, 1.3113416e-07, 9, 0, -17.517986)
@@ -242,9 +218,6 @@ transform = Transform3D(1.3113416e-07, 0, -1, 0, 1, 0, 1, 0, 1.3113416e-07, 9, 0
 
 [node name="house_wall84" parent="InnerWallsUpdate" instance=ExtResource("4_vir6t")]
 transform = Transform3D(1.3113416e-07, 0, -1, 0, 1, 0, 1, 0, 1.3113416e-07, 9, 0, -5.5179863)
-
-[node name="house_wall38" parent="InnerWallsUpdate" instance=ExtResource("4_vir6t")]
-transform = Transform3D(1.3113416e-07, 0, -1, 0, 1, 0, 1, 0, 1.3113416e-07, 3, 0, -19)
 
 [node name="house_wall88" parent="InnerWallsUpdate" instance=ExtResource("4_vir6t")]
 transform = Transform3D(-4.371138e-08, 0, 1, 0, 1, 0, -1, 0, -4.371138e-08, 3, 0, -17.823116)
@@ -386,12 +359,6 @@ transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 7, 0
 
 [node name="house_wall85" parent="InnerWallsUpdate" instance=ExtResource("4_vir6t")]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 9, 0, -5)
-
-[node name="house_wall86" parent="InnerWallsUpdate" instance=ExtResource("4_vir6t")]
-transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 11, 0, -5)
-
-[node name="house_wall87" parent="InnerWallsUpdate" instance=ExtResource("4_vir6t")]
-transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 13, 0, -5)
 
 [node name="doorway" parent="InnerWallsUpdate" instance=ExtResource("5_tpwag")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0, -4)
