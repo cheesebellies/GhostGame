@@ -47,11 +47,14 @@ blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_hj5id")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pdsdq"]
-albedo_color = Color(0.7372549, 0.7372549, 0.7372549, 1)
+albedo_color = Color(0.8625217, 0.86252177, 0.86252177, 1)
 albedo_texture = ExtResource("1_4akdx")
+roughness = 0.82
 roughness_texture = ExtResource("4_d6c2s")
 normal_enabled = true
 normal_texture = ExtResource("3_arw3x")
+clearcoat = 0.0
+clearcoat_roughness = 1.0
 ao_enabled = true
 ao_texture = ExtResource("2_h4i15")
 
@@ -64,7 +67,7 @@ size = Vector3(2.25391, 1.08563, 0.0863647)
 [sub_resource type="BoxShape3D" id="BoxShape3D_arw3x"]
 size = Vector3(0.0825195, 0.300781, 0.508636)
 
-[node name="ChurchChair" type="StaticBody3D"]
+[node name="ChurchChair" type="StaticBody3D" groups=["keepserver"]]
 metadata/_edit_group_ = true
 
 [node name="udlufetqx_LOD0_TIER3_000" type="MeshInstance3D" parent="."]
@@ -74,27 +77,27 @@ mesh = SubResource("ArrayMesh_6wwsc")
 skeleton = NodePath("")
 surface_material_override/0 = SubResource("StandardMaterial3D_pdsdq")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." groups=["keepserver"]]
 transform = Transform3D(1.18203, 0, 0, 0, 1.18203, 0, 0, 0, 1.18203, -2.07668e-05, 0.186098, -0.0403602)
 visible = false
 shape = SubResource("BoxShape3D_4akdx")
 
-[node name="CollisionShape3D5" type="CollisionShape3D" parent="."]
+[node name="CollisionShape3D5" type="CollisionShape3D" parent="." groups=["keepserver"]]
 transform = Transform3D(1.18203, 0, 0, 0, 1.18203, 0, 0, 0, 1.18203, -2.07668e-05, 0.554726, -0.253009)
 visible = false
 shape = SubResource("BoxShape3D_h4i15")
 
-[node name="CollisionShape3D3" type="CollisionShape3D" parent="."]
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="." groups=["keepserver"]]
 transform = Transform3D(1.18203, 0, 0, 0, 1.18203, 0, 0, 0, 1.18203, 1.31235, 0.622657, 0.0057228)
 visible = false
 shape = SubResource("BoxShape3D_arw3x")
 
-[node name="CollisionShape3D4" type="CollisionShape3D" parent="."]
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="." groups=["keepserver"]]
 transform = Transform3D(1.18203, 0, 0, 0, 1.18203, 0, 0, 0, 1.18203, -1.30296, 0.636861, 0.0167791)
 visible = false
 shape = SubResource("BoxShape3D_arw3x")
 
-[node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="." groups=["keepserver"]]
 transform = Transform3D(1.18203, 0, 0, 0, 1.18203, 0, 0, 0, 1.18203, -0.00864864, 0.637281, 0.0121979)
 visible = false
 shape = SubResource("BoxShape3D_arw3x")
