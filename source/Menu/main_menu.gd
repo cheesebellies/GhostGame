@@ -8,10 +8,6 @@ var selected
 
 signal dumy
 
-func _ready() -> void:
-	var r = await Tools.with_timeout(self.dumy,3.0)
-	print(r)
-
 func _handle_detected_servers(servers):
 	for server in servers:
 		_add_server_to_list(server[0],server[1],server[2],server[3],server[4])

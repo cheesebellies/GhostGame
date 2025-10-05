@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://ctob3wlur33c0"]
+
+[ext_resource type="Script" uid="uid://cakiasyc118xw" path="res://Multiplayer/simulator.gd" id="1_hohbf"]
+
+[node name="Simulator" type="Node"]
+script = ExtResource("1_hohbf")
