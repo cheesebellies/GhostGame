@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://dwq4to7c7jvfm"
-path="res://.godot/imported/Cabinet5.fbx-0912c7478e792219c089991b2b5100bb.scn"
+uid="uid://cinm0j4oba8y0"
+path="res://.godot/imported/KitchenCabinetTall.fbx-a22d0176e40f99db71e77abb18ebd688.scn"
 
 [deps]
 
-source_file="res://Assets/3D/Furniture/Cabinets/Cabinet5.fbx"
-dest_files=["res://.godot/imported/Cabinet5.fbx-0912c7478e792219c089991b2b5100bb.scn"]
+source_file="res://Assets/3D/Furniture/Cabinets/KitchenCabinetTall.fbx"
+dest_files=["res://.godot/imported/KitchenCabinetTall.fbx-a22d0176e40f99db71e77abb18ebd688.scn"]
 
 [params]
 

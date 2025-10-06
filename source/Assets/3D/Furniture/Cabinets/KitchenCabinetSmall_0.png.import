@@ -2,20 +2,20 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://oughhh7pjyg4"
-path.s3tc="res://.godot/imported/cabinet_1.png-a159d28cde98f069e916ffb20009e23f.s3tc.ctex"
+uid="uid://bo2mxamwv3cw0"
+path.s3tc="res://.godot/imported/KitchenCabinetSmall_0.png-9547ddade15ee37991e1492f1f81298b.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
 generator_parameters={
-"md5": "6114d8eff73b0ab9eaec2c3b80edc274"
+"md5": "47bd88ae81c44229a347caa0a31718af"
 }
 
 [deps]
 
-source_file="res://Assets/3D/Furniture/Cabinets/cabinet_1.png"
-dest_files=["res://.godot/imported/cabinet_1.png-a159d28cde98f069e916ffb20009e23f.s3tc.ctex"]
+source_file="res://Assets/3D/Furniture/Cabinets/KitchenCabinetSmall_0.png"
+dest_files=["res://.godot/imported/KitchenCabinetSmall_0.png-9547ddade15ee37991e1492f1f81298b.s3tc.ctex"]
 
 [params]
 
