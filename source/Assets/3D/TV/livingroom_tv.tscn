@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=3 uid="uid://pni0cl2fgc1d"]
+
+[ext_resource type="PackedScene" uid="uid://4xdg48s25qi4" path="res://Assets/3D/TV/Livingroom_TV.fbx" id="1_4icud"]
+
+[node name="Livingroom_TV" instance=ExtResource("1_4icud")]

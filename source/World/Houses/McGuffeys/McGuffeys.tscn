@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://bn4a6lg5y4u6h"]
+[gd_scene load_steps=33 format=3 uid="uid://bn4a6lg5y4u6h"]
 
 [ext_resource type="PackedScene" uid="uid://dv7wbheebeajf" path="res://Player/player_placeholder.tscn" id="1_gtc6b"]
 [ext_resource type="Material" uid="uid://bw5nn1483vxgk" path="res://Assets/2D/Surfaces/PlushCarpet/plush_carpet.tres" id="1_tpwag"]
@@ -6,6 +6,8 @@
 [ext_resource type="PackedScene" uid="uid://bms0bwf5g1qae" path="res://Assets/3D/Wall/HouseWalls/wall/house_wall.tscn" id="4_vir6t"]
 [ext_resource type="PackedScene" uid="uid://beau4wx5laaup" path="res://Assets/3D/Car/car.tscn" id="5_kah55"]
 [ext_resource type="PackedScene" uid="uid://0e4jtxjtwjww" path="res://Assets/3D/Wall/HouseWalls/doorway/doorway.tscn" id="5_tpwag"]
+[ext_resource type="PackedScene" uid="uid://dwwu56d2j8b5b" path="res://Assets/3D/Sofa/sofa.tscn" id="6_1vwse"]
+[ext_resource type="PackedScene" uid="uid://bwpbho1vek6kg" path="res://Assets/3D/TVStand/tv_stand.tscn" id="7_ascsl"]
 [ext_resource type="Texture2D" uid="uid://bkaweb5tbikfj" path="res://Assets/2D/Surfaces/PlushCarpet/Plush_Carpet_umonbbqdy_1K_BaseColor.jpg" id="7_u46uo"]
 [ext_resource type="Texture2D" uid="uid://cxj0y0v3ml7mi" path="res://Assets/2D/Surfaces/PlushCarpet/Plush_Carpet_umonbbqdy_1K_AO.jpg" id="8_elw6j"]
 [ext_resource type="Texture2D" uid="uid://dnkisnc0q02rc" path="res://Assets/2D/Surfaces/PlushCarpet/Plush_Carpet_umonbbqdy_1K_Normal.jpg" id="9_j8sfp"]
@@ -17,6 +19,7 @@
 [ext_resource type="PackedScene" uid="uid://du1h1xrf1igyh" path="res://Assets/3D/Furniture/Cabinets/kitchen_cabinet_small.tscn" id="15_4efm5"]
 [ext_resource type="PackedScene" uid="uid://bdrpbfogh25l1" path="res://Assets/3D/Furniture/Cabinets/kitchen_cabinet_sink.tscn" id="16_1vwse"]
 [ext_resource type="PackedScene" uid="uid://ccysim0jymc86" path="res://Assets/3D/Furniture/Cabinets/kitchen_cabinet_large.tscn" id="17_aye5u"]
+[ext_resource type="PackedScene" uid="uid://pg85dx6gddnf" path="res://Assets/3D/Closet/closet.tscn" id="20_wgw1x"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_o3qnx"]
 size = Vector2(200, 200)
@@ -363,6 +366,18 @@ transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 7, 0
 [node name="house_wall85" parent="InnerWallsUpdate" instance=ExtResource("4_vir6t")]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 9, 0, -5)
 
+[node name="house_wall38" parent="InnerWallsUpdate" instance=ExtResource("4_vir6t")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 3, 0, -8.434771)
+
+[node name="house_wall66" parent="InnerWallsUpdate" instance=ExtResource("4_vir6t")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 5, 0, -8.434771)
+
+[node name="house_wall68" parent="InnerWallsUpdate" instance=ExtResource("4_vir6t")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 7, 0, -8.434771)
+
+[node name="house_wall86" parent="InnerWallsUpdate" instance=ExtResource("4_vir6t")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 9, 0, -8.434771)
+
 [node name="doorway" parent="InnerWallsUpdate" instance=ExtResource("5_tpwag")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0, -4)
 
@@ -380,6 +395,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, -17)
 
 [node name="doorway2" parent="InnerWallsUpdate" instance=ExtResource("5_tpwag")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 2, 0, -4)
+
+[node name="Sofa1_3 UV" parent="InnerWallsUpdate" instance=ExtResource("6_1vwse")]
+transform = Transform3D(0.80450004, 0, 0.5939526, 0, 1, 0, -0.5939526, 0, 0.80450004, 4.4694157, 0.00021429952, -11.246917)
+
+[node name="tv_stand" parent="InnerWallsUpdate" instance=ExtResource("7_ascsl")]
+transform = Transform3D(-0.59535575, 0, -0.8034622, 0, 1, 0, 0.8034622, 0, -0.59535575, 6.8772726, 0.0118872225, -10.337309)
 
 [node name="Cars" type="Node3D" parent="."]
 
@@ -415,6 +436,7 @@ visible = false
 shape = SubResource("ConcavePolygonShape3D_dh2qx")
 
 [node name="Roof" type="Node3D" parent="."]
+visible = false
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Roof"]
 
@@ -481,13 +503,13 @@ light_bake_mode = 1
 shadow_enabled = true
 
 [node name="OmniLight3D10" type="OmniLight3D" parent="."]
-transform = Transform3D(-4.3711392e-08, 0, -1, 0, 1, 0, 1, 0, -4.3711392e-08, 4.2368226, 2.098039, -14.618684)
+transform = Transform3D(-4.3711392e-08, 0, -1, 0, 1, 0, 1, 0, -4.3711392e-08, 4.2368226, 2.098039, -16.417065)
 light_energy = 1.168
 light_bake_mode = 1
 shadow_enabled = true
 
 [node name="OmniLight3D11" type="OmniLight3D" parent="."]
-transform = Transform3D(-4.3711392e-08, 0, -1, 0, 1, 0, 1, 0, -4.3711392e-08, 7.282534, 2.098039, -14.618684)
+transform = Transform3D(-4.3711392e-08, 0, -1, 0, 1, 0, 1, 0, -4.3711392e-08, 7.282534, 2.098039, -16.417065)
 light_energy = 1.168
 light_bake_mode = 1
 shadow_enabled = true
@@ -499,13 +521,13 @@ light_bake_mode = 1
 shadow_enabled = true
 
 [node name="OmniLight3D13" type="OmniLight3D" parent="."]
-transform = Transform3D(-4.3711392e-08, 0, -1, 0, 1, 0, 1, 0, -4.3711392e-08, 4.2368226, 2.098039, -7.860834)
+transform = Transform3D(-4.3711392e-08, 0, -1, 0, 1, 0, 1, 0, -4.3711392e-08, 4.2368226, 2.098039, -13.879532)
 light_energy = 1.168
 light_bake_mode = 1
 shadow_enabled = true
 
 [node name="OmniLight3D14" type="OmniLight3D" parent="."]
-transform = Transform3D(-4.3711392e-08, 0, -1, 0, 1, 0, 1, 0, -4.3711392e-08, 7.282534, 2.098039, -7.860834)
+transform = Transform3D(-4.3711392e-08, 0, -1, 0, 1, 0, 1, 0, -4.3711392e-08, 7.282534, 2.098039, -13.879532)
 light_energy = 1.168
 light_bake_mode = 1
 shadow_enabled = true
@@ -517,13 +539,13 @@ light_bake_mode = 1
 shadow_enabled = true
 
 [node name="OmniLight3D16" type="OmniLight3D" parent="."]
-transform = Transform3D(-4.3711392e-08, 0, -1, 0, 1, 0, 1, 0, -4.3711392e-08, 4.2368226, 2.098039, -10.89516)
+transform = Transform3D(-4.3711392e-08, 0, -1, 0, 1, 0, 1, 0, -4.3711392e-08, 4.2368226, 2.098039, -10.298547)
 light_energy = 1.168
 light_bake_mode = 1
 shadow_enabled = true
 
 [node name="OmniLight3D17" type="OmniLight3D" parent="."]
-transform = Transform3D(-4.3711392e-08, 0, -1, 0, 1, 0, 1, 0, -4.3711392e-08, 7.282534, 2.098039, -10.89516)
+transform = Transform3D(-4.3711392e-08, 0, -1, 0, 1, 0, 1, 0, -4.3711392e-08, 7.282534, 2.098039, -10.298547)
 light_energy = 1.168
 light_bake_mode = 1
 shadow_enabled = true
@@ -548,3 +570,6 @@ transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 5.94
 
 [node name="KitchenCabinetLarge" parent="." instance=ExtResource("17_aye5u")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 4.281489, -0.04057902, -17.992825)
+
+[node name="closet" parent="." instance=ExtResource("20_wgw1x")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -0.49656788, 0.012001775, -15.728924)
